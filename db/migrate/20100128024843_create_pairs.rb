@@ -6,6 +6,7 @@ class CreatePairs < ActiveRecord::Migration
       t.integer :lecturer_id
       t.integer :lesson_id
       t.integer :timeslot_id
+      t.boolean :subgroup
 
       t.timestamps
     end
