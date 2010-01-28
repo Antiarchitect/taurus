@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :buildings
+
   map.resources :disciplines
 
   map.resources :lesson_types
