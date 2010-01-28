@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :lessons
+
   map.resources :classrooms
 
   map.resources :pairs
