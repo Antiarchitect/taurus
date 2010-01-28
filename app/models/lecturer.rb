@@ -1,3 +1,3 @@
 class Lecturer < ActiveRecord::Base
-  has_many :lessons
+  has_many :pairs
 end
