@@ -1,0 +1,35 @@
+#page {
+  font-family: 'Liberation Sans';
+}
+
+#page table {
+  font-size: 12px;
+}
+
+#table{
+}
+
+#widget_col,table td, th{
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+#table th{
+  font-size: 15px;
+  background: #ADD8E6;
+  height: 35px;
+}
+
+#time {
+  font-size: 15px;
+  min-width: 125px;
+  text-align: center;
+  background: #ADD8E6; 
+}
+
+#widget_col { 
+  width: 175px;
+  background: #FAEBD7;
+  text-align: center;
+}
