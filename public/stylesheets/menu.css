@@ -1,0 +1,45 @@
+/* 
+    Document   : menu
+    Created on : 24.12.2009, 9:02:04
+    Author     : runolfr
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+
+.menu ul {
+    background-color: #E6F2FF;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    height: 42px;
+    text-align: center;    
+}
+
+.menu li {
+    display: inline;
+    list-style-type:none;
+}
+
+.menu a {    
+    background-color: #E6F2FF;
+    color: #555;
+    display: inline-block;
+    font: bold 14px sans-serif;
+    padding: 13px 25px;
+    text-decoration: none;    
+}
+
+.menu a:hover {
+    background-color: #333;
+    color: #ff8;    
+}
+
+.menu .system a {
+  color: #c00;
+}
