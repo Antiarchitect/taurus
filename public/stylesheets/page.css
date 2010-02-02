@@ -9,27 +9,31 @@
 #table{
 }
 
-#widget_col,table td, th{
-  border-radius: 7px;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-}
-
 #table th{
   font-size: 15px;
   background: #ADD8E6;
-  height: 35px;
+  height: 30px;
+}
+
+#table td{
+  background: #ADD8E6;
 }
 
 #time {
   font-size: 15px;
-  min-width: 125px;
+  min-width: 100px;
   text-align: center;
   background: #ADD8E6; 
 }
 
 #widget_col { 
-  width: 175px;
+  width: 150px;
   background: #FAEBD7;
   text-align: center;
+}
+
+#day{
+  text-align: center;
+  width: 1em;
+  line-height: 1em;
 }

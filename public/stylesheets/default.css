@@ -1,32 +1,27 @@
-/* Заголовок перемещаемого поля*/
 .widget {
-     background-color: #E6F2FF;
-     border-radius: 7px;
-     -moz-border-radius: 7px;
-     -webkit-border-radius: 7px;
-}
-.widget_title {   
-    height:15px;
-    font:bold 12px/1em Liberation Sans;
-    text-align:center;
+  background: #c0c0c0;
 }
 
-/* Содержимое перемещаемого поля*/
+.widget_title {
+  height:15px;
+  font:bold 12px/1em Liberation Sans;
+  text-align:center;
+}
+
 .widget_content {
-    height:41px;
-    font:normal 12px/1em Liberation Sans;
-    text-align:center;
-    overflow:hidden;
+  height:40px;
+  font:normal 12px/1em Liberation Sans;
+  text-align:center;
+  overflow:hidden;  
 }
 
 .widget_draggable {
-    cursor:move;
+  cursor:move;
 }
 
-/* След перемещаемого поля*/
 .widget_ghost {
-    height:50px;
-    border: dashed #F00;
-    position: inherit;
+  height:49px;
+  border: dashed #F00;
+  position:inherit;      
 }
 
