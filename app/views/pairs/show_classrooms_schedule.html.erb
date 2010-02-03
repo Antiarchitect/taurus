@@ -1,13 +1,14 @@
 <body>
+
   <div id="page">
     <table align=left id="table">
       <tr>
-        <th></th><th>Время</th>		<th>Аудитория 1</th><th>Аудитория 2</th><th>Аудитория 3</th><th>Аудитория 4</th><th>Аудитория 5</th><th>Аудитория 6</th><th>Аудитория 7</th><th>Аудитория 8</th><th>Аудитория 9</th>
+        <th colspan=2>Время</th>		<th>Аудитория 1</th><th>Аудитория 2</th><th>Аудитория 3</th><th>Аудитория 4</th><th>Аудитория 5</th><th>Аудитория 6</th><th>Аудитория 7</th><th>Аудитория 8</th><th>Аудитория 9</th>
       </tr>
       <tr>
         <td rowspan=7 id="day">П о н е д е л ь н и к</td>
         <td id="time">08:15 - 09:45</td>
-        <td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td>
+        <td><div id="widget_col" ondblclick="addWidget(this,0)"></div></td><td><div id="widget_col" ondblclick="addWidget(this, 1)"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td><td><div id="widget_col"></div></td>
       </tr>
       <tr>
 	<td id="time">09:55 - 11:25</td>
@@ -209,17 +210,26 @@
        }
      }
 
+     function addWidget(element, number) {
+      if (Element.childElements(element)=="") {
+         if (confirm('Вы хотите добавить пару?')) {
+           portal.add(new Xilinus.Widget().setTitle("Новый").setContent(), number);
+         }
+       }
+     }
+
     function onChange() {
 
     }
+
      function init() {
        portal = new Xilinus.Portal("#page div", {onOverWidget: onOverWidget, onOutWidget: onOutWidget, onChange: onChange, removeEffect: Effect.SwitchOff});
        // Fake widgets
-       portal.add(new Xilinus.Widget().setTitle("Математический анализ").setContent(latin1_1+latin1_2+latin1_3), 0);
-       portal.add(new Xilinus.Widget().setTitle("Физика").setContent(latin2_1+latin2_2+latin2_3), 1);
+       portal.add(new Xilinus.Widget().setTitle("Математический анализ").setContent(latin1_1+latin1_2+latin1_3), 3);
+       portal.add(new Xilinus.Widget().setTitle("Физика").setContent(latin2_1+latin2_2+latin2_3), 5);
        // Add controls buttons
        portal.addWidgetControls("control_buttons");
      }
      Event.observe(window, "load", init);
   </script>
-</body>
+</body> 
