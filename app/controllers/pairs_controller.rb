@@ -14,8 +14,4 @@ class PairsController < ApplicationController
   def show_lecturers_schedule
 
   end
-
-  def save_state
-    
-  end
 end
