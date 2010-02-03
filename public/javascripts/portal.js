@@ -318,33 +318,6 @@ Object.extend(Xilinus.Portal.prototype, {
     // Find if it's overlapping a widget
     var found = false;
     var moved = false;
-    for (var index = 0, len = this._widgets.length; index < len; ++index) {
-      var w = this._widgets[index].getElement();
-      if (w ==  dragWidget || w.parentNode != dropon)
-        continue;
-
-      if (Position.within(w, x, y)) {
-        var overlap = Position.overlap( 'vertical', w);
-        // Bottom of the widget
-        if (overlap < 0.5) {
-          // Check if the ghost widget is not already below this widget
-          if (w.next() != dragWidget.ghost) {
-            w.parentNode.insertBefore(dragWidget.ghost, w.next());
-            moved = true;
-          }
-        }
-        // Top of the widget
-        else {
-          // Check if the ghost widget is not already above this widget
-          if (w.previous() != dragWidget.ghost) {
-            w.parentNode.insertBefore(dragWidget.ghost, w);
-            moved = true;
-          }
-        }
-        found = true;
-        break;
-      }
-    }
     // Not found a widget
     if (! found) {
       // Check if dropon has ghost widget
