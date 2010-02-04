@@ -1,39 +1,67 @@
-#page {
-  font-family: 'Liberation Sans';
+#timesheet {
+    font-family: 'Liberation Sans';
+    font-size: 15px;
 }
 
-#page table {
-  font-size: 12px;
+.timecolumn, .sheetcolumn {
+    float: left;
 }
 
-#table{
+.sheetcolumn {
+    margin-top: 2em;
+    background: #FAEBD7;
 }
 
-#table th{
-  font-size: 15px;
-  background: #ADD8E6;
-  height: 30px;
+.timecolumn {
+    width: 10em;
+    background: #ADD8E6;
 }
 
-#table td{
-  background: #ADD8E6;
+.timecolumn .header {
+    text-align: center;
+    width: 10em;    
+    height: 2em;
 }
 
-#time {
+.timecolumn .day{
+    float: left;
+    clear: left;
+    height: 21em;
+    text-align: center;
+    width: 1em;
+    line-height: 1.5em;
+}
+
+
+.timecolumn .time {
+    text-align: center;
+    margin-left: 1em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    height: 1em;
+    width: 9em;
+}
+
+.sheetcolumn .day {
+    height: 21em;
+}
+
+.sheetcolumn .time {
+    height: 3em;
+    width: 9em;
+}
+
+/*
+.time {
   font-size: 15px;
   min-width: 100px;
   text-align: center;
   background: #ADD8E6; 
 }
 
-#widget_col { 
+.widget_col {
   width: 150px;
   background: #FAEBD7;
   text-align: center;
 }
-
-#day{
-  text-align: center;
-  width: 1em;
-  line-height: 1em;
-}
+*/
