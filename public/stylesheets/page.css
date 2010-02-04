@@ -1,48 +1,64 @@
 #timesheet {
     font-family: 'Liberation Sans';
     font-size: 15px;
+    height: 1px;
 }
 
 .timecolumn, .sheetcolumn {
+    margin-left: 5px;
     float: left;
 }
 
 .sheetcolumn {
-    margin-top: 2em;
+    height: 100%;
     background: #FAEBD7;
 }
 
 .timecolumn {
-    width: 10em;
-    background: #ADD8E6;
+    border: 1px solid #555555;
+    border-bottom: none;
+    width: 150px;
+    background: #E6F2FF;
 }
 
 .timecolumn .header {
+    border-bottom: 1px solid #555555;
     text-align: center;
-    width: 10em;    
-    height: 2em;
+    width: 150px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 15px;
 }
 
-.timecolumn .day{
+.timecolumn .day {
+    height: 321px;
+    border-bottom: 1px solid #555555;
+}
+
+.timecolumn .daycol {
+    border-right: 1px solid #555555;
+    border-bottom: 1px solid #555555;
     float: left;
-    clear: left;
-    height: 21em;
+    height: 100%;
     text-align: center;
-    width: 1em;
-    line-height: 1.5em;
+    width: 15px;
 }
 
+.timecolumn .timecol {
+    height: 100%;
+    margin-left: 15px;
+}
 
 .timecolumn .time {
+    border-bottom: 1px solid #555555;
     text-align: center;
-    margin-left: 1em;
-    padding-bottom: 1em;
-    padding-top: 1em;
-    height: 1em;
-    width: 9em;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    height: 15px;
+    width: 135px;
 }
 
-.sheetcolumn .day {
+.sheetcolumn .daytitle {
     height: 21em;
 }
 
