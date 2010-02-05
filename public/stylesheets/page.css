@@ -1,9 +1,43 @@
-#timesheet {
-    font-family: 'Liberation Sans';
+.timesheet {
+    font-family: sans-serif;
     font-size: 15px;
-    height: 1px;
 }
 
+.timediv, .sheetdiv, .plus {
+    float: left;
+}
+.timetable, .week {
+    border-collapse: collapse;
+    background-color: #E6F2FF;
+}
+
+th, tr, td {
+    border: 1px solid #555555;
+}
+
+th {
+    font-size: 15px;
+    height: 30px;
+}
+
+.day {
+  font-size: 20px;
+  text-align: center;
+  width: 1em;
+}
+
+.time {
+    min-width: 100px;
+    height: 3em;
+    text-align: center;
+}
+
+.sheetdiv {
+
+}
+
+
+/*
 .timecolumn, .sheetcolumn {
     margin-left: 5px;
     float: left;
@@ -31,7 +65,7 @@
 }
 
 .timecolumn .day {
-    height: 321px;
+    height: 324px;
     border-bottom: 1px solid #555555;
 }
 
@@ -67,7 +101,6 @@
     width: 9em;
 }
 
-/*
 .time {
   font-size: 15px;
   min-width: 100px;

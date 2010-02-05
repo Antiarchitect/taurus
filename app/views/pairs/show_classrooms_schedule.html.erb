@@ -1,9 +1,14 @@
-<div id="timesheet">
-  <div class="timecolumn">
-    <div class="header">Время</div>
+<div class="timesheet">
+  <div class="timediv">
+    <table class="timetable">
+      <tr>
+        <th colspan=2 >Время</th>
+      </tr>
       <%= render :partial => 'week', :collection => @days %>
+    </table>
   </div>
-  <div class="sheetcolumn">
+  <%= render :partial => 'sheet' %>
+  <div class="plus">
     
   </div>
 </div>
