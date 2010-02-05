@@ -5,7 +5,9 @@
 
 .timediv, .sheetdiv, .plus {
     float: left;
+    margin-left: 5px;
 }
+
 .timetable, .week {
     border-collapse: collapse;
     background-color: #E6F2FF;
@@ -36,81 +38,7 @@ th {
 
 }
 
-
-/*
-.timecolumn, .sheetcolumn {
-    margin-left: 5px;
-    float: left;
+.plus {
+    height: 2em;
+    width: 2em;
 }
-
-.sheetcolumn {
-    height: 100%;
-    background: #FAEBD7;
-}
-
-.timecolumn {
-    border: 1px solid #555555;
-    border-bottom: none;
-    width: 150px;
-    background: #E6F2FF;
-}
-
-.timecolumn .header {
-    border-bottom: 1px solid #555555;
-    text-align: center;
-    width: 150px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    height: 15px;
-}
-
-.timecolumn .day {
-    height: 324px;
-    border-bottom: 1px solid #555555;
-}
-
-.timecolumn .daycol {
-    border-right: 1px solid #555555;
-    border-bottom: 1px solid #555555;
-    float: left;
-    height: 100%;
-    text-align: center;
-    width: 15px;
-}
-
-.timecolumn .timecol {
-    height: 100%;
-    margin-left: 15px;
-}
-
-.timecolumn .time {
-    border-bottom: 1px solid #555555;
-    text-align: center;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    height: 15px;
-    width: 135px;
-}
-
-.sheetcolumn .daytitle {
-    height: 21em;
-}
-
-.sheetcolumn .time {
-    height: 3em;
-    width: 9em;
-}
-
-.time {
-  font-size: 15px;
-  min-width: 100px;
-  text-align: center;
-  background: #ADD8E6; 
-}
-
-.widget_col {
-  width: 150px;
-  background: #FAEBD7;
-  text-align: center;
-}
-*/

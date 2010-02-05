@@ -3,6 +3,14 @@
     <tr>
       <th>Неделя 1</th>
     </tr>
-    <%= render :partial => 'sheetweek', :collection => @days %>
+    <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 1} %>
+  </table>
+</div>
+<div class="sheetdiv">
+  <table class="week" id="2">
+    <tr>
+      <th>Неделя 2</th>
+    </tr>
+    <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 2} %>
   </table>
 </div>
