@@ -1,4 +1,6 @@
 class PairsController < ApplicationController
+  layout false
+  layout 'pairs', :except => :update_classrooms
   @@days = [
               'П о н е д е л ь н и к',
               'В т о р н и к',
@@ -14,12 +16,17 @@ class PairsController < ApplicationController
   def show_classrooms_schedule
     @days = @@days
     @buildings = Building.all
-    @classrooms = Classroom.all
+  end
+
+  def update_classrooms
+    @classrooms = Classroom.all(:conditions => {:building_id => params[:building]})
+    respond_to do |format|
+      format.js
+    end
   end
 
   def add_classroom
     @days = @@days
-    @classroom = Classroom.first#(:conditions => {:id => params[:classroom]})
   end
 
   def show_groups_schedule
