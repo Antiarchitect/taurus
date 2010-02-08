@@ -9,14 +9,14 @@
   </div>
   <div id="plus">
     <% remote_form_for :pairs, :url => add_classroom_pairs_path do |f| %>
-      <%= label_tag 'building', 'Корпус' %>
-      <%= select_tag 'building',
+      <%= f.label :building %>
+      <%= f.select :building,
       options_for_select(@buildings.map {|b| [b.name, b.id]}) %>
-      <%= observe_field :building,
+      <%= observe_field 'pairs_building',
       :url => update_classrooms_pairs_path,
-      :with => 'building' %>
+      :with => :building %>
       <div id="classroom"></div>
-      <%=  submit_tag 'Добавить аудиторию' %>
+      <%=  f.submit 'Добавить аудиторию' %>
     <% end %>
   </div>
 </div>
