@@ -12,6 +12,12 @@ class PairsController < ApplicationController
               'П я т н и ц а',
               'С у б б о т а'
             ]
+    @buildings = Building.all
+    @classrooms = Classroom.all
+  end
+
+  def add_classroom
+    @classroom = Classroom.first(:conditions => {:id => params[:classroom]})
   end
 
   def show_groups_schedule

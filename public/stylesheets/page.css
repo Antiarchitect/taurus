@@ -3,7 +3,7 @@
     font-size: 15px;
 }
 
-.timediv, .sheetdiv, .plus {
+.timediv, .sheetdiv, #plus {
     float: left;
     margin-left: 5px;
 }
@@ -34,11 +34,7 @@ th {
     text-align: center;
 }
 
-.sheetdiv {
-
-}
-
-.plus {
+#plus {
     height: 2em;
     width: 2em;
 }

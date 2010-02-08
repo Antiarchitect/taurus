@@ -7,8 +7,11 @@
       <%= render :partial => 'week', :collection => @days %>
     </table>
   </div>
-  <%= render :partial => 'sheet' %>
-  <div class="plus">
-    
+  <div id="plus">
+    <%= label_tag 'building', 'Корпус' %>
+    <%= select_tag 'building', options_for_select(@buildings.map {|b| [b.name, b.id]}), {:include_blank => true} %></br>
+    <%= label_tag 'classroom', 'Аудитория' %>
+    <%= select_tag 'classroom', options_for_select(@classrooms.map {|c| [c.name, c.id]}), :disabled => true %></br>
+    <%=  link_to_remote 'Добавить аудиторию', :url => add_classroom_pairs_path %>
   </div>
 </div>
