@@ -1,4 +1,4 @@
-<div class="sheetdiv" id="<%= @classroom.id %>">
+<div class="sheetdiv" id="week1_classroom<%=h sheet.id %>">
   <table class="week" id="1">
     <tr>
       <th>Неделя 1</th>
@@ -6,7 +6,7 @@
     <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 1} %>
   </table>
 </div>
-<div class="sheetdiv">
+<div class="sheetdiv" id="week2_classroom<%=h sheet.id %>">
   <table class="week" id="2">
     <tr>
       <th>Неделя 2</th>

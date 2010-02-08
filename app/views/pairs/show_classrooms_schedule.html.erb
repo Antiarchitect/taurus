@@ -8,13 +8,15 @@
     </table>
   </div>
   <div id="plus">
-    <%= label_tag 'building', 'Корпус' %>
-    <%= select_tag 'building',
-    options_for_select(@buildings.map {|b| [b.name, b.id]}) %>
-    <%= observe_field :building, :update => 'classroom',
-    :url => update_classrooms_pairs_path,
-    :with => 'building' %>
-    <div id="classroom"></div>
-    <%=  link_to_remote 'Добавить аудиторию', :url => add_classroom_pairs_path %>
+    <% remote_form_for :pairs, :url => add_classroom_pairs_path do |f| %>
+      <%= label_tag 'building', 'Корпус' %>
+      <%= select_tag 'building',
+      options_for_select(@buildings.map {|b| [b.name, b.id]}) %>
+      <%= observe_field :building,
+      :url => update_classrooms_pairs_path,
+      :with => 'building' %>
+      <div id="classroom"></div>
+      <%=  submit_tag 'Добавить аудиторию' %>
+    <% end %>
   </div>
 </div>
