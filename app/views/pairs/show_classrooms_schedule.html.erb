@@ -9,7 +9,7 @@
   </div>
   <div id="plus">
     <% remote_form_for :pairs, :url => add_classroom_pairs_path do |f| %>
-      <%= f.label :building %>
+      <%= f.label :building, 'Корпус' %>
       <%= f.select :building,
       options_for_select(@buildings.map {|b| [b.name, b.id]}) %>
       <%= observe_field 'pairs_building',
