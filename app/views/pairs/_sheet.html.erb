@@ -1,7 +1,7 @@
 <div class="sheetdiv" id="week1_classroom<%=h sheet.id %>">
   <table class="week" id="1">
     <tr>
-      <th>Неделя 1</th>
+      <th><%=h sheet.id %>Неделя 1</th>
     </tr>
     <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 1} %>
   </table>

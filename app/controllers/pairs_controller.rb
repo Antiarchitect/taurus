@@ -21,7 +21,7 @@ class PairsController < ApplicationController
   end
 
   def add_classroom
-    @classroom = Classroom.first(:conditions => {:id => params[:classroom]})
+    @classroom = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
     @days = @@days
   end
 
