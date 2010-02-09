@@ -1,1 +1,2 @@
-page.insert_html :before, 'plus', :partial => 'sheet', :object => @classroom
+  page.insert_html :before, 'plus', :partial => 'sheet', :object => @classroom
+  page.visual_effect :appear, 'classroom' + @classroom.id.to_s
