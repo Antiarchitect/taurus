@@ -3,14 +3,35 @@
     font-size: 15px;
 }
 
-.timediv, .sheetdiv, #plus {
+.alldiv {
+    float: left;
+}
+
+.timediv, .sheetdiv, #plus{
     float: left;
     margin-left: 5px;
 }
 
-.timetable, .week {
+.classdiv_top{
+    border: 1px solid #555555;
+    height: 33px;
+    background-color: #E6F2FF;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.timetable{
+    margin-top: 40px;
+}
+
+.timetable, .week, .sheet_class {
     border-collapse: collapse;
     background-color: #E6F2FF;
+}
+
+.week th{
+    min-width: 120px;
+    max-width: 120px;
 }
 
 th, tr, td {
@@ -37,4 +58,19 @@ th {
 #plus {
     height: 2em;
     width: 2em;
+}
+
+#text{
+    padding-top: 8px;
+    font-weight: bold;
+    float: left;
+    width: 87%;
+    text-align: center;
+}
+
+#closebutton{
+    margin: 4px;
+    float: right;
+    height: 25px;
+    width: 25px;
 }

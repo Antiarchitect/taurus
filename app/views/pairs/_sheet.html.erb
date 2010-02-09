@@ -1,16 +1,28 @@
-<div class="sheetdiv" id="week1_classroom<%=h sheet.id %>">
-  <table class="week" id="1">
-    <tr>
-      <th><%=h sheet.id %>Неделя 1</th>
-    </tr>
-    <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 1} %>
-  </table>
-</div>
-<div class="sheetdiv" id="week2_classroom<%=h sheet.id %>">
-  <table class="week" id="2">
-    <tr>
-      <th>Неделя 2</th>
-    </tr>
-    <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 2} %>
-  </table>
+<div class="alldiv" id="<%=h sheet.id %>">
+  <div class="classdiv_top">
+    <div id="text">
+      Аудитория <%=h sheet.name %>
+    </div>
+    <div id="closebutton">
+      <%= image_tag('close_24.ico') %>
+    </div>
+  </div>
+  <div class="classdiv_bottom">
+    <div class="sheetdiv" id="week1">
+      <table class="week" id="1">
+      <tr>
+         <th>Неделя 1</th>
+       </tr>
+       <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 1} %>
+      </table>
+    </div>
+    <div class="sheetdiv" id="week2">
+     <table class="week" id="2">
+        <tr>
+         <th>Неделя 2</th>
+        </tr>
+        <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 2} %>
+     </table>
+    </div>
+  </div>
 </div>
