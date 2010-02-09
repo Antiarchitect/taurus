@@ -14,6 +14,7 @@ class PairsController < ApplicationController
   def show_classrooms_schedule
     @days = @@days
     @buildings = Building.all
+    @classrooms = Classroom.all(:conditions => {:building_id => 1})
   end
 
   def update_classrooms
@@ -21,8 +22,12 @@ class PairsController < ApplicationController
   end
 
   def add_classroom
-    @classroom = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
     @days = @@days
+    @classroom = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
+  end
+
+  def delete_classroom
+    @id = params[:id]
   end
 
   def show_groups_schedule

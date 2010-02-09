@@ -1,10 +1,11 @@
-<div class="alldiv" id="<%=h sheet.id %>">
+<div class="alldiv" id="classroom<%=h sheet.id %>">
   <div class="classdiv_top">
     <div id="text">
-      Аудитория <%=h sheet.name %>
+      Аудитория <%=h sheet.name %> (<%=h sheet.building.name %>)
     </div>
     <div id="closebutton">
-      <%= image_tag('close_24.ico') %>
+      <%= link_to_remote(image_tag('close_24.ico'),
+        :url => delete_classroom_pairs_path(:id => sheet.id)) %>
     </div>
   </div>
   <div class="classdiv_bottom">

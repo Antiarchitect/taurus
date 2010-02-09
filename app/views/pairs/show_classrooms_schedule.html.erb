@@ -15,7 +15,10 @@
       <%= observe_field 'pairs_building',
       :url => update_classrooms_pairs_path,
       :with => :building %>
-      <div id="classroom"></div>
+      <div id="classroom">
+        <%= f.label :classroom, 'Аудитория' %>
+        <%= f.select :classroom, options_for_select(@classrooms.map {|c| [c.name, c.id]}) %>
+      </div>
       <%= image_submit_tag('add_32.ico') %>
     <% end %>
   </div>
