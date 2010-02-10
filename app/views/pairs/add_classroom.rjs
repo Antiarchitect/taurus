@@ -1,3 +1,3 @@
 page.insert_html :before, 'plus', :partial => 'sheet', :object => @classroom
 page['classroom' + @classroom.id.to_s].appear :duration => 0.5
-page[:classroom_form].fade
+page[:adding_form].fade

@@ -3,7 +3,7 @@
     <div id="text">
       Аудитория <%=h sheet.name %> (<%=h sheet.building.name %>)
     </div>
-    <div id="closebutton">
+    <div id="sheet_closebutton">
       <%= link_to_remote(image_tag('close_16.ico'),
         :url => delete_classroom_pairs_path(:id => sheet.id)) %>
     </div>

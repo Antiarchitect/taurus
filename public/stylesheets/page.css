@@ -7,7 +7,7 @@
     float: left;
 }
 
-.timediv, .sheetdiv, .add_classroom, #plus {
+.timediv, .sheetdiv, .add_classroom, #plus, .form {
     float: left;
     margin-left: 5px;
 }
@@ -60,14 +60,14 @@ th {
     width: 5px;
 }
 
-#classroom_form {
+#adding_form {
     float: left;
     margin-top: 40px;
     border: 1px solid #555555;
     background-color: #E6F2FF;
 }
 
-#text{
+#text {
     padding-top: 8px;
     font-weight: bold;
     float: left;
@@ -75,9 +75,18 @@ th {
     text-align: center;
 }
 
-#closebutton{
+#sheet_closebutton {
     margin: 8px;
     float: right;
     height: 17px;
     width: 17px;
+}
+
+#form_closebutton {
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-left: 4px;
+    clear: right;
+    float: right;
+    height: 17px;
 }

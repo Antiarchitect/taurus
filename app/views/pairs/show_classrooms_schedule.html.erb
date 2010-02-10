@@ -10,19 +10,25 @@
   <div id="plus">
     <%= link_to_remote(image_tag('add_32.ico'), :url => show_classroom_form_pairs_path) %>
   </div>
-  <div id="classroom_form" style="display: none">
-    <% remote_form_for :pairs, :url => add_classroom_pairs_path do |f| %>
-      <%= f.label :building, 'Корпус' %>
-      <%= f.select :building,
-      options_for_select(@buildings.map {|b| [b.name, b.id]}) %>
-      <%= observe_field 'pairs_building',
-      :url => update_classrooms_pairs_path,
-      :with => :building %>
-      <div id="classroom">
-        <%= f.label :classroom, 'Аудитория' %>
-        <%= f.select :classroom, options_for_select(@classrooms.map {|c| [c.name, c.id]}) %>
-      </div>
-      <%= submit_tag 'Добавить' %>
-    <% end %>
+  <div id="adding_form" style="display: none">
+    <div id="form_closebutton">
+      <%= link_to_remote(image_tag('close_16.ico'),
+        :url => hide_classroom_form_pairs_path) %>
+    </div>
+    <div class="form">
+      <% remote_form_for :pairs, :url => add_classroom_pairs_path do |f| %>
+        <%= f.label :building, 'Корпус' %>
+        <%= f.select :building,
+        options_for_select(@buildings.map {|b| [b.name, b.id]}) %>
+        <%= observe_field 'pairs_building',
+        :url => update_classrooms_pairs_path,
+        :with => :building %>
+        <div id="classroom">
+          <%= f.label :classroom, 'Аудитория' %>
+          <%= f.select :classroom, options_for_select(@classrooms.map {|c| [c.name, c.id]}) %>
+        </div>
+        <%= submit_tag 'Добавить' %>
+      <% end %>
+    </div>
   </div>
 </div>
