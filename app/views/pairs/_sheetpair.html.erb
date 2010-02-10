@@ -1,5 +1,8 @@
 <tr>
   <td class="time" >
-    <%= drop_receiving_element 'classroom'  %>
+    <%= drop_receiving_element(
+    "classroom#{classroom}_week#{week}_day#{day}_pairtime#{sheetpair_counter + 1}",
+    :url => savestate_pairs_path,
+    :accept => 'pair') %>
   </td>
 </tr>

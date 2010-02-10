@@ -23,7 +23,8 @@ ActionController::Routing::Routes.draw do |map|
     :update_classrooms => :get,
     :delete_classroom => :get,
     :show_classroom_form => :get,
-    :hide_classroom_form => :get
+    :hide_classroom_form => :get,
+    :savestate => :get
   }
 
   # The priority is based upon order of creation: first created -> highest priority.

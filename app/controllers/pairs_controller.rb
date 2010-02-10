@@ -20,6 +20,15 @@ class PairsController < ApplicationController
 
   end
 
+  def savestate
+    pair = Pair.first(params[:pair])
+    pair.classroom_id = params[:classroom]
+    timeslot = pair.timeslot
+    timeslot.week_number = params[:week]
+    timeslot.week_day = params[:day]
+    timeslot.pair_number = params[:pairtime]
+  end
+
   def show_classrooms_schedule
     @days = @@days
     @buildings = Building.all
