@@ -17,6 +17,10 @@ class PairsController < ApplicationController
     @classrooms = Classroom.all(:conditions => {:building_id => 1})
   end
 
+  def show_classroom_form
+
+  end
+  
   def update_classrooms
     @classrooms = Classroom.all(:conditions => {:building_id => params[:building]})
   end

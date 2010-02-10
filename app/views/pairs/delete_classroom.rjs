@@ -1,4 +1,4 @@
-page.visual_effect :fade, 'classroom' + @id, :duration => 0.5
+page['classroom' + @id].fade :duration => 0.5
 page.delay(0.5) {
   page.remove('classroom' + @id)
 }

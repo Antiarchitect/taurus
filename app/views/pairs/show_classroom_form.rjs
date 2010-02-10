@@ -1,0 +1,1 @@
+page[:classroom_form].appear :duration => 0.5

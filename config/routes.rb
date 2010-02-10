@@ -21,7 +21,8 @@ ActionController::Routing::Routes.draw do |map|
     :show_lecturers_schedule => :get,
     :add_classroom => :get,
     :update_classrooms => :get,
-    :delete_classroom => :get
+    :delete_classroom => :get,
+    :show_classroom_form => :get
   }
 
   # The priority is based upon order of creation: first created -> highest priority.
