@@ -7,6 +7,15 @@ class PairsController < ApplicationController
               'П я т н и ц а',
               'С у б б о т а'
             ]
+  @@pair_times = [
+                    '08:15 - 09:45',
+                    '09:55 - 11:25',
+                    '11:35 - 13:05',
+                    '14:00 - 15:30',
+                    '15:40 - 17:10',
+                    '17:20 - 18:50',
+                    '19:00 - 20:30'
+                 ]
   def index
 
   end
@@ -31,6 +40,7 @@ class PairsController < ApplicationController
 
   def add_classroom
     @days = @@days
+    @pair_times = @@pair_times
     @classroom = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
   end
 

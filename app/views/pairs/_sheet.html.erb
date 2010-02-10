@@ -14,7 +14,8 @@
       <tr>
          <th>Неделя 1</th>
        </tr>
-       <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 1} %>
+       <%= render :partial => 'sheetday', :collection => @days,
+         :locals => {:classroom => sheet.id, :week => 1} %>
       </table>
     </div>
     <div class="sheetdiv" id="week2">
@@ -22,7 +23,8 @@
         <tr>
          <th>Неделя 2</th>
         </tr>
-        <%= render :partial => 'sheetweek', :collection => @days, :locals => {:week => 2} %>
+        <%= render :partial => 'sheetday', :collection => @days,
+          :locals => {:classroom => sheet.id, :week => 2} %>
      </table>
     </div>
   </div>

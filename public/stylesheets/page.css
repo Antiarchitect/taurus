@@ -90,3 +90,7 @@ th {
     float: right;
     height: 17px;
 }
+
+.receiver {
+    background-color: #ff0000;
+}
