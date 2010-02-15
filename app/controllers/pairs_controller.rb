@@ -20,13 +20,8 @@ class PairsController < ApplicationController
 
   end
 
-  def savestate
-    pair = Pair.first(params[:pair])
-    pair.classroom_id = params[:classroom]
-    timeslot = pair.timeslot
-    timeslot.week_number = params[:week]
-    timeslot.week_day = params[:day]
-    timeslot.pair_number = params[:pairtime]
+  def update_state
+    
   end
 
   def show_classrooms_schedule
@@ -51,6 +46,7 @@ class PairsController < ApplicationController
     @days = @@days
     @pair_times = @@pair_times
     @classroom = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
+    @pairs = @classroom.pairs
   end
 
   def delete_classroom

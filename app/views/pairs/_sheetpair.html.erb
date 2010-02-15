@@ -1,15 +1,12 @@
 <tr>
   <td class="time" >
-    <% id = "classroom#{classroom}_week#{week}_day#{day}_pairtime#{sheetpair_counter + 1}" %>
+    <% id = "container_classroom#{classroom}_week#{week}_day#{day}_pairtime#{sheetpair_counter + 1}" %>
     <div class="receiver" id="<%= id %>">
-      <% if id == "classroom1_week1_day1_pairtime1" %>
-      <div class="drop" id="1">
-      </div>
-      <%= draggable_element "1", :revert => true %>
-      <% end %>
     </div>
     <%= drop_receiving_element id,
-    :url => pairs_path
+      :url => pair_path,
+      :method => :put,
+      :accept => 'pair'
     %>
   </td>
 </tr>
