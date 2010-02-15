@@ -4,7 +4,7 @@
     <div class="receiver" id="<%= id %>">
     </div>
     <%= drop_receiving_element id,
-      :url => pair_path,
+      :url => pair_path(@pair),
       :method => :put,
       :accept => 'pair'
     %>
