@@ -93,4 +93,12 @@ th {
 
 .receiver {
     background-color: #ff0000;
+    height: 100%;
+    width: 100%
+}
+
+.drop {
+    background-color: #00ff00;
+    height: 100%;
+    width: 100%
 }
