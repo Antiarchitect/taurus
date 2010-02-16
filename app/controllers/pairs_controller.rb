@@ -29,6 +29,10 @@ class PairsController < ApplicationController
       :week_day => params[:day],
       :pair_number => params[:pair_number]
     )
+    @classroom = Classroom.first(:conditions => {:id => params[:classroom]})
+    @days = @@days
+    @pair_times = @@pair_times
+    @pairs = @classroom.pairs
   end
 
   def show_classrooms_schedule
