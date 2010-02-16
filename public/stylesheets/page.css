@@ -96,6 +96,13 @@ th {
     width: 100%;
 }
 
+.hovered_receiver {
+  height: 100%;
+  width: 100%;
+  border: dashed #F00;
+  position:inherit;
+}
+
 .pair {
     background-color: #00ff00;
     height: 100%;

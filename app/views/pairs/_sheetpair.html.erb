@@ -4,9 +4,11 @@
     <div class="receiver" id="<%= id %>">
     </div>
     <%= drop_receiving_element id,
-      :url => pair_path(@pair),
-      :method => :put,
-      :accept => 'pair'
+      :url => update_state_pairs_path(:classroom => classroom, :week => week,
+        :day => day, :pair_number => sheetpair_counter + 1),
+      :accept => 'pair',
+      :with => "'pair=' + element.id",
+      :hoverclass => 'hovered_receiver'
     %>
   </td>
 </tr>

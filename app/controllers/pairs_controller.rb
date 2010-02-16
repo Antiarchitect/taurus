@@ -21,7 +21,14 @@ class PairsController < ApplicationController
   end
 
   def update_state
-    
+    Pair.update(params[:pair],
+      :classroom_id => params[:classroom]
+    )
+    Timeslot.update(Pair.first(params[:pair]).timeslot.id,
+      :week_number => params[:week],
+      :week_day => params[:day],
+      :pair_number => params[:pair_number]
+    )
   end
 
   def show_classrooms_schedule
