@@ -33,6 +33,7 @@ class PairsController < ApplicationController
     @days = @@days
     @pair_times = @@pair_times
     @pairs = @classroom.pairs
+    @pair = Pair.first(:conditions => {:id => params[:pair]})
   end
 
   def show_classrooms_schedule

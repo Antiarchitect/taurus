@@ -1,6 +1,7 @@
+page[@pair.id.to_s].remove
 classroom_id = @classroom.id.to_s
 page["classroom#{classroom_id}"].replace :partial => 'sheet', :object => @classroom
-page["classroom#{classroom_id}"].appear :duration => 0.5
+page["classroom#{classroom_id}"].show
 @pairs.each do |pair|
   timeslot = pair.timeslot
   page.insert_html :top, "container_classroom#{classroom_id}_week#{timeslot.week_number}_day#{timeslot.week_day}_pairtime#{timeslot.pair_number}",
