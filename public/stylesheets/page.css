@@ -104,6 +104,7 @@ th {
 }
 
 .pair {
+    cursor: move;
     background-color: #00ff00;
     height: 100%;
     width: 100%;
