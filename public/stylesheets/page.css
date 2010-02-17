@@ -3,11 +3,11 @@
     font-size: 15px;
 }
 
-.alldiv {
+.alldiv, .sheetdiv {
     float: left;
 }
 
-.timediv, .sheetdiv, .add_classroom, #plus, .form {
+.timediv, .add_classroom, #plus, .form {
     float: left;
     margin-left: 5px;
 }
@@ -16,7 +16,6 @@
     border: 1px solid #555555;
     height: 33px;
     background-color: #E6F2FF;
-    margin-left: 5px;
     margin-bottom: 5px;
 }
 

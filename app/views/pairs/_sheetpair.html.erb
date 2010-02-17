@@ -5,7 +5,7 @@
     </div>
     <%= drop_receiving_element id,
       :url => update_state_pairs_path(:classroom => classroom, :week => week,
-        :day => day, :pair_number => sheetpair_counter + 1),
+        :day => day, :pair_number => sheetpair_counter + 1, :container => id),
       :accept => 'pair',
       :with => "'pair=' + element.id",
       :hoverclass => 'hovered_receiver'
