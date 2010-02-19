@@ -1,2 +1,0 @@
-page[@pair.id.to_s].remove
-page.insert_html :top, @container, :partial => 'pair', :locals => {:pair_id => @pair.id}

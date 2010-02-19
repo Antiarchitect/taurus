@@ -1,4 +1,0 @@
-<% fields_for :pairs do |f| %>
-  <%= f.label :classroom, 'Аудитория' %>
-  <%= f.select :classroom, options_for_select(classrooms.map {|c| [c.name, c.id]}) %>
-<% end %>
