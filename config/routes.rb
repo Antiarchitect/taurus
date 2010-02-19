@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resource :constructor
+
   map.resource :groups_constructor
   
   map.resource :lecturers_constructor
