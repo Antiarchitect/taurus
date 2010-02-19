@@ -1,2 +1,2 @@
-class LecturersConstructorController < ApplicationController
+class LecturersConstructorController < GeneralConstructorController
 end
