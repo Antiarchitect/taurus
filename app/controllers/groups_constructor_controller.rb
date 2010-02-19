@@ -1,2 +1,2 @@
-class GroupsConstructorController < GeneralConstructorController
+class GroupsConstructorController < ConstructorController
 end

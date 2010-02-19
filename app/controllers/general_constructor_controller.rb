@@ -1,2 +1,0 @@
-class GeneralConstructorController < ApplicationController
-end

@@ -1,0 +1,2 @@
+module ConstructorHelper
+end

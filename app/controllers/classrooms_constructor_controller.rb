@@ -1,2 +1,2 @@
-class ClassroomsConstructorController < GeneralConstructorController
+class ClassroomsConstructorController < ConstructorController
 end
