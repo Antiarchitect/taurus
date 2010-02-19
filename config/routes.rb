@@ -21,17 +21,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :classrooms
 
-  map.resources :pairs, :collection => {
-    :show_classrooms_schedule => :get,
-    :show_groups_schedule => :get,
-    :show_lecturers_schedule => :get,
-    :add_classroom => :get,
-    :update_classrooms => :get,
-    :delete_classroom => :get,
-    :show_classroom_form => :get,
-    :hide_classroom_form => :get,
-    :update_state => :get
-  }
+  map.resources :pairs
 
   # The priority is based upon order of creation: first created -> highest priority.
 
