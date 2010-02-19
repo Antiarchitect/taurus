@@ -1,4 +1,4 @@
-class ConstructorController < ApplicationController
+class ConstructorsController < ApplicationController
   def index
   end
 end
