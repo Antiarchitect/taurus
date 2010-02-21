@@ -1,2 +1,35 @@
+!workspace_width = 1200px
+!times_width = 150px
+!days_width = !workspace_width - !times_width
+!day_width = !days_width / 6
+
 .workspace
+  width = !workspace_width
+
 .grid
+  clear: both
+  width: 100%
+
+.header
+  clear: both
+  text-align: center
+
+.days
+  float: left
+  width = !days_width
+
+.times
+  float: left
+  width = !times_width
+
+.day
+  float: left
+  height: 100px
+  width = !day_width
+
+.time
+  text-align: center
+  width: 100%
+
+.plus
+  clear: left

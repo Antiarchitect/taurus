@@ -1,0 +1,30 @@
+.workspace {
+  width: 1200px; }
+
+.grid {
+  clear: both;
+  width: 100%; }
+
+.header {
+  clear: both;
+  text-align: center; }
+
+.days {
+  float: left;
+  width: 1050px; }
+
+.times {
+  float: left;
+  width: 150px; }
+
+.day {
+  float: left;
+  height: 100px;
+  width: 175px; }
+
+.time {
+  text-align: center;
+  width: 100%; }
+
+.plus {
+  clear: left; }
