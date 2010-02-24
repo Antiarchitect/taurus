@@ -1,6 +1,8 @@
-.header
-  = 'Аудитория'
-.times
-  = render :partial => 'time', :collection => @times
-.days
-  = render :partial => 'day', :collection => @days
+.grid
+  .header
+    = 'Аудитория'
+  .times
+    .angle_div
+    = render :partial => 'time', :collection => @times
+  .days
+    = render :partial => 'day', :collection => @days

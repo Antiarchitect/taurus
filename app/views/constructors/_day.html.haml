@@ -1,2 +1,4 @@
 .day
-  = day
+  .header
+    = day
+  = render :partial => 'week', :collection => @weeks

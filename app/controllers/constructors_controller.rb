@@ -5,7 +5,8 @@ class ConstructorsController < ApplicationController
     'Вторник',
     'Среда',
     'Четверг',
-    'Пятница'
+    'Пятница',
+    'Суббота'
   ]
   @@times = [
     '08:15 - 09:45',
@@ -17,11 +18,12 @@ class ConstructorsController < ApplicationController
     '19:00 - 20:30'
   ]
   @@weeks = [
-    'Первая неделя',
-    'Вторая неделя'
+    '1 неделя',
+    '2 неделя'
   ]
   def show
     @days = self.class.days
     @times = self.class.times
+    @weeks = self.class.weeks
   end
 end
