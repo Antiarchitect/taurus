@@ -21,9 +21,28 @@ class ConstructorsController < ApplicationController
     '1 неделя',
     '2 неделя'
   ]
-  def show
+  def after_initialize
     @days = self.class.days
     @times = self.class.times
     @weeks = self.class.weeks
   end
+
+  def add_grid
+    @grid = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
+    @pairs = @grid.pairs
+  end
+
+  def show
+    
+  end
+
+  def show_form
+    
+  end
+
+  def hide_form
+
+  end
+
+
 end

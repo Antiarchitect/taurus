@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resource :constructor
+  map.resource :constructor, :collection => {
+    :show_form => :get,
+    :hide_form => :get,
+    :add_grid => :get
+  }
 
   map.resource :groups_constructor
   
