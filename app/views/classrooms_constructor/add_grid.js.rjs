@@ -1,6 +1,6 @@
-page.insert_html :before, 'plus', :partial => 'grid', :object => @classroom
-classroom_id = @classroom.id.to_s
-page['classroom' + classroom_id].appear :duration => 0.5
+page.insert_html :before, 'plus', :partial => 'grid', :object => @grid
+grid_id = @grid.id.to_s
+page['grid' + grid_id].appear :duration => 0.5
 page[:adding_form].fade
 @pairs.each do |pair|
   timeslot = pair.timeslot
