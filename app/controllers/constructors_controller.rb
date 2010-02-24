@@ -28,8 +28,7 @@ class ConstructorsController < ApplicationController
   end
 
   def add_grid
-    @grid = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
-    @pairs = @grid.pairs
+    
   end
 
   def show
