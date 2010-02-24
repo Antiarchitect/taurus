@@ -19,9 +19,5 @@
     border-style: solid;
     border-width: thin; }
 
-.container {
-  height: 50px;
-  text-align: center; }
-
 .plus {
   clear: left; }
