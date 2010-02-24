@@ -6,28 +6,6 @@
 !header_height = 30px
 !container_height = 50px
 
-=right_bottom_border
-  border:
-    right:
-      color: #00000
-      width: 1px
-      style: dashed
-    bottom:
-      color: #00000
-      width: 1px
-      style: dashed
-
-=left_top_border
-  border:
-    left:
-      color: #00000
-      width: 1px
-      style: dashed
-    top:
-      color: #00000
-      width: 1px
-      style: dashed
-
 .workspace
   font:
     family: sans-serif
@@ -35,7 +13,6 @@
   width = !workspace_width
 
 .grid
-  +left_top_border
   background:
     color: #E6F2FF
   clear: both
@@ -44,40 +21,13 @@
   overflow: hidden
   width: 100%
 
-.header
-  +right_bottom_border
-  clear: both
-  text-align: center
-  height = !header_height
-
-.days
-  float: left
-  width = !days_width
-
-.times
-  float: left
-  width = !times_width
-
-.angle_div
-  +right_bottom_border
-  height = !header_height * 2 + 1px
-
-.day
-  float: left
-  width = !day_width
-
-.time
-  +right_bottom_border
-  height = !container_height
-  text-align: center
-  width: 100%
-
-.week
-  float: left
-  width = !week_width
+  td
+    border:
+      collapse: collapse
+      color: #000000
+      width: 1px
 
 .container
-  +right_bottom_border
   height = !container_height
   text-align: center
 

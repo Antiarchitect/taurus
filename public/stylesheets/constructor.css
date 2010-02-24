@@ -4,72 +4,17 @@
   width: 100%; }
 
 .grid {
-  border-left-color: #00000;
-  border-left-width: 1px;
-  border-left-style: dashed;
-  border-top-color: #00000;
-  border-top-width: 1px;
-  border-top-style: dashed;
   background-color: #E6F2FF;
   clear: both;
   margin-bottom: 5px;
   overflow: hidden;
   width: 100%; }
-
-.header {
-  border-right-color: #00000;
-  border-right-width: 1px;
-  border-right-style: dashed;
-  border-bottom-color: #00000;
-  border-bottom-width: 1px;
-  border-bottom-style: dashed;
-  clear: both;
-  text-align: center;
-  height: 30px; }
-
-.days {
-  float: left;
-  width: 90%; }
-
-.times {
-  float: left;
-  width: 10%; }
-
-.angle_div {
-  border-right-color: #00000;
-  border-right-width: 1px;
-  border-right-style: dashed;
-  border-bottom-color: #00000;
-  border-bottom-width: 1px;
-  border-bottom-style: dashed;
-  height: 61px; }
-
-.day {
-  float: left;
-  width: 16.667%; }
-
-.time {
-  border-right-color: #00000;
-  border-right-width: 1px;
-  border-right-style: dashed;
-  border-bottom-color: #00000;
-  border-bottom-width: 1px;
-  border-bottom-style: dashed;
-  height: 50px;
-  text-align: center;
-  width: 100%; }
-
-.week {
-  float: left;
-  width: 50%; }
+  .grid td {
+    border-collapse: collapse;
+    border-color: #000000;
+    border-width: 1px; }
 
 .container {
-  border-right-color: #00000;
-  border-right-width: 1px;
-  border-right-style: dashed;
-  border-bottom-color: #00000;
-  border-bottom-width: 1px;
-  border-bottom-style: dashed;
   height: 50px;
   text-align: center; }
 
