@@ -6,6 +6,11 @@
 !header_height = 30px
 !container_height = 50px
 
+=table_border
+  border:
+    style: solid
+    width: thin
+
 .workspace
   font:
     family: sans-serif
@@ -18,14 +23,17 @@
   clear: both
   margin:
     bottom: 5px
-  overflow: hidden
   width: 100%
 
-  td
+  table
+    width: 100%
     border:
       collapse: collapse
-      color: #000000
-      width: 1px
+  td
+    +table_border
+    height = !container_height
+  th
+    +table_border
 
 .container
   height = !container_height
