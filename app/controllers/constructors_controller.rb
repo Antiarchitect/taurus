@@ -1,5 +1,5 @@
 class ConstructorsController < ApplicationController
-  cattr_reader :days, :times, :weeks
+  cattr_reader :days, :times, :weeks, :templates
   @@days = [
     'Понедельник',
     'Вторник',
@@ -21,12 +21,7 @@ class ConstructorsController < ApplicationController
     '1 неделя',
     '2 неделя'
   ]
-  def after_initialize
-    @days = self.class.days
-    @times = self.class.times
-    @weeks = self.class.weeks
-  end
-
+ 
   def add_grid
     
   end
@@ -42,6 +37,4 @@ class ConstructorsController < ApplicationController
   def hide_form
 
   end
-
-
 end
