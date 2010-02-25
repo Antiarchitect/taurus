@@ -1,6 +1,10 @@
 class ClassroomsConstructorsController < ConstructorsController
-  def add_grid
-    @grid = Classroom.first(:conditions => {:id => params[:pairs][:classroom]})
-    @pairs = @grid.pairs
+  def show
+    first_building_id = Building.first.id
+    @classrooms = Classroom.all(:conditions => {:building_id => first_building_id})
+  end
+
+  def update_classrooms
+    
   end
 end

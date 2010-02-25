@@ -8,7 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :classrooms_constructor, :collection => {
     :show_form => :get,
     :hide_form => :get,
-    :add_grid => :get
+    :add_grid => :get,
+    :update_classrooms => :get
   }
 
   map.resources :buildings
