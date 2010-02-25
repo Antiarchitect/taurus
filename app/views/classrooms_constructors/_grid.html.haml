@@ -1,14 +1,11 @@
-.grid
+.grid{:id => "grid#{h(grid.id)}"}
   %table
     %tr
       %th{:colspan => 13}
-        = 'Аудитория'
+        = h "Аудитория #{grid.name} (#{grid.building.name})"
     %tr
-      %td
-      = render :partial => 'day', :collection => @days
+      = render :partial => 'day_header', :collection => @days
     %tr
-      %td
-      - 6.times do
-        = render :partial => 'week_header', :collection => @weeks
-    = render :partial => 'time', :collection => @times
-    
+    - 6.times do
+      = render :partial => 'week_header', :collection => @weeks
+    = render :partial => 'time', :collection => @times   

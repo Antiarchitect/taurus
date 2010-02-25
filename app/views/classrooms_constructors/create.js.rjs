@@ -1,7 +1,7 @@
 page.insert_html :before, 'plus', :partial => 'grid', :object => @classroom
 classroom_id = @classroom.id.to_s
-page['classroom' + classroom_id].appear :duration => 0.5
-page[:adding_form].fade
+page['grid' + classroom_id].appear :duration => 0.5
+page[:form].fade
 @pairs.each do |pair|
   timeslot = pair.timeslot
   page.insert_html :top, "container_classroom#{classroom_id}_week#{timeslot.week_number}_day#{timeslot.week_day}_pairtime#{timeslot.pair_number}",
