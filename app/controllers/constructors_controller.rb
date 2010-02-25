@@ -21,20 +21,16 @@ class ConstructorsController < ApplicationController
     '1 неделя',
     '2 неделя'
   ]
- 
+
+  def new
+
+  end
+  
   def add_grid
     
   end
 
   def show
     
-  end
-
-  def show_form
-    
-  end
-
-  def hide_form
-
   end
 end
