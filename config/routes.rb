@@ -15,8 +15,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups
 
-  map.resources :timeslots
-
   map.resources :lecturers
 
   map.resources :disciplines
