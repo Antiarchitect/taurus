@@ -1,5 +1,5 @@
 class ConstructorsController < ApplicationController
-  cattr_reader :days, :times, :weeks, :templates
+  cattr_reader :days, :times, :weeks
   @@days = [
     'Понедельник',
     'Вторник',

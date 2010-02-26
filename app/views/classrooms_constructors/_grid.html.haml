@@ -4,8 +4,10 @@
       %th{:colspan => 13}
         = h "Аудитория #{grid.name} (#{grid.building.name})"
     %tr
+      %th
       = render :partial => 'day_header', :collection => @days
     %tr
-    - 6.times do
-      = render :partial => 'week_header', :collection => @weeks
-    = render :partial => 'time', :collection => @times   
+      %th
+      - 6.times do
+        = render :partial => 'week_header', :collection => @weeks
+    = render :partial => 'time', :collection => @times, :locals => {:grid => grid.id}

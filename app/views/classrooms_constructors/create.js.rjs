@@ -5,5 +5,5 @@ page[:form].fade
 @pairs.each do |pair|
   timeslot = pair.timeslot
   page.insert_html :top, "container_classroom#{classroom_id}_week#{timeslot.week_number}_day#{timeslot.week_day}_pairtime#{timeslot.pair_number}",
-    :partial => 'pair', :locals => {:pair_id => pair.id}
+    :partial => 'pair', :object => pair
 end

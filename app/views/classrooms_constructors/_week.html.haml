@@ -1,9 +1,4 @@
 %td
-  - id = "container_classroom#{classroom}_week#{week_counter + 1}_day#{day}_pairtime#{pairtime}"
+  - id = "container_classroom#{grid}_week#{week_counter + 1}_day#{day}_time#{time}"
   .receiver{:id => "#{id}"}
-  = drop_receiving_element id,
-  = :url => update_state_pairs_path(:classroom => classroom, :week => week,
-  = :day => day, :pair_number => sheetpair_counter + 1, :container => id),
-  = :accept => 'pair',
-  = :with => "'pair=' + element.id",
-  = :hoverclass => 'hovered_receiver'
+  = drop_receiving_element id, :url => classrooms_constructors_path(:grid => grid, :week => week_counter + 1, :day => day, :time => time, :container => id), :accept => 'pair', :with => "'pair=' + element.id", :hoverclass => 'hovered_receiver'

@@ -1,1 +1,1 @@
-= render :partial => 'week', :collection => @weeks
+= render :partial => 'week', :collection => @weeks, :locals => {:grid => grid, :time => time, :day => day_counter + 1}
