@@ -22,21 +22,7 @@ class ClassroomsConstructorsController < ConstructorsController
   end
 
   def update
-    @days = self.class.days
-    @times = self.class.times
-    @weeks = self.class.weeks
-    Pair.update(params[:pair],
-      :classroom_id => params[:grid]
-    )
-    Timeslot.update(Pair.find(params[:pair]).timeslot.id,
-      :week_number => params[:week],
-      :week_day => params[:day],
-      :pair_number => params[:time]
-    )
-    @classroom = Classroom.first(:conditions => {:id => params[:grid]})
-    @pairs = @classroom.pairs
-    @pair = Pair.find(params[:pair])
-    @container = params[:container]
+    
   end
 
   def update_classrooms_list
