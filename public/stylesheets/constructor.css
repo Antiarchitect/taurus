@@ -3,6 +3,9 @@
   font-size: 12px;
   width: 100%; }
 
+.plus {
+  clear: left; }
+
 .grid {
   background-color: #E6F2FF;
   clear: both;
@@ -19,5 +22,17 @@
     border-style: solid;
     border-width: thin; }
 
-.plus {
-  clear: left; }
+.receiver {
+  height: 100%;
+  width: 100%; }
+
+.hovered_receiver {
+  height: 100%;
+  width: 100%;
+  border: dashed #F00; }
+
+.pair {
+  cursor: move;
+  background-color: #00ff00;
+  height: 100%;
+  width: 100%; }
