@@ -20,7 +20,7 @@ class PairsController < ApplicationController
       :week_day => params[:day],
       :pair_number => params[:time]
     )
-    @classroom = Classroom.first(:conditions => {:id => params[:grid]})
+    @classroom = Classroom.find(params[:grid])
     @pairs = @classroom.pairs
     @pair = Pair.find(params[:id])
     @container = params[:container]
