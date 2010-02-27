@@ -5,7 +5,7 @@
     - remote_form_for :classrooms_constructor, :url => classrooms_constructors_path do |f|
       = f.label :building, 'Корпус'
       = f.select :building, options_for_select(@buildings.map {|b| [b.name, b.id]})
-      = observe_field 'classrooms_constructors_building', :url => update_classrooms_list_classrooms_constructors_path, :with => :building
+      = observe_field 'classrooms_constructor_building', :url => update_classrooms_list_classrooms_constructors_path, :with => :building
       #classroom
         = f.label :classroom, 'Аудитория'
         = f.select :classroom, options_for_select(@classrooms.map {|c| [c.name, c.id]})
