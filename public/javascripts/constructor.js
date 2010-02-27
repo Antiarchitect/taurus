@@ -6,7 +6,13 @@ function AddClassroomDrop(id, grid, week, day, time) {
       new Ajax.Request(
         '/pairs/'+pair.id, {
           method : 'put',
-          parameters : 'classroom=' + grid + '&week=' + week + '&day=' + day + '&time=' + time + '&container=' + receiver.id
+          parameters : {
+            classroom : grid,
+            week : week,
+            day : day,
+            time : time,
+            container : receiver.id
+          }
         }
       );
     }
