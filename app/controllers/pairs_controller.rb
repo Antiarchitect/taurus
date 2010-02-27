@@ -15,9 +15,6 @@ class PairsController < ApplicationController
         :classroom_id => params[:lecturer]
       )
     end
-    @days = ConstructorController.days
-    @times = ConstructorController.times
-    @weeks = ConstructorController.weeks
     Timeslot.update(Pair.find(params[:id]).timeslot.id,
       :week_number => params[:week],
       :week_day => params[:day],

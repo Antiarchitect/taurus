@@ -1,4 +1,5 @@
 %td
   - id = "container_grid#{grid}_week#{week_counter + 1}_day#{day}_time#{time}"
   .receiver{:id => "#{id}"}
-  = drop_receiving_element id, :url => pairs_path(:classroom => grid, :week => week_counter + 1, :day => day, :time => time, :container => id), :method => :put, :accept => 'pair', :with => "'id=' + element.id", :hoverclass => 'hovered_receiver'
+  %script
+    = "AddClassroomDrop(#{id}, #{grid}, #{week_counter + 1}, #{day}, #{time})"
