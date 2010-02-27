@@ -14,11 +14,11 @@ class ClassroomsConstructorsController < ConstructorsController
   end
 
   def create
-    @classroom = Classroom.find(params[:classrooms_constructors][:classroom])
-    @pairs = @classroom.pairs
     @days = self.class.days
     @times = self.class.times
     @weeks = self.class.weeks
+    @classroom = Classroom.find(params[:classrooms_constructor][:classroom])
+    @pairs = @classroom.pairs
   end
 
   def update

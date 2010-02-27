@@ -2,7 +2,7 @@
   #form_closebutton
     = link_to_remote image_tag('close_16.ico'), :url => hide_form_classrooms_constructors_path
   .form
-    - remote_form_for :classrooms_constructors, :url => classrooms_constructors_path do |f|
+    - remote_form_for :classrooms_constructor, :url => classrooms_constructors_path do |f|
       = f.label :building, 'Корпус'
       = f.select :building, options_for_select(@buildings.map {|b| [b.name, b.id]})
       = observe_field 'classrooms_constructors_building', :url => update_classrooms_list_classrooms_constructors_path, :with => :building
