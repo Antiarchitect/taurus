@@ -1,6 +1,7 @@
 #form{:style => "display: none"}
   #form_closebutton
-    = link_to_remote image_tag('close_16.ico'), :url => hide_form_classrooms_constructors_path
+    %a{:href => '#', :onClick => "$('form').fade({duration: 0.5})"}
+      = image_tag('close_16.ico')
   .form
     - remote_form_for :classrooms_constructor, :url => classrooms_constructors_path do |f|
       = f.label :building, 'Корпус'

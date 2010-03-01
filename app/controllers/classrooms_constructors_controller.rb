@@ -38,8 +38,4 @@ class ClassroomsConstructorsController < ConstructorsController
   def update_classrooms_list
     @classrooms = Classroom.all(:conditions => {:building_id => params[:building]})
   end
-
-  def hide_form
-    
-  end
 end
