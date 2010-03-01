@@ -3,6 +3,9 @@
     %tr
       %th{:colspan => 13}
         = h "Аудитория #{grid.name} (#{grid.building.name})"
+        .closebutton
+          %a{:href => '#', :onClick => "removeGrid(#{h(grid.id)})"}
+            = image_tag('close_16.ico')
     %tr
       %th
       = render :partial => 'day_header', :collection => @days
