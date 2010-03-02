@@ -34,7 +34,7 @@ class ClassroomsConstructorsController < ConstructorsController
 
   def destroy
     @id = params[:id]
-    @@grids.delete(@id)
+    @@grids.delete(@id.to_i)
   end
 
 # Additional methods
