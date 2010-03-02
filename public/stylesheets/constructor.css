@@ -6,6 +6,15 @@
 .plus {
   clear: left; }
 
+#form {
+  float: left;
+  padding: 5px;
+  border: 1px solid #000000;
+  background-color: #E6F2FF; }
+
+.closebutton {
+  float: right; }
+
 .grid {
   background-color: #E6F2FF;
   clear: both;

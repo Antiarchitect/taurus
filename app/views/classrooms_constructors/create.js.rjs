@@ -1,4 +1,4 @@
-page.insert_html :before, 'plus', :partial => 'grid', :object => @classroom, :locals => {:grids => @grids}
+page.insert_html :before, 'plus', :partial => 'grid', :object => @classroom
 grid = @classroom.id
 page['grid_' + "#{grid}"].appear :duration => 0.5
 @pairs.each do |pair|
