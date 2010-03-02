@@ -14,7 +14,7 @@ class ClassroomsConstructorsController < ConstructorsController
   def new
     @buildings = Building.all
     first_building_id = Building.first.id
-    @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", first_building_id, params[:grids]])
+    @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", first_building_id, @@grids])
   end
 
   def create
@@ -23,7 +23,7 @@ class ClassroomsConstructorsController < ConstructorsController
     @weeks = self.class.weeks
     @classroom = Classroom.find(params[:classrooms_constructor][:classroom])
     @pairs = @classroom.pairs
-    params[:grids] << @classroom.id
+    @@grids << @classroom.id
   end
 
   def edit
@@ -40,12 +40,12 @@ class ClassroomsConstructorsController < ConstructorsController
 
 # Additional methods
   def update_classrooms_list
-    @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", params[:building], params[:grids]])
+    @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", params[:building], @@grids])
   end
 
   protected
 
   def set_grids
-    params[:grids] ||= [0]
+    @@grids ||= [0]
   end
 end
