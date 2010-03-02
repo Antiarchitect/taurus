@@ -1,7 +1,5 @@
 class ClassroomsConstructorsController < ConstructorsController
 
-  before_filter :set_grids
-
   # RESTful method
   def index
     @@grids = [0]
@@ -35,17 +33,12 @@ class ClassroomsConstructorsController < ConstructorsController
   end
 
   def destroy
-    
+    @id = params[:id]
+    @@grids.delete(@id)
   end
 
 # Additional methods
   def update_classrooms_list
     @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", params[:building], @@grids])
-  end
-
-  protected
-
-  def set_grids
-    @@grids ||= [0]
   end
 end

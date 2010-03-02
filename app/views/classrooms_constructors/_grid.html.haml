@@ -4,8 +4,7 @@
       %th{:colspan => 13}
         = h "Аудитория #{grid.name} (#{grid.building.name})"
         .closebutton
-          %a{:href => '#', :onClick => "removeGrid(#{h(grid.id)})"}
-            = image_tag('close_16.ico')
+          = link_to_remote image_tag('close_16.ico'), :url => classrooms_constructor_path(grid.id), :method => :delete
     %tr
       %th
       = render :partial => 'day_header', :collection => @days

@@ -18,11 +18,3 @@ function AddClassroomDrop(id, grid, week, day, time) {
     }
   });
 }
-
-function removeGrid(id) {
-  $('grid_' + id).fade({duration: 0.5});
-  function remove() {
-    $('grid_' + id).remove();
-  }
-  setTimeout(remove, 500);
-}
