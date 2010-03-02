@@ -4,7 +4,7 @@ class ClassroomsConstructorsController < ConstructorsController
 
   # RESTful method
   def index
-    
+    @@grids = [0]
   end
 
   def show
