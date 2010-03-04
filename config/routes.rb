@@ -1,10 +1,4 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :constructors
-
-  map.resources :groups_constructors
-  
-  map.resources :lecturers_constructors
-
+ActionController::Routing::Routes.draw do |map|  
   map.resources :classrooms_constructors, :collection => {
     :hide_form => :get,
     :update_classrooms_list => :get

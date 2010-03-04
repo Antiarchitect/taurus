@@ -1,2 +1,0 @@
-class GroupsConstructorsController < ConstructorsController
-end
