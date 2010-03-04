@@ -3,10 +3,10 @@
     %a{:href => '#', :onClick => "$('form').fade({duration: 0.5})"}
       = image_tag('close_16.ico')
   .form
-    - remote_form_for :classrooms_constructor, :url => classrooms_constructors_path do |f|
+    - remote_form_for :classrooms_grid, :url => classrooms_grids_path do |f|
       = f.label :building, 'Корпус'
       = f.select :building, options_for_select(@buildings.map {|b| [b.name, b.id]})
-      = observe_field 'classrooms_constructor_building', :url => update_classrooms_list_classrooms_constructors_path, :with => :building
+      = observe_field 'classrooms_grid_building', :url => update_classrooms_list_classrooms_grids_path, :with => :building
       #classroom
         = f.label :classroom, 'Аудитория'
         = f.select :classroom, options_for_select(@classrooms.map {|c| [c.name, c.id]})
