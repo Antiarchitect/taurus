@@ -1,0 +1,2 @@
+class ClassroomsGridsController < GridsController
+end

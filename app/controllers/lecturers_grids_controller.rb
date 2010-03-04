@@ -1,0 +1,2 @@
+class LecturersGridsController < GridsController
+end

@@ -1,0 +1,2 @@
+class GroupsGridsController < GridsController
+end
