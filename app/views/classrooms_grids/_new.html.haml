@@ -4,10 +4,11 @@
       = image_tag('close_16.ico')
   .form
     - remote_form_for :classrooms_grid, :url => classrooms_grids_path do |f|
-      = f.label :building, 'Корпус'
-      = f.select :building, options_for_select(@buildings.map {|b| [b.name, b.id]})
-      = observe_field 'classrooms_grid_building', :url => update_classrooms_list_classrooms_grids_path, :with => :building
-      #classroom
-        = f.label :classroom, 'Аудитория'
-        = f.select :classroom, options_for_select(@classrooms.map {|c| [c.name, c.id]})
-      = submit_tag 'Добавить'
+      %p
+        = f.label :building, 'Корпус'
+        = f.select :building, options_for_select(@buildings.map {|b| [b.name, b.id]})
+        = observe_field 'classrooms_grid_building', :url => update_classrooms_list_classrooms_grids_path, :with => :building
+        #classroom
+          = f.label :classroom, 'Аудитория'
+          = f.select :classroom, options_for_select(@classrooms.map {|c| [c.name, c.id]})
+        = submit_tag 'Добавить'
