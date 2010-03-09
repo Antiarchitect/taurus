@@ -1,4 +1,8 @@
 class PairsController < ApplicationController
+  def edit
+    @pair = Pair.find(params[:id])
+  end
+
   def update
     if params[:classroom]
       Pair.update(params[:id],
