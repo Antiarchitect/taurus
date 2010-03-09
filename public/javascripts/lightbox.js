@@ -195,7 +195,7 @@ function addLightboxMarkup() {
 	lb.id				= 'lightbox';
 	lb.className 	= 'loading';
 	lb.innerHTML	= '<div id="lbLoadMessage">' +
-						  '<p>Loading</p>' +
+						  '<p>Загрузка</p>' +
 						  '</div>';
 	bod.appendChild(overlay);
 	bod.appendChild(lb);
