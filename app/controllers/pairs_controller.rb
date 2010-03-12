@@ -1,5 +1,11 @@
 class PairsController < ApplicationController
-  active_scaffold
+  active_scaffold do |config|
+  end
+#
+#  def edit_respond_to_js
+#    render :action => :edit, :layout => 'application'
+#  end
+  
   def update
     if params[:classroom]
       Pair.update(params[:id],

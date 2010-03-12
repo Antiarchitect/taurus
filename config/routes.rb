@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :classrooms_grids, :collection => {
     :update_classrooms_list => :get
-  }
+  }, :active_scaffold => :true
 
   map.resources :grids, :active_scaffold => :true
 
