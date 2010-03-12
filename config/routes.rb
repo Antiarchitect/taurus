@@ -7,23 +7,23 @@ ActionController::Routing::Routes.draw do |map|
     :update_classrooms_list => :get
   }
 
-  map.resources :grids
+  map.resources :grids, :active_scaffold => :true
 
-  map.resources :buildings
+  map.resources :buildings, :active_scaffold => :true
 
-  map.resources :groups
+  map.resources :groups, :active_scaffold => :true
 
-  map.resources :lecturers
+  map.resources :lecturers, :active_scaffold => :true
 
-  map.resources :disciplines
+  map.resources :disciplines, :active_scaffold => :true
 
-  map.resources :lesson_types
+  map.resources :lesson_types, :active_scaffold => :true
 
-  map.resources :lessons
+  map.resources :lessons, :active_scaffold => :true
 
-  map.resources :classrooms
+  map.resources :classrooms, :active_scaffold => :true
 
-  map.resources :pairs
+  map.resources :pairs, :active_scaffold => :true
 
   # The priority is based upon order of creation: first created -> highest priority.
 

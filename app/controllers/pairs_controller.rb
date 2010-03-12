@@ -1,8 +1,5 @@
 class PairsController < ApplicationController
-  def edit
-    @pair = Pair.find(params[:id])
-  end
-
+  active_scaffold
   def update
     if params[:classroom]
       Pair.update(params[:id],
