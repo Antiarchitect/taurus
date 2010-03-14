@@ -130,7 +130,7 @@ lightbox.prototype = {
 	
 	// Display Ajax response
 	processInfo: function(response){
-		info = "<div id='lbContent'>" + response.responseText + "</div>";
+		info = "<div id='lbContent'><div class='active-scaffold'>" + response.responseText + "</div></div>";
 		new Insertion.Before($('lbLoadMessage'), info)
 		$('lightbox').className = "done";	
 		this.actions();			
