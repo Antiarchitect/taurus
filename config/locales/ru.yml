@@ -24,4 +24,5 @@ ru:
         building: 'Корпус'
         name: 'Номер аудитории'
       pair:
+        building: 'Корпус'
         classroom: 'Аудитория'
