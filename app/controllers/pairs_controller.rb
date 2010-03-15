@@ -1,10 +1,9 @@
 class PairsController < ApplicationController
   active_scaffold do |config|
+    config.columns[:classroom].form_ui = :select
+    config.columns[:building].form_ui = :select
+    config.columns[:building].options = {:update_column => :classroom}
   end
-#
-#  def edit_respond_to_js
-#    render :action => :edit, :layout => 'application'
-#  end
   
   def update
     if params[:classroom]

@@ -1,0 +1,27 @@
+ru:
+  activerecord:
+    models:
+      building:
+        one: 'Корпус'
+        few: 'Корпуса'
+        many: 'Корпуса'
+        other: 'Корпуса'
+      classroom:
+        one: 'Аудитория'
+        few: 'Аудитории'
+        many: 'Аудитории'
+        other: 'Аудитории'
+      pair:
+        one: 'Пара'
+        few: 'Пары'
+        many: 'Пары'
+        other: 'Пары'
+
+    attributes:
+      building:
+        name: 'Название корпуса'
+      classroom:
+        building: 'Корпус'
+        name: 'Номер аудитории'
+      pair:
+        classroom: 'Аудитория'
