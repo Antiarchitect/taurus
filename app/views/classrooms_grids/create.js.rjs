@@ -4,7 +4,7 @@ page['grid_' + "#{grid}"].appear :duration => 0.5
 @pairs.each do |pair|
   timeslot = pair.timeslot
   page.insert_html :top, "container_grid#{grid}_week#{timeslot.week_number}_day#{timeslot.week_day}_time#{timeslot.pair_number}",
-    :partial => 'pair', :object => pair
+    :partial => '/pairs/pair', :object => pair
 end
 page.call :initialize
 page[:form].fade
