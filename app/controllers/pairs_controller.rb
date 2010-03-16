@@ -6,7 +6,25 @@ class PairsController < ApplicationController
   end
 
   def create
+    @pair = Pair.new do |p|
+      p.classroom_id = params[:classroom]
+      p.group_id = params[:group]
+      p.lecturer_id = params[:lecturer]
+      timeslot = Timeslot.new do |t|
+        t.week_number = params[:week]
+        t.week_day = params[:day]
+        t.pair_number = params[:time]
+      end
+      p.timeslot = timeslot
+      timeslot.save!
+    end
+    @pair.save!
 
+    @container = params[:container]
+
+#    respond_to do |format|
+#      format.js { render :action => 'create.js' }
+#    end
   end
 
   def update
@@ -16,17 +34,17 @@ class PairsController < ApplicationController
       )
       @assoc = Classroom.find(params[:classroom])
     end
-    if params[:lecturer]
-      Pair.update(params[:id],
-        :lecturer_id => params[:lecturer]
-      )
-      @assoc = Lecturer.find(params[:lecturer])
-    end
     if params[:group]
       Pair.update(params[:id],
         :group_id => params[:group]
       )
       @assoc = Group.find(params[:group])
+    end
+    if params[:lecturer]
+      Pair.update(params[:id],
+        :lecturer_id => params[:lecturer]
+      )
+      @assoc = Lecturer.find(params[:lecturer])
     end
     Timeslot.update(Pair.find(params[:id]).timeslot.id,
       :week_number => params[:week],

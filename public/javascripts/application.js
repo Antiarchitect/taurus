@@ -19,11 +19,12 @@ function AddClassroomDrop(id, grid, week, day, time) {
   });
 }
 
-function CreatePairFromClassroom(grid, week, day, time) {
+function CreatePairFromClassroom(container, grid, week, day, time) {
   new Ajax.Request(
     '/pairs/', {
       method: 'post',
       parameters : {
+        container : container,
         classroom : grid,
         week : week,
         day : day,

@@ -1,0 +1,2 @@
+page.insert_html :top, @container, :partial => 'pair', :object => @pair
+page.call :initialize
