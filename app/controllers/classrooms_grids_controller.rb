@@ -18,7 +18,7 @@ class ClassroomsGridsController < GridsController
     @days = self.class.days
     @times = self.class.times
     @weeks = self.class.weeks
-    @classroom = Classroom.find(params[:classrooms_grid][:classroom])
+    @classroom = Classroom.find(params[:classrooms_grid][:classroom], :include => [{:pairs, :timeslot}])
     @pairs = @classroom.pairs
     @@grids << @classroom.id
   end
