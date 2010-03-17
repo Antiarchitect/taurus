@@ -28,7 +28,8 @@ function CreatePairFromClassroom(container, grid, week, day, time) {
         classroom : grid,
         week : week,
         day : day,
-        time : time
+        time : time,
+        pov : 'classroom'
       }
     }
   )

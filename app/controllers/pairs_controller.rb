@@ -1,9 +1,5 @@
 class PairsController < ApplicationController
-  active_scaffold do |config|
-    config.columns[:classroom].form_ui = :select
-    config.columns << :building
-    config.columns[:building].options = {:update_column => :classroom}
-  end
+  before_filter :update_pair_config
 
   def create
     @pair = Pair.new do |p|
@@ -19,12 +15,8 @@ class PairsController < ApplicationController
       timeslot.save!
     end
     @pair.save!
-
     @container = params[:container]
-
-#    respond_to do |format|
-#      format.js { render :action => 'create.js' }
-#    end
+    @pov = params[:pov]
   end
 
   def update
@@ -61,5 +53,21 @@ class PairsController < ApplicationController
     pair = Pair.find_by_id(@id)
     pair.timeslot.destroy
     pair.destroy
+  end
+
+  protected
+
+  def update_pair_config
+    unless (params[:pov].nil?)
+      case params[:pov]
+      when 'classroom'
+        active_scaffold_config.columns = [:building, :classroom]
+        active_scaffold_config.columns[:classroom].form_ui = :select
+        active_scaffold_config.columns[:building].options = {:update_column => :classroom}
+      when 'group'
+
+      when 'lecturer'
+      end
+    end
   end
 end
