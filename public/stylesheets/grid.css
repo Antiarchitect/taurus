@@ -42,13 +42,12 @@
 
 .pair {
   cursor: move;
-  background-color: #00ff00;
+  background-color: #F5F9BD;
   height: 100%;
   width: 100%; }
   .pair .delete {
     float: right;
-    width: 8px;
-    height: 8px; }
+    height: 12px; }
     .pair .delete a {
       display: inline-block; }
 
