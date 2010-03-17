@@ -55,4 +55,11 @@ class PairsController < ApplicationController
     @pair = Pair.find(params[:id])
     @container = params[:container]
   end
+
+  def destroy
+    @id = params[:id]
+    pair = Pair.find_by_id(@id)
+    pair.timeslot.destroy
+    pair.destroy
+  end
 end

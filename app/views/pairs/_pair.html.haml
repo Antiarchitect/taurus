@@ -1,3 +1,5 @@
 .pair{:id => "#{pair.id}"}
+  .delete
+    = link_to_remote image_tag('close_8_red.png'), :url => pair_path(pair.id), :method => :delete
   = link_to "ъ", edit_pair_path(pair.id), :class => 'lbOn'
 = draggable_element "#{pair.id}"
