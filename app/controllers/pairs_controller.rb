@@ -1,6 +1,8 @@
 class PairsController < ApplicationController
   before_filter :update_pair_config
 
+  active_scaffold
+  
   def create
     @pair = Pair.new do |p|
       p.classroom_id = params[:classroom]
