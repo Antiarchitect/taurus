@@ -26,7 +26,7 @@
   .grid td {
     border-style: solid;
     border-width: thin;
-    height: 30px; }
+    height: 48px; }
   .grid th {
     border-style: solid;
     border-width: thin; }
@@ -47,7 +47,7 @@
   width: 100%; }
   .pair .delete {
     float: right;
-    height: 12px; }
+    width: 12px; }
     .pair .delete a {
       display: inline-block; }
 
