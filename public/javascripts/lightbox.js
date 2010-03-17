@@ -64,6 +64,7 @@ lightbox.prototype = {
 
 	initialize: function(ctrl) {
 		this.content = ctrl.href;
+                Event.stopObserving(ctrl, 'click');
 		Event.observe(ctrl, 'click', this.activate.bindAsEventListener(this), false);
 		ctrl.onclick = function(){return false;};
 	},
