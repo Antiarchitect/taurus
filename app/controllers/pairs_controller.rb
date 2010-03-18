@@ -72,10 +72,11 @@ class PairsController < ApplicationController
   def pov
     active_scaffold_config.columns = [:building, :classroom, :lecturer, :group]
     active_scaffold_config.columns[:classroom].form_ui = :select
+    active_scaffold_config.columns[:lecturer].form_ui = :select
     case params[:action]
     when 'edit_from_classrooms'
-      active_scaffold_config.update.columns = [:building, :classroom]
-      active_scaffold_config.columns[:building].options = {:update_column => :classroom}
+      active_scaffold_config.update.columns = [:lecturer]
+#      active_scaffold_config.columns[:building].options = {:update_column => :classroom}
     end
   end
 end
