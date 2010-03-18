@@ -4,7 +4,7 @@ function AddClassroomDrop(id, grid, week, day, time) {
     hoverclass : 'hovered_receiver',
     onDrop: function(pair, receiver) {
       new Ajax.Request(
-        '/pairs/'+pair.id, {
+        '/pairs/'+pair.id+'/update_on_drop', {
           method : 'put',
           parameters : {
             classroom : grid,

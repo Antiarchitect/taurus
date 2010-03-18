@@ -24,7 +24,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :classrooms, :active_scaffold => :true
 
   map.resources :pairs, :active_scaffold => :true, :member => {
-    :edit_from_classrooms => :get
+    :edit_from_classrooms => :get,
+    :update_on_drop => :put
   }
 
   # The priority is based upon order of creation: first created -> highest priority.

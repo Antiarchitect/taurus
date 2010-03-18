@@ -29,7 +29,7 @@ class PairsController < ApplicationController
     @pov = params[:pov]
   end
 
-  def update
+  def update_on_drop
     if params[:classroom]
       Pair.update(params[:id],
         :classroom_id => params[:classroom]
