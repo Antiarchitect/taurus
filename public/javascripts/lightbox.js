@@ -151,12 +151,6 @@ lightbox.prototype = {
 			Event.observe(deactivate_cancel[i], 'click', this['deactivate'].bindAsEventListener(this), false);
 			deactivate_cancel[i].onclick = function(){return false;};
 		}
-
-                deactivate_submit = $$('.submit');
-                for(i = 0; i < deactivate_submit.length; i++) {
-			Event.observe(deactivate_submit[i], 'submit', this['deactivate'].bindAsEventListener(this), false);
-			deactivate_submit[i].onsubmit = function(){return false;};
-		}
 	},
 	
 	// Example of creating your own functionality once lightbox is initiated
