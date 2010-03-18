@@ -154,7 +154,7 @@ lightbox.prototype = {
 
                 deactivate_submit = $$('.submit');
                 for(i = 0; i < deactivate_submit.length; i++) {
-			Event.observe(deactivate_submit[i], 'click', this['deactivate'].bindAsEventListener(this), false);
+			Event.observe(deactivate_submit[i], 'submit', this['deactivate'].bindAsEventListener(this), false);
 			deactivate_submit[i].onsubmit = function(){return false;};
 		}
 	},
