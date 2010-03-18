@@ -1,4 +1,4 @@
-module PairsHelper
+module PairsHelper  
   def building_form_column(record, input_name)
     select :record, :building, Building.all.map {|b| [ b.name, b.id ]}, {},
     javascript_for_update_column(active_scaffold_config.columns[:building], nil, :name => input_name)

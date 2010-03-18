@@ -74,7 +74,9 @@ class PairsController < ApplicationController
     case params[:action]
     when 'edit_from_classrooms'
       active_scaffold_config.update.columns = [:lecturer]
-#      active_scaffold_config.columns[:building].options = {:update_column => :classroom}
+    when 'edit'
+      active_scaffold_config.update.columns = [:building, :classroom]
+      active_scaffold_config.columns[:building].options = {:update_column => :classroom}
     end
   end
 end
