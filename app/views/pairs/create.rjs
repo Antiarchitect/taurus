@@ -1,2 +1,2 @@
-page.insert_html :top, @container, :partial => 'pair', :object => @pair
+page.insert_html :top, @container, :partial => 'pair', :object => @pair, :locals => {:pov => @pov}
 page.call :initialize
