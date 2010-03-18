@@ -10,13 +10,9 @@ class PairsController < ApplicationController
       p.classroom_id = params[:classroom]
       p.group_id = params[:group]
       p.lecturer_id = params[:lecturer]
-      timeslot = Timeslot.new do |t|
-        t.week_number = params[:week]
-        t.week_day = params[:day]
-        t.pair_number = params[:time]
-      end
+      timeslot = Timeslot.first(:conditions => {:week_number => params[:week],
+        :week_day => params[:day], :pair_number => params[:time]})
       p.timeslot = timeslot
-      timeslot.save!
     end
     @pair.save!
 
@@ -46,11 +42,14 @@ class PairsController < ApplicationController
       )
       @assoc = Lecturer.find(params[:lecturer])
     end
-    Timeslot.update(Pair.find(params[:id]).timeslot.id,
-      :week_number => params[:week],
-      :week_day => params[:day],
-      :pair_number => params[:time]
-    )
+    pair = Pair.find_by_id(params[:id], :include => :timeslot)
+    timeslot = pair.timeslot
+    week_number = params[:week] || timeslot.week_number
+    week_day = params[:day] || timeslot.week_day
+    pair_number = params[:time] || timeslot.pair_number
+    pair.timeslot = Timeslot.first(:conditions => {:week_number => week_number,
+        :week_day => week_day, :pair_number => pair_number})
+    pair.save!
     @pairs = @assoc.pairs
     @pair = Pair.find(params[:id])
     @container = params[:container]
@@ -59,7 +58,6 @@ class PairsController < ApplicationController
   def destroy
     @id = params[:id]
     pair = Pair.find_by_id(@id)
-    pair.timeslot.destroy
     pair.destroy
   end
 end
