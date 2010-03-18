@@ -1,7 +1,19 @@
 class PairsController < ApplicationController
-  before_filter :update_pair_config
-
+  before_filter :pov
   active_scaffold
+  
+  def edit_from_classrooms
+    @record = find_if_allowed(params[:id], :update)
+    respond_to_action(:edit)
+  end
+
+  def edit_from_groups
+
+  end
+
+  def edit_from_lecturers
+
+  end
   
   def create
     @pair = Pair.new do |p|
@@ -57,19 +69,13 @@ class PairsController < ApplicationController
     pair.destroy
   end
 
-  protected
-
-  def update_pair_config
-    unless (params[:pov].nil?)
-      case params[:pov]
-      when 'classroom'
-        active_scaffold_config.columns = [:building, :classroom]
-        active_scaffold_config.columns[:classroom].form_ui = :select
-        active_scaffold_config.columns[:building].options = {:update_column => :classroom}
-      when 'group'
-
-      when 'lecturer'
-      end
+  def pov
+    active_scaffold_config.columns = [:building, :classroom, :lecturer, :group]
+    active_scaffold_config.columns[:classroom].form_ui = :select
+    case params[:action]
+    when 'edit_from_classrooms'
+      active_scaffold_config.update.columns = [:building, :classroom]
+      active_scaffold_config.columns[:building].options = {:update_column => :classroom}
     end
   end
 end
