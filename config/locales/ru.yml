@@ -11,6 +11,11 @@ ru:
         few: 'Аудитории'
         many: 'Аудитории'
         other: 'Аудитории'
+      lecturer:
+        one: 'Преподаватель'
+        few: 'Преподаватели'
+        many: 'Преподаватели'
+        other: 'Преподаватели'
       pair:
         one: 'Пара'
         few: 'Пары'
@@ -23,6 +28,8 @@ ru:
       classroom:
         building: 'Корпус'
         name: 'Номер аудитории'
+      lecturer:
+        name: 'ФИО'
       pair:
         building: 'Корпус'
         classroom: 'Аудитория'
