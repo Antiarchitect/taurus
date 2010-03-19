@@ -6,5 +6,5 @@ page['grid_' + "#{grid}"].appear :duration => 0.5
   page.insert_html :top, "container_grid#{grid}_week#{timeslot.week_number}_day#{timeslot.week_day}_time#{timeslot.pair_number}",
     :partial => '/pairs/pair', :object => pair, :locals => {:pov => 'classroom'}
 end
-page.call :initialize
+page.call :AddClassroomsDrops, {:grid => grid, :weeks => @weeks, :days => @days, :times => @times}
 page[:form].fade
