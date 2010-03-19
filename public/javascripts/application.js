@@ -19,7 +19,7 @@
 //  });
 //}
 
-function AddClassroomsDrops(grid, weeks, days, times) {
+function AddClassroomDrops(grid, weeks, days, times) {
     for(week = 0; week < weeks; week++) {
         for (day = 0; day < days; day++) {
             for (time = 0; time < times; time++ ) {
