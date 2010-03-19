@@ -1,3 +1,3 @@
 class Timeslot < ActiveRecord::Base
-  has_one :pair
+  has_many :pairs
 end

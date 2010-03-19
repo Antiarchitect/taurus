@@ -18,7 +18,6 @@ class PairsController < ApplicationController
   def create
     @pair = Pair.new do |p|
       p.classroom_id = params[:classroom]
-      p.group_id = params[:group]
       p.lecturer_id = params[:lecturer]
       timeslot = Timeslot.first(:conditions => {:week_number => params[:week],
         :week_day => params[:day], :pair_number => params[:time]})
@@ -37,9 +36,6 @@ class PairsController < ApplicationController
       @assoc = Classroom.find(params[:classroom])
     end
     if params[:group]
-      Pair.update(params[:id],
-        :group_id => params[:group]
-      )
       @assoc = Group.find(params[:group])
     end
     if params[:lecturer]

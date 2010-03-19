@@ -1,3 +1,4 @@
 class Group < ActiveRecord::Base
-  has_many :pairs
+  has_many :jets, :dependent => :destroy
+  has_many :pairs, :through => :jets
 end
