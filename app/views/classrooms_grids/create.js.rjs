@@ -1,10 +1,10 @@
 page.insert_html :before, 'plus', :partial => 'grid', :object => @classroom
 grid = @classroom.id
+page.call :AddClassroomDrops, grid, @weeks.size, @days.size, @times.size
 page['grid_' + "#{grid}"].appear :duration => 0.5
 @pairs.each do |pair|
   timeslot = pair.timeslot
   page.insert_html :top, "container_grid#{grid}_week#{timeslot.week_number}_day#{timeslot.week_day}_time#{timeslot.pair_number}",
     :partial => '/pairs/pair', :object => pair, :locals => {:pov => 'classroom'}
 end
-page.call :AddClassroomDrops, grid, @weeks.size, @days.size, @times.size
 page[:form].fade
