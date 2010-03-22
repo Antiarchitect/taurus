@@ -6,6 +6,14 @@ class Pair < ActiveRecord::Base
   has_many :jets, :dependent => :destroy
   has_many :groups, :through => :jets
 
+  def name
+    unless (discipline = lesson.try(:discipline).try(:name)).nil?
+      lesson.try(:lesson_type).try(:name) || 'Пара' + ' по дисциплине: ' + discipline
+    else
+      lesson.try(:lesson_type).try(:name) || 'Пара'
+    end
+  end
+
   def building
     @building || self.classroom.try(:building)
   end
