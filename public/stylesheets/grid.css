@@ -36,19 +36,17 @@
   width: 100%; }
 
 .hovered_receiver {
-  height: 100%;
-  width: 100%;
-  border: dashed #F00; }
+  background: #F00; }
 
 .pair {
   cursor: move;
   background-color: #F5F9BD;
   height: 100%;
   width: 100%; }
-  .pair .delete {
+  .pair .management_panel {
     float: right;
     width: 12px; }
-    .pair .delete a {
+    .pair .management_panel a {
       display: inline-block; }
 
 img {

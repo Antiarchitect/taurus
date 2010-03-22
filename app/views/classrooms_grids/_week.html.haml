@@ -1,5 +1,3 @@
 %td
   - id = "container_grid#{grid}_week#{week_counter + 1}_day#{day}_time#{time}"
   .receiver{:id => "#{id}", :ondblclick => "CreatePairFromClassroom('#{id}', #{grid}, #{week_counter + 1}, #{day}, #{time})"}
-  %script
-    = "AddClassroomDrop(#{id}, #{grid}, #{week_counter + 1}, #{day}, #{time})"

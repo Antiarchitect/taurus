@@ -139,18 +139,11 @@ lightbox.prototype = {
 	
 	// Search through new links within the lightbox, and attach click event
 	actions: function(){
-		lbActions = document.getElementsByClassName('lbAction');
-
-		for(i = 0; i < lbActions.length; i++) {
-			Event.observe(lbActions[i], 'click', this[lbActions[i].rel].bindAsEventListener(this), false);
-			lbActions[i].onclick = function(){return false;};
-		}
-
-                deactivate_cancel = $$('.cancel');
-                for(i = 0; i < deactivate_cancel.length; i++) {
-			Event.observe(deactivate_cancel[i], 'click', this['deactivate'].bindAsEventListener(this), false);
-			deactivate_cancel[i].onclick = function(){return false;};
-		}
+            deactivate_cancel = $$('.cancel');
+            for(i = 0; i < deactivate_cancel.length; i++) {
+                Event.observe(deactivate_cancel[i], 'click', this['deactivate'].bindAsEventListener(this), false);
+		deactivate_cancel[i].onclick = function(){return false;};
+            }
 	},
 	
 	// Example of creating your own functionality once lightbox is initiated
