@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :departments
 
-  map.resources :charge_cards
+  map.resources :charge_cards, :active_scaffold => :true
 
   map.resources :jets, :active_scaffold => :true
 

@@ -14,3 +14,11 @@
     end
   end
 end
+
+Building.create([
+  {:name => 'Главный'},
+  {:name => '5'},
+  {:name => '6'},
+  {:name => '7'},
+  {:name => '8'}
+])

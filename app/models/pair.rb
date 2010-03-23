@@ -4,10 +4,10 @@ class Pair < ActiveRecord::Base
   belongs_to :timeslot
 
   def name
-    unless (discipline = lesson.try(:discipline).try(:name)).nil?
-      lesson.try(:lesson_type).try(:name) || 'Пара' + ' по дисциплине: ' + discipline
+    unless (name = charge_card.try(:name)).nil?
+      name
     else
-      lesson.try(:lesson_type).try(:name) || 'Пара'
+      'Пара'
     end
   end
 
