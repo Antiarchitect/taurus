@@ -1,3 +1,3 @@
 class Lecturer < ActiveRecord::Base
-  has_many :pairs
+  has_many :charge_cards
 end

@@ -1,6 +1,9 @@
 class CreateChargeCards < ActiveRecord::Migration
   def self.up
     create_table :charge_cards do |t|
+      t.integer :discipline_id
+      t.integer :lecturer_id
+      t.integer :lesson_type_id
 
       t.timestamps
     end

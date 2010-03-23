@@ -1,10 +1,7 @@
 class Pair < ActiveRecord::Base
+  belongs_to :charge_card
   belongs_to :classroom
-  belongs_to :lecturer
-  belongs_to :lesson
   belongs_to :timeslot
-  has_many :jets, :dependent => :destroy
-  has_many :groups, :through => :jets
 
   def name
     unless (discipline = lesson.try(:discipline).try(:name)).nil?

@@ -1,3 +1,3 @@
 class LessonType < ActiveRecord::Base
-  has_many :lessons
+  has_many :charge_cards
 end

@@ -1,10 +1,9 @@
 class CreatePairs < ActiveRecord::Migration
   def self.up
     create_table :pairs do |t|
+      t.integer :charge_card_id
       t.integer :classroom_id
-      t.integer :lecturer_id
-      t.integer :lesson_id
-      t.integer :timeslot_id
+      t.integer :timeslot_id      
 
       t.timestamps
     end
