@@ -5,4 +5,8 @@ class ChargeCard < ActiveRecord::Base
   has_many :jets, :dependent => :destroy
   has_many :groups, :through => :jets
   has_many :pairs
+
+  def name
+    'Карта'
+  end
 end

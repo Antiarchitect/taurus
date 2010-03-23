@@ -3,6 +3,8 @@ class CreateDepartments < ActiveRecord::Migration
     create_table :departments do |t|
       t.integer :faculty_id
 
+      t.string :name
+
       t.timestamps
     end
   end

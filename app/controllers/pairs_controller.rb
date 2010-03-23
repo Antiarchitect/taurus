@@ -1,7 +1,8 @@
 class PairsController < ApplicationController
   active_scaffold do |config|
-    config.update.columns = [:charge_card]
-    config.columns[:charge_card].form_ui = :select
+    config.columns = [:faculty, :department, :lecturer, :charge_card]
+    config.update.columns = [:faculty, :department]
+    config.columns[:faculty].options = {:update_column => :department}
   end
   
   def create

@@ -1,6 +1,7 @@
 class CreateFaculties < ActiveRecord::Migration
   def self.up
     create_table :faculties do |t|
+      t.string :name
 
       t.timestamps
     end
