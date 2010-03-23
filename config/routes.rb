@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :charge_cards
+
   map.resources :jets, :active_scaffold => :true
 
   map.resources :groups_grids
