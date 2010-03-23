@@ -17,24 +17,14 @@ class PairsController < ApplicationController
 
   def edit
     @pair = Pair.find_by_id(params[:id])
-    @faculties = Faculty.all
-    if params[:faculty]
-      @departments = Faculty.find_by_id(params[:faculty]).lecturers
-    else
-      @departments = Department.all
-    end
-    @lecturers = Lecturer.all
-    @charge_cards = Lecturer.all
-
-    respond_to do |format|
-      format.js {
-        
-      }
-    end
   end
 
   def update
-    
+    if params[:pair][:charge_card]
+      Pair.update(params[:id],
+        :charge_card => params[:pair][:charge_card]
+      )
+    end
   end
 
   def update_on_drop
