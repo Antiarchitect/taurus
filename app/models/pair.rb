@@ -4,11 +4,7 @@ class Pair < ActiveRecord::Base
   belongs_to :timeslot
 
   def name
-    unless (name = charge_card.first.try(:name)).nil?
-      name
-    else
-      'Пара'
-    end
+    'Пара'
   end
 
   def faculty
@@ -33,13 +29,5 @@ class Pair < ActiveRecord::Base
 
   def lecturer=(value)
     @lecturer = Lecturer.find_by_id(value)
-  end
-
-  def charge_card
-    @charge_card || ChargeCard.all
-  end
-
-  def charge_card=(value)
-    @charge_card = ChargeCard.find_by_id(value)
   end
 end
