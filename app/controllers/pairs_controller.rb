@@ -1,10 +1,4 @@
-class PairsController < ApplicationController
-  active_scaffold do |config|
-    config.columns = [:faculty, :department, :lecturer, :charge_card]
-    config.update.columns = [:faculty, :department]
-    config.columns[:faculty].options = {:update_column => :department}
-  end
-  
+class PairsController < ApplicationController  
   def create
     @pair = Pair.new do |p|
       p.classroom_id = params[:classroom]
@@ -14,6 +8,25 @@ class PairsController < ApplicationController
     end
     @pair.save!
     @container = params[:container]
+  end
+
+  def edit
+    @faculties = Faculty.all
+    unless params[:faculty].nil?
+      @departments = Faculty.find_by_id(params[:faculty]).departments
+    else
+      @departments = Department.all
+    end
+    unless params[:department].nil?
+      @lecturers = Department.find_by_id(params[:department]).lecturers
+    else
+      @lecturers = Lecturer.all
+    end
+    unless params[:lecturer].nil?
+      @charge_cards = Lecturer.find_by_id(params[:lecturer]).charge_cards
+    else
+      @charge_cards = Lecturer.all
+    end
   end
 
   def update_on_drop

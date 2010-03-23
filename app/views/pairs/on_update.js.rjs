@@ -1,1 +1,0 @@
-page << ('Element.remove($("lbContent"));Element.hide($("lightbox"));Element.hide($("overlay"))')
