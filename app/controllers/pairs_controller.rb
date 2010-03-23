@@ -1,4 +1,7 @@
-class PairsController < ApplicationController  
+class PairsController < ApplicationController
+  layout nil
+  layout 'application', :except => :edit
+  
   def create
     @pair = Pair.new do |p|
       p.classroom_id = params[:classroom]
@@ -11,22 +14,25 @@ class PairsController < ApplicationController
   end
 
   def edit
+    @pair = Pair.find_by_id(params[:id])
     @faculties = Faculty.all
-    unless params[:faculty].nil?
-      @departments = Faculty.find_by_id(params[:faculty]).departments
+    if params[:faculty]
+      @departments = Faculty.find_by_id(params[:faculty]).lecturers
     else
       @departments = Department.all
     end
-    unless params[:department].nil?
-      @lecturers = Department.find_by_id(params[:department]).lecturers
-    else
-      @lecturers = Lecturer.all
+    @lecturers = Lecturer.all
+    @charge_cards = Lecturer.all
+
+    respond_to do |format|
+      format.js {
+        
+      }
     end
-    unless params[:lecturer].nil?
-      @charge_cards = Lecturer.find_by_id(params[:lecturer]).charge_cards
-    else
-      @charge_cards = Lecturer.all
-    end
+  end
+
+  def update
+    
   end
 
   def update_on_drop
