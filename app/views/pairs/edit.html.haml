@@ -1,10 +1,5 @@
 - remote_form_for(@pair) do |f|
   %p
-    = f.label :faculty, 'Факультет'
-    = f.select :faculty, options_for_select(@faculties.map {|faculty| [faculty.name, faculty.id]})
-    = observe_field 'pair_faculty', :url => {:action => :edit, :method => :get}, :update => 'pair_department', :with => 'pair_faculty'
-  %p
-    = f.label :department, 'Кафедра'
-    = f.select :department, options_for_select(@departments.map {|d| [d.name, d.id]})
+    = chain_select_ajax(:models => [:faculty, :department], :spacer => '<br />')
   = submit_tag 'Сохранить'
   = link_to 'Отмена', '#', :class => 'lbAction', :rel => 'deactivate'
