@@ -1,0 +1,2 @@
+class FacultiesController < ApplicationController
+end

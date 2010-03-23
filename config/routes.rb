@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :faculties
+
+  map.resources :departments
+
   map.resources :charge_cards
 
   map.resources :jets, :active_scaffold => :true
