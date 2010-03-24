@@ -1,6 +1,6 @@
 .update_form
   - remote_form_for(@pair) do |f|
     %p
-      = chain_select_ajax(:models => [:faculty, :department], :prefix => 'pair', :spacer => '<br /><br />')
+      = chain_select_ajax(:models => [:faculty, :department, :lecturer, :charge_card], :prefix => 'pair', :spacer => '<br /><br />')
     = submit_tag 'Сохранить'
     = link_to 'Отмена', '#', :onclick => "Element.remove($('lbContent'));Element.hide($('lightbox'));Element.hide($('overlay'));"

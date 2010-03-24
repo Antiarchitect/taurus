@@ -3,5 +3,5 @@ class Department < ActiveRecord::Base
   has_many :teaching_places, :dependent => :destroy
   has_many :lecturers, :through => :teaching_places
 
-  acts_as_chainable :from => :faculty, :select_label => 'Кафедра'
+  acts_as_chainable :from => :faculty, :to => :lecturer, :select_label => 'Кафедра'
 end
