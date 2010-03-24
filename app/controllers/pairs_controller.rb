@@ -22,7 +22,7 @@ class PairsController < ApplicationController
   def update
     if params[:pair][:charge_card]
       Pair.update(params[:id],
-        :charge_card => params[:pair][:charge_card]
+        :charge_card_id => params[:pair][:charge_card]
       )
     end
   end

@@ -1,3 +1,5 @@
 class GroupsController < ApplicationController
-  active_scaffold
+  active_scaffold do |config|
+    config.columns = [:name]
+  end
 end
