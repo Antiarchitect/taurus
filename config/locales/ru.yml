@@ -11,6 +11,16 @@ ru:
         few: 'Аудитории'
         many: 'Аудитории'
         other: 'Аудитории'
+      department:
+        one: 'Кафедра'
+        few: 'Кафедры'
+        many: 'Кафедры'
+        other: 'Кафедры'
+      faculty:
+        one: 'Факультет'
+        few: 'Факультеты'
+        many: 'Факультеты'
+        other: 'Факультеты'
       group:
         one: 'Группа'
         few: 'Группы'
@@ -33,6 +43,11 @@ ru:
       classroom:
         building: 'Корпус'
         name: 'Номер аудитории'
+      department:
+        faculty: 'Факультет'
+        name: 'Название кафедры'
+      faculty:
+        name: 'Название факультета'
       group:
         name: 'Номер группы'
       lecturer:
