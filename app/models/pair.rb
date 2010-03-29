@@ -6,4 +6,12 @@ class Pair < ActiveRecord::Base
   def name
     'Пара'
   end
+
+  def lecturer
+    self.try(:charge_card).try(:lecturer).try(:name)
+  end
+
+  def discipline
+    self.try(:charge_card).try(:discipline).try(:name)
+  end
 end

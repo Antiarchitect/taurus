@@ -1,6 +1,7 @@
 class CreateDisciplines < ActiveRecord::Migration
   def self.up
     create_table :disciplines do |t|
+      t.integer :department_id
       t.string :name
 
       t.timestamps

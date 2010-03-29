@@ -7,7 +7,7 @@ pair_ids = []
   pair_ids << pair.id.to_s
   timeslot = pair.timeslot
   page.insert_html :top, "container_grid#{grid}_week#{timeslot.week_number}_day#{timeslot.week_day}_time#{timeslot.pair_number}",
-    :partial => '/pairs/pair', :object => pair, :locals => {:pov => 'classroom'}
+    :partial => '/pairs/pair', :object => pair
 end
 page.call :AddPairsDraggables, pair_ids
 page.call :initialize

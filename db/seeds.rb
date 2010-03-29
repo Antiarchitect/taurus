@@ -22,3 +22,9 @@ Building.create([
   {:name => '7'},
   {:name => '8'}
 ])
+
+LessonType.create([
+  {:name => 'Лекция'},
+  {:name => 'Практика'},
+  {:name => 'Лабораторная работа'}
+])
