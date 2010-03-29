@@ -1,6 +1,6 @@
 class ChargeCard < ActiveRecord::Base
   belongs_to :discipline
-  belongs_to :lecturer
+  belongs_to :teaching_place
   belongs_to :lesson_type
   has_many :jets, :dependent => :destroy
   has_many :groups, :through => :jets
