@@ -3,7 +3,7 @@ class CreateSpecialities < ActiveRecord::Migration
     create_table :specialities do |t|
       t.integer :department_id
 
-      t.integer :code
+      t.string :code
       t.string :name
 
       t.timestamps

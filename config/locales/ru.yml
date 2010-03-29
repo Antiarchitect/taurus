@@ -16,6 +16,11 @@ ru:
         few: 'Кафедры'
         many: 'Кафедры'
         other: 'Кафедры'
+      discipline:
+        one: 'Дисциплина'
+        few: 'Дисциплины'
+        many: 'Дисциплины'
+        other: 'Дисциплины'
       faculty:
         one: 'Факультет'
         few: 'Факультеты'
@@ -36,18 +41,34 @@ ru:
         few: 'Пары'
         many: 'Пары'
         other: 'Пары'
+      speciality:
+        one: 'Специальность'
+        few: 'Специальности'
+        many: 'Специальности'
+        other: 'Специальности'
+      teaching_place:
+        one: 'Преподаватель'
+        few: 'Преподаватели'
+        many: 'Преподаватели'
+        other: 'Преподаватели'
 
     attributes:
       building:
         name: 'Название корпуса'
       classroom:
         building: 'Корпус'
+        department: 'Кафедра'
         name: 'Номер аудитории'
       department:
         faculty: 'Факультет'
-        name: 'Название кафедры'
+        name: 'Сокращенное название'
+        full_name: 'Название кафедры'
+      discipline:
+        full_name: 'Название дисциплины'
+        name: 'Сокращенное название'
       faculty:
-        name: 'Название факультета'
+        full_name: 'Название факультета'
+        name: 'Сокращенное название'
       group:
         name: 'Номер группы'
       lecturer:
@@ -56,3 +77,12 @@ ru:
         building: 'Корпус'
         classroom: 'Аудитория'
         lecturer: 'Преподаватель'
+      speciality:
+        code: 'Код специальности'
+        name: 'Название специальности'
+      teaching_place:
+        lecturer: 'Преподаватель'
+    description:
+      discipline:
+        full_name: 'Полное название дисциплины'
+        name: 'Сокращенное название дисциплины'
