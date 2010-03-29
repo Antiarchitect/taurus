@@ -43,11 +43,17 @@
   background-color: #F5F9BD;
   height: 100%;
   width: 100%; }
+  .pair .pair_content {
+    float: left; }
   .pair .management_panel {
     float: right;
     width: 12px; }
     .pair .management_panel a {
       display: inline-block; }
+    .pair .management_panel abbr {
+      border-width: 1px;
+      border-style: dashed;
+      cursor: help; }
 
 img {
   border: none; }

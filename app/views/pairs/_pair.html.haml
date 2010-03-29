@@ -1,7 +1,12 @@
 .pair{:id => "#{pair.id}"}
-  = "#{pair.discipline}<br />"
-  = "#{pair.lecturer}<br />"
-  = "#{pair.groups}<br />"
+  .pair_content
+    %abbr{:title => "#{pair.full_discipline}"}
+      = "#{pair.discipline}"
+    %br
+    %abbr{:title => "#{pair.full_lecturer}"}
+      = "#{pair.lecturer}"
+    %br
+    = "#{pair.groups}"
   .management_panel
     = link_to image_tag('show_12.png'), pair_path(pair.id), :method => :get, :class => 'lbOn'
     = link_to image_tag('edit_12.png'), edit_pair_path(pair.id), :class => 'lbOn'

@@ -7,8 +7,18 @@ class Pair < ActiveRecord::Base
     'Пара'
   end
 
-  def lecturer
+  def full_lecturer
     self.try(:charge_card).try(:teaching_place).try(:name)
+  end
+
+  def lecturer
+    unless full_lecturer.blank?
+      full_lecturer.split(' ')[0]
+    end
+  end
+
+  def full_discipline
+    self.try(:charge_card).try(:discipline).try(:full_name)
   end
 
   def discipline
