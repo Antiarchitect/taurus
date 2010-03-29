@@ -1,6 +1,8 @@
 class CreateGroups < ActiveRecord::Migration
   def self.up
     create_table :groups do |t|
+      t.integer :speciality_id
+      
       t.string :name
       
       t.timestamps

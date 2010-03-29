@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :specialities
+
   map.resources :teaching_places
 
  map.chain_selects
