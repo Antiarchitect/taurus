@@ -25,6 +25,8 @@ class PairsController < ApplicationController
         :charge_card_id => params[:pair][:charge_card]
       )
     end
+    @pair = Pair.find(params[:id])
+    @container = "container_grid#{@pair.classroom_id}_week#{@pair.timeslot.week_number}_day#{@pair.timeslot.week_day}_time#{@pair.timeslot.pair_number}"
   end
 
   def update_on_drop

@@ -18,7 +18,10 @@ class Pair < ActiveRecord::Base
   end
 
   def full_discipline
-    self.try(:charge_card).try(:discipline).try(:full_name)
+    full = self.try(:charge_card).try(:discipline).try(:full_name)
+    unless (lesson = self.try(:charge_card).try(:lesson_type).try(:name)).nil?
+      full += ' (' + lesson + ')'
+    end
   end
 
   def discipline
@@ -33,5 +36,9 @@ class Pair < ActiveRecord::Base
       end
     end
     groups_string.map{|g| g + ', '}.to_s.chop.chop
+  end
+
+  def lesson_type
+    self.try(:charge_card).try(:lesson_type).try(:name)
   end
 end
