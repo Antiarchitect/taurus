@@ -6,5 +6,5 @@ class Department < ActiveRecord::Base
   has_many :lecturers, :through => :teaching_places
   has_many :specialities
 
-  acts_as_chainable :from => :faculty, :to => :lecturer, :select_label => 'Кафедра'
+  acts_as_chainable :from => :faculty, :to => :teaching_place, :select_label => 'Кафедра'
 end

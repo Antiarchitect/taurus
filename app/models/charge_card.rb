@@ -6,9 +6,13 @@ class ChargeCard < ActiveRecord::Base
   has_many :groups, :through => :jets
   has_many :pairs
 
-  acts_as_chainable :from => :lecturer, :select_label => 'Запись в карте'
+  acts_as_chainable :from => :teaching_place, :select_label => 'Запись в карте'
 
   def name
-    'Карта'
+    groups = []
+    self.groups.each do |group|
+      groups << group.try(:name)
+    end
+    self.try(:discipline).try(:name) + ', ' + self.try(:lesson_type).try(:name) + ', ' + groups.map{|g| g + ', '}.to_s.chop.chop
   end
 end
