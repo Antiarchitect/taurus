@@ -6,6 +6,7 @@ ru:
         few: 'Корпуса'
         many: 'Корпуса'
         other: 'Корпуса'
+      charge_card: 'Карта распределения нагрузки'
       classroom:
         one: 'Аудитория'
         few: 'Аудитории'
@@ -55,6 +56,11 @@ ru:
     attributes:
       building:
         name: 'Название корпуса'
+      charge_card:
+        discipline: 'Название дисциплины'
+        groups: 'Группы'
+        jets: 'Группы'
+        lesson_type: 'Тип занятия'
       classroom:
         building: 'Корпус'
         department: 'Кафедра'
@@ -71,6 +77,8 @@ ru:
         name: 'Сокращенное название'
       group:
         name: 'Номер группы'
+      jet:
+        group: 'Группа'
       lecturer:
         name: 'ФИО'
       pair:

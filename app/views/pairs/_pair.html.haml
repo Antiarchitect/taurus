@@ -1,7 +1,10 @@
 .pair{:id => "#{pair.id}"}
   .pair_content
     %abbr{:title => "#{pair.full_discipline}"}
-      - full_discipline = "#{pair.discipline} (" + truncate("#{pair.lesson_type}", :length => 4, :omission => '.') + ")"
+      - if pair.lesson_type.blank?
+        - full_discipline = "#{pair.discipline}"
+      - else
+        - full_discipline = "#{pair.discipline} (" + truncate("#{pair.lesson_type}", :length => 4, :omission => '.') + ")"
       = full_discipline
     %br
     %abbr{:title => "#{pair.full_lecturer}"}
