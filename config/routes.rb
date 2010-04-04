@@ -13,8 +13,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :jets, :active_scaffold => :true
 
-  map.resources :groups_grids
-
   map.resources :classrooms_grids, :collection => {
     :update_classrooms_list => :get
   }
