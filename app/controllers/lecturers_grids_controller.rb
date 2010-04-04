@@ -1,2 +1,0 @@
-class LecturersGridsController < GridsController
-end
