@@ -26,7 +26,8 @@
   .grid td {
     border-style: solid;
     border-width: thin;
-    height: 48px; }
+    height: 48px;
+    width: 7.7%; }
   .grid th {
     border-style: solid;
     border-width: thin; }
@@ -39,6 +40,8 @@
   background: #F00; }
 
 .pair {
+  font-family: sans-serif;
+  font-size: 11px;
   cursor: move;
   background-color: #F5F9BD;
   height: 100%;
@@ -50,10 +53,9 @@
     width: 12px; }
     .pair .management_panel a {
       display: inline-block; }
-    .pair .management_panel abbr {
-      border-width: 1px;
-      border-style: dashed;
-      cursor: help; }
+
+abbr {
+  cursor: help; }
 
 img {
   border: none; }
