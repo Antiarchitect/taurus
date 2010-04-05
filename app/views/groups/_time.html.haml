@@ -1,0 +1,4 @@
+%tr
+  %th{:rowspan => 2}
+    = h  time
+  = render :partial => 'day', :collection => @days, :locals => {:time => time_counter + 1}
