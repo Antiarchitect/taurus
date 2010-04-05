@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teaching_places
 
- map.chain_selects
+  map.chain_selects
 
   map.resources :faculties, :active_scaffold => :true
 
@@ -21,7 +21,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :buildings, :active_scaffold => :true
 
-  map.resources :groups, :active_scaffold => :true
+  map.resources :groups, :active_scaffold => :true, :member => {
+    :timetable => :get
+  }
 
   map.resources :lecturers, :active_scaffold => :true
 
