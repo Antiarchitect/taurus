@@ -38,13 +38,13 @@ class GroupsController < ApplicationController
     @days = self.class.days
     @times = self.class.times
     @weeks = self.class.weeks
-    @pairs = Array.new
-    @days.each_index do |day|
-      @times.each_index do |time|
-        @weeks.each_index do |week|
-          @pairs[day][time][week] = pairs.all(:include => :timeslot,
-            :conditions => ['timeslot.week_day = ? AND timeslot.pair_number = ? AND timeslot.week_number = ?', day, time, week])
-      end
+    @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size).map!{Array.new}}}
+    pairs.each do |pair|
+      timeslot = pair.try(:timeslot)
+      day = timeslot.week_day
+      time = timeslot.pair_number
+      week = timeslot.week_number
+      @pairs[day - 1][time - 1][week - 1] << pair
     end
   end
 end
