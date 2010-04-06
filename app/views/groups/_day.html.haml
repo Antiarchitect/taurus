@@ -16,13 +16,7 @@
       - else
         - @abs_span = 1
         - first_week_pairs.each do |f|
-          - @span = 1
-          - second_week_pairs.each do |sp|
-            - if f.classroom_id == sp.classroom_id && f.charge_card_id == sp.charge_card_id
-              - second_week_pairs.delete(sp)
-              - @span = 2
-              - @abs_span = 2
-          %td{:rowspan => @span}
+          %td
             .pair
               = "#{f.lecturer}<br />"
               = "#{f.discipline}<br />"
@@ -31,6 +25,9 @@
       - if second_week_pairs.empty? && @abs_span == 1
         %td
           .nopair
+      - elsif second_week_pairs.size > 2
+        %td
+          .error_pair
       - else
         - second_week_pairs.each do |s|
           %td
