@@ -5,6 +5,7 @@
 !week_width = 100% / 2
 !header_height = 30px
 !container_height = 48px
+!grid_background = #E6F2FF
 
 =table_border
   border:
@@ -24,14 +25,14 @@
   float: left
   padding: 5px
   border: 1px solid #000000
-  background-color: #E6F2FF
+  background-color = !grid_background
 
 .closebutton
   float: right
 
 .grid
   background:
-    color: #E6F2FF
+    color = !grid_background
   clear: both
   margin:
     bottom: 5px
@@ -72,24 +73,50 @@
     a
       display: inline-block
 
-.nopair
-  background:
-    color: #FF0000
-  height: 100%
-  width: 100%
-
 abbr
   cursor: help
 
 img
   border: none
 
-table
-  border-collapse: collapse
-  border: 1px solid black
+.timetable
+  background:
+    color = !grid_background
+  clear: both
+  margin:
+    bottom: 5px
+  width: 100%
 
-td
-  border: 1px solid black
+  .nopair
+    background:
+      color  = #FF0000
+    height: 100%
+    width: 100%
 
-th
-  border: 1px solid black
+  .error_pair
+    background:
+      color  = #FF0000
+    height: 100%
+    width: 100%
+
+  table
+    width: 100%
+    border:
+      collapse: collapse
+  td
+    +table_border
+    height = !container_height
+    width: 7.7%
+  th
+    width: 7.7%
+    +table_border
+
+  .day_cell
+    table
+      width: 100%
+      border: none
+    td
+      border:
+        collapse: collapse
+      height = !container_height
+      width: 7.7%

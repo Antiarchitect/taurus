@@ -10,13 +10,13 @@
   float: left;
   padding: 5px;
   border: 1px solid #000000;
-  background-color: #E6F2FF; }
+  background-color: #e6f2ff; }
 
 .closebutton {
   float: right; }
 
 .grid {
-  background-color: #E6F2FF;
+  background-color: #e6f2ff;
   clear: both;
   margin-bottom: 5px;
   width: 100%; }
@@ -54,23 +54,41 @@
     .pair .management_panel a {
       display: inline-block; }
 
-.nopair {
-  background-color: #FF0000;
-  height: 100%;
-  width: 100%; }
-
 abbr {
   cursor: help; }
 
 img {
   border: none; }
 
-table {
-  border-collapse: collapse;
-  border: 1px solid black; }
-
-td {
-  border: 1px solid black; }
-
-th {
-  border: 1px solid black; }
+.timetable {
+  background-color: #e6f2ff;
+  clear: both;
+  margin-bottom: 5px;
+  width: 100%; }
+  .timetable .nopair {
+    background-color: red;
+    height: 100%;
+    width: 100%; }
+  .timetable .error_pair {
+    background-color: red;
+    height: 100%;
+    width: 100%; }
+  .timetable table {
+    width: 100%;
+    border-collapse: collapse; }
+  .timetable td {
+    border-style: solid;
+    border-width: thin;
+    height: 48px;
+    width: 7.7%; }
+  .timetable th {
+    width: 7.7%;
+    border-style: solid;
+    border-width: thin; }
+  .timetable .day_cell table {
+    width: 100%;
+    border: none; }
+  .timetable .day_cell td {
+    border-collapse: collapse;
+    height: 48px;
+    width: 7.7%; }
