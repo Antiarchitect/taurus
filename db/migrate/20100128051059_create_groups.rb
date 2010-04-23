@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration
       t.integer :speciality_id
       
       t.string :name
+      t.integer :forming_year
       
       t.timestamps
     end
