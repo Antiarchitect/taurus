@@ -5,8 +5,7 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name, :forming_year
   validates_format_of :forming_year, :with => /^(20)\d{2}$/,
-    :message => '- допустимо вводить 4 числа, обозначающие год целиком.
-Допустимы годы от 2000 до 2099'
+    :message => '- необходимо вводить год целиком. Допустимы годы от 2000 до 2099'
 
   def course
     course = Time.now.year.to_i - self.forming_year
