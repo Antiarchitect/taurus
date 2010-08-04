@@ -29,6 +29,7 @@ module ActiveScaffold
   #     'location' => '12'
   # }
   module AttributeParams
+    protected
     # Takes attributes (as from params[:record]) and applies them to the parent_record. Also looks for
     # association attributes and attempts to instantiate them as associated objects.
     #
@@ -58,22 +59,21 @@ module ActiveScaffold
           value = column_value_from_param_value(parent_record, column, attributes[column.name]) 
 
           # we avoid assigning a value that already exists because otherwise has_one associations will break (AR bug in has_one_association.rb#replace)
-          parent_record.send("#{column.name}=", value) unless column.through_association? or parent_record.send(column.name) == value
+          parent_record.send("#{column.name}=", value) unless parent_record.send(column.name) == value
           
         # plural associations may not actually appear in the params if all of the options have been unselected or cleared away.
-        # NOTE: the "form_ui" check isn't really necessary, except that without it we have problems
+        # the "form_ui" check is necessary, becuase without it we have problems
         # with subforms. the UI cuts out deep associations, which means they're not present in the
         # params even though they're in the columns list. the result is that associations were being
-        # emptied out way too often. BUT ... this means there's still a lingering bug in the default association
-        # form code: you can't delete the last association in the list.
-        elsif column.form_ui and column.plural_association? and not column.through_association?
+        # emptied out way too often.
+        elsif column.form_ui and column.plural_association?
           parent_record.send("#{column.name}=", [])
         end
       end
 
       if parent_record.new_record?
         parent_record.class.reflect_on_all_associations.each do |a|
-          next unless [:has_one, :has_many].include?(a.macro) and not a.options[:through]
+          next unless [:has_one, :has_many].include?(a.macro) and not (a.options[:through] || a.options[:finder_sql])
           next unless association_proxy = parent_record.send(a.name)
 
           raise ActiveScaffold::ReverseAssociationRequired, "Association #{a.name}: In order to support :has_one and :has_many where the parent record is new and the child record(s) validate the presence of the parent, ActiveScaffold requires the reverse association (the belongs_to)." unless a.reverse
@@ -111,7 +111,8 @@ module ActiveScaffold
         elsif column.singular_association?
           manage_nested_record_from_params(parent_record, column, value)
         elsif column.plural_association?
-          value.collect {|key_value_pair| manage_nested_record_from_params(parent_record, column, key_value_pair[1])}.compact
+          # sort by id or temporary id so new records are created in the same order as user write them
+          value.sort.collect {|key_value_pair| manage_nested_record_from_params(parent_record, column, key_value_pair[1])}.compact
         else
           value
         end
@@ -122,13 +123,20 @@ module ActiveScaffold
         elsif column.plural_association?
           # it's an array of ids
           column.association.klass.find(value) if value and not value.empty?
-        elsif column.column && column.column.number? && [:i18n_number, :currency].include?(column.options[:format])
-          native = '.'
-          delimiter = I18n.t('number.format.delimiter')
-          separator = I18n.t('number.format.separator')
-
-          unless delimiter == native && !value.include?(separator) && value !~ /\.\d{3}$/
-            value.gsub(/[^0-9\-#{I18n.t('number.format.separator')}]/, '').gsub(I18n.t('number.format.separator'), native)
+        elsif column.column && column.column.number? && column.options[:format]
+          native = '.' # native ruby separator
+          format = {:separator => '', :delimiter => ''}.merge! I18n.t('number.format', :default => {})
+          specific = case column.options[:format]
+          when :currency
+            I18n.t('number.currency.format', :default => nil)
+          when :size
+            I18n.t('number.human.format', :default => nil)
+          when :percentage
+            I18n.t('number.percentage.format', :default => nil)
+          end
+          format.merge! specific unless specific.nil?
+          unless format[:separator].blank? || !value.include?(format[:separator]) && value.include?(native) && (format[:delimiter] != native || value !~ /\.\d{3}$/)
+            value.gsub(/[^0-9\-#{format[:separator]}]/, '').gsub(format[:separator], native)
           else
             value
           end
@@ -148,7 +156,7 @@ module ActiveScaffold
     def find_or_create_for_params(params, parent_column, parent_record)
       current = parent_record.send(parent_column.name)
       klass = parent_column.association.klass
-      return nil if parent_column.show_blank_record and attributes_hash_is_empty?(params, klass)
+      return nil if parent_column.show_blank_record?(current) and attributes_hash_is_empty?(params, klass)
 
       if params.has_key? :id
         # modifying the current object of a singular association

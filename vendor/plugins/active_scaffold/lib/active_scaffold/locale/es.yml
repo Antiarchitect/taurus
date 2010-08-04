@@ -6,6 +6,7 @@ es:
     are_you_sure_to_delete: '¿Estás seguro de que quieres borrar {{label}}?'
     cancel: 'Cancelar'
     click_to_edit: 'Pulsa para editar'
+    click_to_reset: 'Pulsa para restaurar'
     close: 'Cerrar'
     create: 'Crear'
     create_model: 'Crear {{model}}'
@@ -19,7 +20,7 @@ es:
     download: 'Descargar'
     edit: 'Editar'
     export: 'Exportar'
-    nested_for_model: '{{nested_model}} de {{parent_model}}'
+    'false': 'No'
     filtered: '(Filtrado)'
     found:
       one: 'encontrado'
@@ -27,6 +28,7 @@ es:
     hide: 'Ocultar'
     live_search: 'Buscar en Vivo'
     loading: 'Cargando…'
+    nested_for_model: '{{nested_model}} de {{parent_model}}'
     next: 'Siguiente'
     no_entries: 'Sin entradas'
     no_options: 'sin opciones'
@@ -48,6 +50,7 @@ es:
     show: 'Ver'
     show_model: 'Ver {{model}}'
     _to_ : ' a '
+    'true': 'Sí'
     update: 'Actualizar'
     update_model: 'Actualizar {{model}}'
     updated_model: '{{model}} actualizado'
@@ -57,7 +60,12 @@ es:
     '>': '>'
     '<': '<'
     '!=': '!='
-    between: 'entre'
+    between: 'Entre'
+    is_null: 'Es nulo'
+    is_not_null: 'No es nulo'
+    contains: 'Contiene'
+    begins_with: 'Empieza con'
+    ends_with: 'Termina con'
 
     # error_messages
     cant_destroy_record: "No se pudo borrar {{record}}"

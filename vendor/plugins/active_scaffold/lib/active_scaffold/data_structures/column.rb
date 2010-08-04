@@ -19,7 +19,6 @@ module ActiveScaffold::DataStructures
 
     # Whether to enable add_existing for this column
     attr_accessor :allow_add_existing
-    @allow_add_existing = true
     
     # Any extra parameters this particular column uses.  This is for create/update purposes.
     def params
@@ -53,6 +52,13 @@ module ActiveScaffold::DataStructures
     def required?
       @required
     end
+
+    # column to be updated in a form when this column changes
+    attr_accessor :update_column
+
+    # send all the form instead of only new value when this column change
+    cattr_accessor :send_form_on_update_column
+    attr_accessor :send_form_on_update_column
 
     # sorting on a column can be configured four ways:
     #   sort = true               default, uses intelligent sorting sql default
@@ -182,9 +188,8 @@ module ActiveScaffold::DataStructures
     attr_writer :show_blank_record
     def show_blank_record?(associated)
       if @show_blank_record
-        return false if self.through_association?
         return false unless self.association.klass.authorized_for?(:crud_type => :create)
-        self.plural_association? or (self.singular_association? and associated.empty?)
+        self.plural_association? or (self.singular_association? and associated.blank?)
       end
     end
 
@@ -246,8 +251,11 @@ module ActiveScaffold::DataStructures
       @associated_limit = self.class.associated_limit
       @associated_number = self.class.associated_number
       @show_blank_record = self.class.show_blank_record
+      @send_form_on_update_column = self.class.send_form_on_update_column
       @actions_for_association_links = self.class.actions_for_association_links.clone if @association
       @options = {:format => :i18n_number} if @column.try(:number?)
+      @form_ui = :checkbox if @column and @column.type == :boolean
+      @allow_add_existing = true
 
       # default all the configurable variables
       self.css_class = ''
@@ -303,7 +311,7 @@ module ActiveScaffold::DataStructures
 
     # the table.field name for this column, if applicable
     def field
-      @field ||= [@active_record_class.connection.quote_column_name(@table), field_name].join('.')
+      @field ||= [@active_record_class.connection.quote_table_name(@table), field_name].join('.')
     end
   end
 end

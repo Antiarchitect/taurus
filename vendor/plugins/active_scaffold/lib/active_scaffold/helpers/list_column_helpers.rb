@@ -4,26 +4,31 @@ module ActiveScaffold
     # Helpers that assist with the rendering of a List Column
     module ListColumnHelpers
       def get_column_value(record, column)
-        # check for an override helper
-        value = if column_override? column
-          # we only pass the record as the argument. we previously also passed the formatted_value,
-          # but mike perham pointed out that prohibited the usage of overrides to improve on the
-          # performance of our default formatting. see issue #138.
-          send(column_override(column), record)
-        # second, check if the dev has specified a valid list_ui for this column
-        elsif column.list_ui and override_column_ui?(column.list_ui)
-          send(override_column_ui(column.list_ui), column, record)
+        begin
+          # check for an override helper
+          value = if column_override? column
+            # we only pass the record as the argument. we previously also passed the formatted_value,
+            # but mike perham pointed out that prohibited the usage of overrides to improve on the
+            # performance of our default formatting. see issue #138.
+            send(column_override(column), record)
+          # second, check if the dev has specified a valid list_ui for this column
+          elsif column.list_ui and override_column_ui?(column.list_ui)
+            send(override_column_ui(column.list_ui), column, record)
 
-        elsif inplace_edit?(record, column)
-          active_scaffold_inplace_edit(record, column)
-        elsif column.column and override_column_ui?(column.column.type)
-          send(override_column_ui(column.column.type), column, record)
-        else
-          format_column_value(record, column)
+          elsif inplace_edit?(record, column)
+            active_scaffold_inplace_edit(record, column)
+          elsif column.column and override_column_ui?(column.column.type)
+            send(override_column_ui(column.column.type), column, record)
+          else
+            format_column_value(record, column)
+          end
+
+          value = '&nbsp;'.html_safe if value.nil? or (value.respond_to?(:empty?) and value.empty?) # fix for IE 6
+          return value
+        rescue Exception => e
+          logger.error Time.now.to_s + "#{e.inspect} -- on the ActiveScaffold column = :#{column.name} in #{@controller.class}"
+          raise e
         end
-
-        value = '&nbsp;' if value.nil? or (value.respond_to?(:empty?) and value.empty?) # fix for IE 6
-        return value
       end
       
       # TODO: move empty_field_text and &nbsp; logic in here?
@@ -108,6 +113,17 @@ module ActiveScaffold
         truncate(clean_column_value(record.send(column.name)), :length => column.options[:truncate] || 50)
       end
 
+      def active_scaffold_column_select(column, record)
+        if column.association
+          format_column_value(record, column)
+        else
+          value = record.send(column.name)
+          text, val = column.options[:options].find {|text, val| (val.nil? ? text : val).to_s == value.to_s}
+          value = active_scaffold_translated_option(column, text, val).first if text
+          format_column_value(record, column, value)
+        end
+      end
+
       def active_scaffold_column_checkbox(column, record)
         if inplace_edit?(record, column)
           id_options = {:id => record.id.to_s, :action => 'update_column', :name => column.name.to_s}
@@ -118,13 +134,20 @@ module ActiveScaffold
         end
       end
 
-      def column_override(column)
-        "#{column.name.to_s.gsub('?', '')}_column" # parse out any question marks (see issue 227)
+      def column_override_name(column, old = false)
+        "#{clean_class_name(column.active_record_class.name) + '_' unless old}#{clean_column_name(column.name)}_column"
       end
 
-      def column_override?(column)
-        respond_to?(column_override(column))
+      def column_override(column)
+        method = column_override_name(column)
+        return method if respond_to?(method)
+        old_method = column_override_name(column, true)
+        if respond_to?(old_method)
+          ActiveSupport::Deprecation.warn("You are using an old naming schema for overrides, you should name the helper #{method} instead of #{old_method}")
+          old_method
+        end
       end
+      alias_method :column_override?, :column_override
 
       def override_column_ui?(list_ui)
         respond_to?(override_column_ui(list_ui))
@@ -145,8 +168,8 @@ module ActiveScaffold
         check_box(:record, column.name, :onclick => script, :id => nil, :object => record)
       end
 
-      def format_column_value(record, column)
-        value = record.send(column.name)
+      def format_column_value(record, column, value = nil)
+        value ||= record.send(column.name) unless record.nil?
         if value && column.association # cache association size before calling column_empty?
           associated_size = value.size if column.plural_association? and column.associated_number? # get count before cache association
           cache_association(value, column)
@@ -171,7 +194,7 @@ module ActiveScaffold
           when :currency
             number_to_currency(value, options[:i18n_options] || {})
           when :i18n_number
-            send("number_with_#{value.is_a?(Integer) ? 'delimiter' : 'precision'}", value, options[:i18n_options] || {})
+            number_with_delimiter(value, options[:i18n_options] || {})
           else
             value
         end
@@ -245,8 +268,8 @@ module ActiveScaffold
         end
       end
       
-      def active_scaffold_inplace_edit(record, column)
-        formatted_column = format_column_value(record, column)
+      def active_scaffold_inplace_edit(record, column, options = {})
+        formatted_column = options[:formatted_column] || format_column_value(record, column)
         id_options = {:id => record.id.to_s, :action => 'update_column', :name => column.name.to_s}
         tag_options = {:id => element_cell_id(id_options), :class => "in_place_editor_field"}
         in_place_editor_options = {
@@ -268,9 +291,9 @@ module ActiveScaffold
             :form_customization => 'element.clonePatternField();'
           )
         elsif column.inplace_edit == :ajax
-          url = url_for(:action => 'render_field', :id => record.id, :column => column.name, :update_column => column.name, :in_place_editing => true, :escape => false)
+          url = url_for(:controller => params_for[:controller], :action => 'render_field', :id => record.id, :column => column.name, :update_column => column.name, :in_place_editing => true, :escape => false)
           plural = column.plural_association? && !override_form_field?(column) && [:select, :record_select].include?(column.form_ui)
-          in_place_editor_options[:form_customization] = "element.setFieldFromAjax('#{escape_javascript(url)}', {plural: #{plural}});"
+          in_place_editor_options[:form_customization] = "element.setFieldFromAjax('#{escape_javascript(url)}', {plural: #{!!plural}});"
         elsif column.column.try(:type) == :text
           in_place_editor_options[:rows] = column.options[:rows] || 5
         end
@@ -283,8 +306,7 @@ module ActiveScaffold
         if inplace_edit?(active_scaffold_config.model, column) and inplace_edit_cloning?(column)
           @record = active_scaffold_config.model.new
           column = column.clone
-          column.options = column.options.clone
-          column.options.delete(:update_column)
+          column.update_column = nil
           column.form_ui = :select if (column.association && column.form_ui.nil?)
           content_tag(:div, active_scaffold_input_for(column), {:style => "display:none;", :class => inplace_edit_control_css_class})
         end
@@ -338,6 +360,17 @@ module ActiveScaffold
         function << ')'
     
         javascript_tag(function)
+      end
+      
+      def mark_record(checked, url_params = {})
+        url_params.reverse_merge!(:controller => params_for[:controller], :action => 'mark', :eid => params[:eid])
+        ajax_options = {:method => :put,
+                        :url => url_for(url_params),
+                        :with => "'value=' + this.checked",
+                        :after => "var checkbox = this; this.disable();",
+                        :complete => "checkbox.enable();"}
+        script = remote_function(ajax_options)
+        check_box_tag('mark', '1', checked, :onclick => script, :class => 'mark_record')
       end
 
     end

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   ActiveScaffold.set_defaults do |config|
-    config.actions.swap :search, :live_search
+    config.search.live = true
     config.ignore_columns = [:created_at, :updated_at, :lock_version]
     config.list.per_page = 30
     config.subform.layout = :vertical

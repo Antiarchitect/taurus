@@ -4,7 +4,7 @@ module ActiveScaffold::Actions
     def self.included(base)
       base.before_filter :search_authorized_filter, :only => :show_search
       base.before_filter :store_search_params_into_session, :only => [:list, :index]
-      base.before_filter :do_search, :only => [:show_search, :list, :index]
+      base.before_filter :do_search, :only => [:list, :index]
       base.helper_method :search_params
     end
 
@@ -25,7 +25,8 @@ module ActiveScaffold::Actions
       unless query.empty?
         columns = active_scaffold_config.search.columns
         text_search = active_scaffold_config.search.text_search
-        search_conditions = self.class.create_conditions_for_columns(query.split(' '), columns, text_search)
+        query = query.split(active_scaffold_config.search.split_terms) if active_scaffold_config.search.split_terms
+        search_conditions = self.class.create_conditions_for_columns(query, columns, text_search)
         self.active_scaffold_conditions = merge_conditions(self.active_scaffold_conditions, search_conditions)
         @filtered = !search_conditions.blank?
 

@@ -3,11 +3,13 @@ if (typeof Prototype == 'undefined')
   warning = "ActiveScaffold Error: Prototype could not be found. Please make sure that your application's layout includes prototype.js (e.g. <%= javascript_include_tag :defaults %>) *before* it includes active_scaffold.js (e.g. <%= active_scaffold_includes %>).";
   alert(warning);
 }
-if (Prototype.Version.substring(0, 3) != '1.6')
+if (Prototype.Version.substring(0, 3) < '1.6')
 {
-  warning = "ActiveScaffold Error: Prototype version 1.6.x is required. Please update prototype.js (rake rails:update:javascripts).";
+  warning = "ActiveScaffold Error: Prototype version 1.6.x or higher is required. Please update prototype.js (rake rails:update:javascripts).";
   alert(warning);
 }
+if (!Element.Methods.highlight) Element.addMethods({highlight: Prototype.emptyFunction});
+
 
 /*
  * Simple utility methods
@@ -69,19 +71,19 @@ var ActiveScaffold = {
   decrement_record_count: function(scaffold_id) {
     // decrement the last record count, firsts record count are in nested lists
     count = $$('#' + scaffold_id + ' span.active-scaffold-records').last();
-    count.innerHTML = parseInt(count.innerHTML) - 1;
+    if (count) count.update(parseInt(count.innerHTML, 10) - 1);
   },
   increment_record_count: function(scaffold_id) {
     // increment the last record count, firsts record count are in nested lists
     count = $$('#' + scaffold_id + ' span.active-scaffold-records').last();
-    count.innerHTML = parseInt(count.innerHTML) + 1;
+    if (count) count.update(parseInt(count.innerHTML, 10) + 1);
   },
   update_row: function(row, html) {
     row = $(row);
     Element.replace(row, html);
     var new_row = $(row.id);
     if (row.hasClassName('even-record')) new_row.addClassName('even-record');
-    new Effect.Highlight(new_row);
+    new_row.highlight();
   },
 
   server_error_response: '',
@@ -201,6 +203,8 @@ ActiveScaffold.ActionLink.Abstract = Class.create({
       this.method = 'delete';
     } else if(this.url.match('_method=post')){
       this.method = 'post';
+    } else if(this.url.match('_method=put')){
+      this.method = 'put';
     }
     this.target = target;
     this.loading_indicator = loading_indicator;
@@ -365,7 +369,7 @@ ActiveScaffold.ActionLink.Record = Class.create(ActiveScaffold.ActionLink.Abstra
     this.adapter.down('a.inline-adapter-close').observe('click', this.close_handler.bind(this));
     this.register_cancel_hooks();
 
-    new Effect.Highlight(this.adapter.down('td').down());
+    this.adapter.down('td').down().highlight();
   },
 
   close: function($super, updatedRow) {
@@ -428,10 +432,11 @@ ActiveScaffold.ActionLink.Table = Class.create(ActiveScaffold.ActionLink.Abstrac
     this.adapter.down('a.inline-adapter-close').observe('click', this.close_handler.bind(this));
     this.register_cancel_hooks();
 
-    new Effect.Highlight(this.adapter.down('td').down());
+    this.adapter.down('td').down().highlight();
   }
 });
 
+if (Ajax.InPlaceEditor) {
 ActiveScaffold.InPlaceEditor = Class.create(Ajax.InPlaceEditor, {
   setFieldFromAjax: function(url, options) {
     var ipe = this;
@@ -524,3 +529,4 @@ ActiveScaffold.InPlaceEditor = Class.create(Ajax.InPlaceEditor, {
     }
   }
 });
+}
