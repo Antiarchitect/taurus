@@ -5,13 +5,12 @@ class PairsController < ApplicationController
   layout 'application', :except => :edit
   
   def create
-    @pair = Pair.new do |p|
+    @pair = Pair.create do |p|
       p.classroom_id = params[:classroom]
-      timeslot = Timeslot.first(:conditions => {:week_number => params[:week],
-        :week_day => params[:day], :pair_number => params[:time]})
-      p.timeslot = timeslot
+      p.day_of_the_week = params[:day]
+      p.pair_number = params[:time]
+      p.week_number = params[:week]
     end
-    @pair.save!
     @container = params[:container]
   end
 
@@ -26,7 +25,7 @@ class PairsController < ApplicationController
       )
     end
     @pair = Pair.find(params[:id])
-    @container = "container_grid#{@pair.classroom_id}_week#{@pair.timeslot.week_number}_day#{@pair.timeslot.week_day}_time#{@pair.timeslot.pair_number}"
+    @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
   end
 
   def update_on_drop
@@ -36,13 +35,10 @@ class PairsController < ApplicationController
       )
       @assoc = Classroom.find_by_id(params[:classroom])
     end
-    pair = Pair.find_by_id(params[:id], :include => :timeslot)
-    timeslot = pair.timeslot
-    week_number = params[:week] || timeslot.week_number
-    week_day = params[:day] || timeslot.week_day
-    pair_number = params[:time] || timeslot.pair_number
-    pair.timeslot = Timeslot.first(:conditions => {:week_number => week_number,
-        :week_day => week_day, :pair_number => pair_number})
+    pair = Pair.find_by_id(params[:id])
+    pair.week_number = params[:week] if params[:week]
+    pair.day_of_the_week = params[:day] if params[:day]
+    pair.pair_number = params[:time] if params[:time]
     pair.save!
     @pairs = @assoc.pairs
     @pair = Pair.find(params[:id])

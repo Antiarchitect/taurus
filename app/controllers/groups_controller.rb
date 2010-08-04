@@ -42,11 +42,7 @@ class GroupsController < ApplicationController
     @weeks = self.class.weeks
     @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size).map!{Array.new}}}
     pairs.each do |pair|
-      timeslot = pair.try(:timeslot)
-      day = timeslot.week_day
-      time = timeslot.pair_number
-      week = timeslot.week_number
-      @pairs[day - 1][time - 1][week - 1] << pair
+      @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week_number - 1] << pair
     end
   end
 end

@@ -42,7 +42,7 @@ class ClassroomsGridsController < ApplicationController
     @days = self.class.days
     @times = self.class.times
     @weeks = self.class.weeks
-    @classroom = Classroom.find(params[:classrooms_grid][:classroom], :include => [{:pairs, :timeslot}])
+    @classroom = Classroom.find(params[:classrooms_grid][:classroom], :include => :pairs)
     @pairs = @classroom.pairs
     grids = YAML.load(cookies[:classrooms_grids])
     grids << @classroom.id
