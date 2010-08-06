@@ -8,7 +8,7 @@
   list-style-type: none; }
 .menu a {
   background-color: #e6f2ff;
-  color: #555;
+  color: #555555;
   display: inline-block;
   font-family: sans-serif;
   font-size: 14px;
@@ -17,4 +17,4 @@
   text-decoration: none; }
   .menu a:hover {
     background-color: #333333;
-    color: #ff8; }
+    color: #ffff88; }

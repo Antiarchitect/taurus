@@ -1,4 +1,0 @@
-page[@id].fade :duration => 0.5
-page.delay(0.5) do
-  page[@id].remove
-end

@@ -49,5 +49,9 @@ class PairsController < ApplicationController
     @id = params[:id]
     pair = Pair.find_by_id(@id)
     pair.destroy
+
+    respond_to do |format|
+      format.js
+    end
   end
 end

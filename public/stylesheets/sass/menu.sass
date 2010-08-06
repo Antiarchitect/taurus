@@ -1,6 +1,7 @@
-=background_color(!background_color = #E6F2FF)
+=background_color($background_color: #e6f2ff)
   background:
-    color = !background_color
+    color: $background_color
+
 .menu
   ul
     +background_color
@@ -13,7 +14,7 @@
     list-style-type: none
   a
     +background_color
-    color: #555
+    color: #555555
     display: inline-block
     font:
       family: sans-serif
@@ -22,5 +23,5 @@
     padding: 13px 25px
     text-decoration: none
     &:hover
-      +background_color(#333)
-      color: #ff8
+      +background_color(#333333)
+      color: #ffff88

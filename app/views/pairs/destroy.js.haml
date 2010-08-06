@@ -1,0 +1,4 @@
+- jquery_id = '#' + @id.to_s
+$(= escape_javascript(jquery_id)).hide('fast', function() {
+    $(= escape_javascript(jquery_id)).remove();
+});

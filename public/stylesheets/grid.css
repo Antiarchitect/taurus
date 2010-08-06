@@ -3,7 +3,9 @@
   font-size: 12px;
   width: 100%; }
 
-.plus {
+#plus {
+  height: 32px;
+  width: 32px;
   clear: left; }
 
 #form {
@@ -70,7 +72,7 @@ img {
     height: 100%;
     width: 100%; }
   .timetable .error_pair {
-    background-color: red;
+    background-color: #FF0000;
     height: 100%;
     width: 100%; }
   .timetable table {
