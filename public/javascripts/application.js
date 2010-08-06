@@ -1,7 +1,14 @@
-// makes Rails to know that jQuery Ajax requests should be processed as .js format
-jQuery.ajaxSetup({
-    'beforeSend': function (xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+jQuery(document).ready(function ($){
+    // makes Rails to know that jQuery Ajax requests should be processed as .js format
+    $.ajaxSetup({
+        'beforeSend': function (xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+    });
+    
+    $('#plus').click(function (){
+        $.get('classrooms_grids/new', null, null, "script");
+    });
 });
+
 //function AddClassroomDrops(grid, weeks, days, times) {
 //    var drop = function(week, day, time) {
 //        Droppables.add('container_grid'+ grid + '_week' + week + '_day' + day + '_time' + time, {
