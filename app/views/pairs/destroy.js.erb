@@ -1,4 +1,3 @@
-<% jquery_id = escape_javascript('#' + @id.to_s) %>
-$('<%= jquery_id %> ').hide('fast', function() {
-    $('<%= jquery_id %>').remove();
+jQuery('#<%= @id %>').fadeOut('fast', function() {
+    jQuery('#<%= @id %>').remove();
 });

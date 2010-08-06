@@ -1,10 +1,15 @@
-jQuery(document).ready(function ($){
+jQuery(document).ready(function($){
     // makes Rails to know that jQuery Ajax requests should be processed as .js format
     jQuery.ajaxSetup({
-        'beforeSend': function (xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+        'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
     });
-    $('#plus').click(function (){
+    $('#plus').click(function(){
         $.get('classrooms_grids/new', null, null, "script");
+        return false;
+    });
+    $('.destroy').live('click', function() {
+      $.post('pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
+      return false;
     });
 });
 

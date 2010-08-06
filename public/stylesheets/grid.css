@@ -6,7 +6,8 @@
 #plus {
   height: 32px;
   width: 32px;
-  clear: left; }
+  clear: left;
+  cursor: pointer; }
 
 #form {
   float: left;
@@ -35,6 +36,7 @@
     border-width: thin; }
 
 .receiver {
+  -webkit-user-select: none;
   height: 100%;
   width: 100%; }
 
@@ -52,7 +54,8 @@
     float: left; }
   .pair .management_panel {
     float: right;
-    width: 12px; }
+    width: 12px;
+    cursor: pointer; }
     .pair .management_panel a {
       display: inline-block; }
 
