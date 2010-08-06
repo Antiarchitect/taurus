@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
     // makes Rails to know that jQuery Ajax requests should be processed as .js format
-    jQuery.ajaxSetup({
+    $.ajaxSetup({
         'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
     });
     $('#plus').click(function(){

@@ -1,3 +1,5 @@
-jQuery('#<%= @id %>').fadeOut('fast', function() {
-    jQuery('#<%= @id %>').remove();
+jQuery(document).ready(function($){
+    $('#<%= @id %>').fadeOut('fast', function() {
+        $('#<%= @id %>').remove();
+    });
 });
