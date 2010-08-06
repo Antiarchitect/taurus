@@ -3,10 +3,23 @@ jQuery(document).ready(function($){
     $.ajaxSetup({
         'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
     });
+
     $('#plus').click(function(){
         $.get('classrooms_grids/new', null, null, "script");
         return false;
     });
+
+    $('.receiver').live('dblclick', function() {
+        $.post('pairs/', {
+            container: $(this).attr('id'),
+            classroom_id: $(this).attr('grid_id'),
+            week_number: $(this).attr('week_number'),
+            day_of_the_week: $(this).attr('day_of_the_week'),
+            pair_number: $(this).attr('pair_number')
+        }, null, "script");
+        return false;
+    });
+    
     $('.destroy').live('click', function() {
       $.post('pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
       return false;
@@ -51,18 +64,18 @@ function AddPairsDraggables(pair_ids) {
     }
 }
 
-function CreatePairFromClassroom(container, grid, week, day, time) {
-  new Ajax.Request(
-    '/pairs/', {
-      method: 'post',
-      parameters : {
-        container : container,
-        classroom : grid,
-        week : week,
-        day : day,
-        time : time,
-        pov : 'classroom'
-      }
-    }
-  )
-}
+//function CreatePairFromClassroom(container, grid, week, day, time) {
+//  new Ajax.Request(
+//    '/pairs/', {
+//      method: 'post',
+//      parameters : {
+//        container : container,
+//        classroom : grid,
+//        week : week,
+//        day : day,
+//        time : time,
+//        pov : 'classroom'
+//      }
+//    }
+//  )
+//}

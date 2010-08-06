@@ -1,3 +1,0 @@
-page.insert_html :top, @container, :partial => 'pair', :object => @pair
-page.call :AddPairDraggable, @pair.id.to_s
-page.call :initialize

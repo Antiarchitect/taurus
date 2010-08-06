@@ -1,0 +1,3 @@
+jQuery(document).ready(function($){
+    $('#<%= escape_javascript @container %>').prepend('<%= escape_javascript render :partial => @pair %>');
+});

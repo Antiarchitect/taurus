@@ -6,12 +6,16 @@ class PairsController < ApplicationController
   
   def create
     @pair = Pair.create do |p|
-      p.classroom_id = params[:classroom]
-      p.day_of_the_week = params[:day]
-      p.pair_number = params[:time]
-      p.week_number = params[:week]
+      p.classroom_id = params[:classroom_id]
+      p.day_of_the_week = params[:day_of_the_week]
+      p.pair_number = params[:pair_number]
+      p.week_number = params[:week_number]
     end
     @container = params[:container]
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit
