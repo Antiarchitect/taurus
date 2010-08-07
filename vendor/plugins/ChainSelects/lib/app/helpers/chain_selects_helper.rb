@@ -4,7 +4,7 @@ module ChainSelectsHelper
     html = ""
     
     prefix = (options[:prefix] or 'chain_select').to_s
-    spacer = (options[:spacer] or '').to_s
+    spacer = raw((options[:spacer] or '').to_s)
     
     if options[:models]
       for model_name in options[:models]
@@ -23,7 +23,7 @@ module ChainSelectsHelper
       html += chain_select_indicator('global', prefix)
     end
     
-    html
+    raw(html)
   end
   
   def chain_select_stand_alone(model_name, options = {})
