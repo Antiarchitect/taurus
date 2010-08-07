@@ -20,27 +20,35 @@ class PairsController < ApplicationController
 
   def edit
     @pair = Pair.find_by_id(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
-#    if params[:pair][:charge_card]
-#      Pair.update(params[:id],
-#        :charge_card_id => params[:pair][:charge_card]
-#      )
-#    end
-#    @pair = Pair.find(params[:id])
-#    @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
-    if params[:classroom]
+    if params[:pair]
       Pair.update(params[:id],
-        :classroom_id => params[:classroom]
+        :charge_card_id => params[:pair][:charge_card]
       )
+      @pair = Pair.find_by_id(params[:id])
+      @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
+    else
+      if params[:classroom]
+        Pair.update(params[:id],
+          :classroom_id => params[:classroom]
+        )
+      end
+      @pair = Pair.find_by_id(params[:id])
+      @pair.week_number = params[:week_number] if params[:week_number]
+      @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
+      @pair.pair_number = params[:pair_number] if params[:pair_number]
+      @pair.save!
+      @container = params[:container]
     end
-    @pair = Pair.find_by_id(params[:id])
-    @pair.week_number = params[:week_number] if params[:week_number]
-    @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
-    @pair.pair_number = params[:pair_number] if params[:pair_number]
-    @pair.save!
-    @container = params[:container]
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy

@@ -19,7 +19,12 @@ jQuery(document).ready(function($){
         }, null, "script");
         return false;
     });
-    
+
+    $('.edit').live('click', function() {
+      $.get('pairs/' + $(this).attr('pair_id') + '/edit', null, "script");
+      return false;
+    });
+
     $('.destroy').live('click', function() {
       $.post('pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
       return false;

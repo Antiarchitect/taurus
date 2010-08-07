@@ -1,0 +1,14 @@
+jQuery(document).ready(function($){
+    $('#plus').before('<%= escape_javascript render :partial => 'pair_edit' %>');
+    var dlg = $('#update_pair_<%= escape_javascript @pair.id.to_s %>').dialog({
+        closeText: 'Закрыть',
+        draggable: false,
+        modal: true,
+        show: 'clip',
+        hide: 'clip',
+        title: 'Редактировать пару'
+    });
+    $('#save_pair_<%= escape_javascript @pair.id.to_s %>').click(function(){
+        dlg.dialog("close");
+    });
+});
