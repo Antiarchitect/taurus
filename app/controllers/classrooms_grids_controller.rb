@@ -47,6 +47,10 @@ class ClassroomsGridsController < ApplicationController
     grids = YAML.load(cookies[:classrooms_grids])
     grids << @classroom.id
     cookies[:classrooms_grids] = YAML.dump(grids)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit

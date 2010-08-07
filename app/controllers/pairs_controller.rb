@@ -23,29 +23,25 @@ class PairsController < ApplicationController
   end
 
   def update
-    if params[:pair][:charge_card]
-      Pair.update(params[:id],
-        :charge_card_id => params[:pair][:charge_card]
-      )
-    end
-    @pair = Pair.find(params[:id])
-    @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
-  end
-
-  def update_on_drop
+#    if params[:pair][:charge_card]
+#      Pair.update(params[:id],
+#        :charge_card_id => params[:pair][:charge_card]
+#      )
+#    end
+#    @pair = Pair.find(params[:id])
+#    @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
     if params[:classroom]
       Pair.update(params[:id],
         :classroom_id => params[:classroom]
       )
       @assoc = Classroom.find_by_id(params[:classroom])
     end
-    pair = Pair.find_by_id(params[:id])
-    pair.week_number = params[:week] if params[:week]
-    pair.day_of_the_week = params[:day] if params[:day]
-    pair.pair_number = params[:time] if params[:time]
-    pair.save!
+    @pair = Pair.find_by_id(params[:id])
+    @pair.week_number = params[:week_number] if params[:week_number]
+    @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
+    @pair.pair_number = params[:pair_number] if params[:pair_number]
+    @pair.save!
     @pairs = @assoc.pairs
-    @pair = Pair.find(params[:id])
     @container = params[:container]
   end
 

@@ -1,0 +1,34 @@
+jQuery(document).ready(function($){
+    $('#plus').before('<%= escape_javascript render :partial => 'grid', :object => @classroom %>');
+    $('.receiver').droppable({
+        accept: '.pair',
+        drop: function(){
+            $.post('pairs/' + ui.draggable.attr('id'), {
+                _method: 'put',
+                classroom: $(this).attr('grid_id'),
+                week_number: $(this).attr('week_number'),
+                day_of_the_week: $(this).attr('day_of_the_week'),
+                pair_number: $(this).attr('pair_number'),
+                container: receiver.id
+            }, null, "script");
+        }
+    });
+    <% @pairs.each do |pair| %>
+    $('#<%=  escape_javascript "container_grid#{@classroom.id}_week#{pair.week_number}_day#{pair.day_of_the_week}_time#{pair.pair_number}" %>').append(
+        '<%= escape_javascript render :partial => '/pairs/pair', :object => pair %>'
+    );
+    <% end %>
+    $('.pair').draggable();
+});
+<%#*#grid = @classroom.id%>
+<%#*#page.call :AddClassroomDrops, grid, @weeks.size, @days.size, @times.size%>
+<%#*#page['grid_' + "#{grid}"].appear :duration => 0.5%>
+<%#*#pair_ids = []%>
+<%#*#@pairs.each do |pair|%>
+<%#*#  pair_ids << pair.id.to_s%>
+<%#*#  page.insert_html :top, "container_grid#{grid}_week#{pair.week_number}_day#{pair.day_of_the_week}_time#{pair.pair_number}",%>
+<%#*#    :partial => '/pairs/pair', :object => pair%>
+<%#*#end%>
+<%#*#page.call :AddPairsDraggables, pair_ids%>
+<%#*#page.call :initialize%>
+<%#*#page[:form].fade%>
