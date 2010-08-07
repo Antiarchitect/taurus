@@ -1,4 +1,0 @@
-page[@pair.id.to_s].remove
-page.insert_html :top, @container, :partial => 'pair', :object => @pair
-page.call :AddPairDraggable, @pair.id.to_s
-page << "Element.remove($('lbContent'));Element.hide($('lightbox'));Element.hide($('overlay'));"

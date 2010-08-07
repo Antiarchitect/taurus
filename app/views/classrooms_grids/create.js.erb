@@ -2,15 +2,18 @@ jQuery(document).ready(function($){
     $('#plus').before('<%= escape_javascript render :partial => 'grid', :object => @classroom %>');
     $('.receiver').droppable({
         accept: '.pair',
-        drop: function(){
+        over: function(){ $(this).addClass('hovered_receiver');},
+        out: function(){ $(this).removeClass('hovered_receiver');},
+        drop: function(event, ui){
             $.post('pairs/' + ui.draggable.attr('id'), {
                 _method: 'put',
                 classroom: $(this).attr('grid_id'),
                 week_number: $(this).attr('week_number'),
                 day_of_the_week: $(this).attr('day_of_the_week'),
                 pair_number: $(this).attr('pair_number'),
-                container: receiver.id
+                container: $(this).attr('id')
             }, null, "script");
+            $(this).removeClass('hovered_receiver');
         }
     });
     <% @pairs.each do |pair| %>

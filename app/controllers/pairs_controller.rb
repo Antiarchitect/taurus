@@ -34,14 +34,12 @@ class PairsController < ApplicationController
       Pair.update(params[:id],
         :classroom_id => params[:classroom]
       )
-      @assoc = Classroom.find_by_id(params[:classroom])
     end
     @pair = Pair.find_by_id(params[:id])
     @pair.week_number = params[:week_number] if params[:week_number]
     @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
     @pair.pair_number = params[:pair_number] if params[:pair_number]
     @pair.save!
-    @pairs = @assoc.pairs
     @container = params[:container]
   end
 

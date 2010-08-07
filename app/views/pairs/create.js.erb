@@ -1,3 +1,4 @@
 jQuery(document).ready(function($){
     $('#<%= escape_javascript @container %>').prepend('<%= escape_javascript render :partial => @pair %>');
+    $('#<%= escape_javascript @pair.id.to_s %>').draggable();
 });
