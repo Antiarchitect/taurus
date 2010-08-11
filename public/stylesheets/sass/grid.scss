@@ -37,7 +37,11 @@ $grid_background: #E6F2FF;
 }
 
 .closebutton {
-  float: right;
+  background-image: url('/images/close_16.ico');
+  cursor: pointer;
+  float: right;  
+  height: 16px;
+  width: 16px;
 }
 
 .grid {

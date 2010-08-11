@@ -1,4 +1,0 @@
-page['grid_' + @id].fade :duration => 0.5
-page.delay(0.5) do
-  page['grid_' + @id].remove
-end

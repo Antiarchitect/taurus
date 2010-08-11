@@ -1,10 +1,10 @@
-.grid{:id => "grid_#{h(grid.id)}"}
+- grid_id = "grid_#{h(grid.id)}"
+.grid{:id => "#{grid_id}"}
   %table
     %tr
       %th{:colspan => 13}
         = h "Аудитория #{grid.name} (#{grid.building.name})"
-        .closebutton
-          = link_to_remote image_tag('close_16.ico'), :url => classrooms_grid_path(grid.id), :method => :delete
+        .closebutton{:class => "grid_close", :grid_id => "#{grid.id}"}
     %tr
       %th
       = render :partial => 'day_header', :collection => @days

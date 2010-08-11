@@ -1,7 +1,5 @@
 #form{:style => "display: none"}
-  .closebutton
-    %a{:href => '#', :onClick => "$('form').fade({duration: 0.5})"}
-      = image_tag('close_16.ico')
+  .closebutton{:id => 'form_close'}
   .form
     - remote_form_for :classrooms_grid, :url => classrooms_grids_path do |f|
       %p

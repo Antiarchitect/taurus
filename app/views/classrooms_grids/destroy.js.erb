@@ -1,0 +1,7 @@
+<% grid_id = escape_javascript "grid_#{@id}" %>
+jQuery(document).ready(function($){
+    $('#<%= grid_id %>').fadeOut('fast', function() {
+        $('#<%= grid_id %>').remove();
+        return false;
+    });
+});

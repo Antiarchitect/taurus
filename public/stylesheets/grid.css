@@ -16,7 +16,11 @@
   background-color: #e6f2ff; }
 
 .closebutton {
-  float: right; }
+  background-image: url("/images/close_16.ico");
+  cursor: pointer;
+  float: right;
+  height: 16px;
+  width: 16px; }
 
 .grid {
   background-color: #e6f2ff;

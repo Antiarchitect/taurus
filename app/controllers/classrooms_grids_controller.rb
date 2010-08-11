@@ -36,6 +36,10 @@ class ClassroomsGridsController < ApplicationController
     first_building_id = Building.first.id
     grids = YAML.load(cookies[:classrooms_grids])
     @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", first_building_id, grids])
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -66,6 +70,10 @@ class ClassroomsGridsController < ApplicationController
     grids = YAML.load(cookies[:classrooms_grids])
     grids.delete(@id.to_i)
     cookies[:classrooms_grids] = YAML.dump(grids)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
 # Additional methods

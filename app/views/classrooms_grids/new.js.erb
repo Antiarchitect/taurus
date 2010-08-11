@@ -1,0 +1,4 @@
+jQuery(document).ready(function($){
+    $('#form').replaceWith('<%= escape_javascript render :partial => 'new' %>');
+    $('#form').fadeIn('fast');
+});

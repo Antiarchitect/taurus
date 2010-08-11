@@ -29,6 +29,16 @@ jQuery(document).ready(function($){
       $.post('pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
       return false;
     });
+
+    $('#form_close').live('click', function() {
+        $('#form').fadeOut('fast');
+        return false;
+    });
+
+    $('.grid_close').live('click', function() {
+        $.post('classrooms_grids/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
+        return false;
+    });
 });
 
 //function AddClassroomDrops(grid, weeks, days, times) {

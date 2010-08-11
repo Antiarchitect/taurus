@@ -1,2 +1,0 @@
-page[:form].replace :partial => 'new'
-page[:form].appear :duration => 0.5
