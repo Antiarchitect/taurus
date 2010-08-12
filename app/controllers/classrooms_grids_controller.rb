@@ -32,10 +32,7 @@ class ClassroomsGridsController < ApplicationController
   end
 
   def new
-    @buildings = Building.all
-    first_building_id = Building.first.id
-    grids = YAML.load(cookies[:classrooms_grids])
-    @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", first_building_id, grids])
+    #@classrooms = YAML.load(cookies[:classrooms_grids])
 
     respond_to do |format|
       format.js
@@ -46,14 +43,19 @@ class ClassroomsGridsController < ApplicationController
     @days = self.class.days
     @times = self.class.times
     @weeks = self.class.weeks
-    @classroom = Classroom.find(params[:classrooms_grid][:classroom], :include => :pairs)
-    @pairs = @classroom.pairs
-    grids = YAML.load(cookies[:classrooms_grids])
-    grids << @classroom.id
-    cookies[:classrooms_grids] = YAML.dump(grids)
+    @classroom = Classroom.find_by_name(params[:classrooms_grid][:classroom_name], :include => :pairs)
+    unless @classroom
+      flash[:error] = 'Нет аудитории с таким названием'
+      redirect_to :action => :new
+    else
+      @pairs = @classroom.pairs
+      grids = YAML.load(cookies[:classrooms_grids])
+      grids << @classroom.id
+      cookies[:classrooms_grids] = YAML.dump(grids)
 
-    respond_to do |format|
-      format.js
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
