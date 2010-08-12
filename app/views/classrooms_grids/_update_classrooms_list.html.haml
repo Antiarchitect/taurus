@@ -1,3 +1,0 @@
-- fields_for :classrooms_grid do |f|
-  = f.label :classroom, 'Аудитория'
-  = f.select :classroom, options_for_select(update_classrooms_list.map {|c| [c.name, c.id]})

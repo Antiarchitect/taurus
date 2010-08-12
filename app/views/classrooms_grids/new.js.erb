@@ -1,4 +1,16 @@
 jQuery(document).ready(function($){
     $('#form').replaceWith('<%= escape_javascript render :partial => 'new' %>');
     $('#form').fadeIn('fast');
+
+    
+    $.getJSON('classrooms.json', function(data) {
+        var classrooms = new Array(0);
+        data.each(function(i) {
+            classrooms.push(i.classroom.name);
+        });
+
+        $('#classroom').autocomplete({
+            source: classrooms
+        });
+    });
 });

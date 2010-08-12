@@ -75,10 +75,4 @@ class ClassroomsGridsController < ApplicationController
       format.js
     end
   end
-
-# Additional methods
-  def update_classrooms_list
-    grids = YAML.load(cookies[:classrooms_grids])
-    @classrooms = Classroom.all(:conditions => ["building_id = ? AND id NOT IN (?)", params[:building], grids])
-  end
 end
