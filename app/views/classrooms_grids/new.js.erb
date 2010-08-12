@@ -1,8 +1,10 @@
 jQuery(document).ready(function($){
     $('#form').replaceWith('<%= escape_javascript render :partial => 'new' %>');
-    $('#form').fadeIn('fast');
+    $('#form').fadeIn('fast', function(){
+        $('#classroom_name').focus();
+    });
 
-    -
+    
     $.getJSON('classrooms.json', {except: '<%= escape_javascript @classrooms.join(',') %>'}, function(data) {
         var classrooms = new Array(0);
         data.each(function(i) {
