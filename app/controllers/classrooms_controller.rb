@@ -5,6 +5,10 @@ class ClassroomsController < ApplicationController
     config.columns[:department].form_ui = :select
   end
 
+  def list_respond_to_json
+    render :json => @records.to_json(:only => [:id, :name])
+  end
+
   def conditions_for_collection
     if params[:except]
       except = params[:except].split(',').collect { |e| e.to_i }
