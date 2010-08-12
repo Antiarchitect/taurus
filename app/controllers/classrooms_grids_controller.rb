@@ -32,7 +32,7 @@ class ClassroomsGridsController < ApplicationController
   end
 
   def new
-    #@classrooms = YAML.load(cookies[:classrooms_grids])
+    @classrooms = YAML.load(cookies[:classrooms_grids])
 
     respond_to do |format|
       format.js
@@ -43,7 +43,7 @@ class ClassroomsGridsController < ApplicationController
     @days = self.class.days
     @times = self.class.times
     @weeks = self.class.weeks
-    @classroom = Classroom.find_by_name(params[:classrooms_grid][:classroom_name], :include => :pairs)
+    @classroom = Classroom.find_by_name(params[:classroom_name], :include => :pairs)
     unless @classroom
       flash[:error] = 'Нет аудитории с таким названием'
       redirect_to :action => :new

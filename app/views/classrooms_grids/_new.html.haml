@@ -3,8 +3,6 @@
   .flash
     = flash[:error]
   .form
-    - remote_form_for :classrooms_grid, :url => classrooms_grids_path do |f|
-      .classroom
-        = f.label :classroom, 'Аудитория'
-        = f.text_field :classroom_name, :size => 10
-      = submit_tag 'Добавить'
+    .classroom
+      = 'Аудитория'
+      %input{:id => "classroom_name", :size => 10}

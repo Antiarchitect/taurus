@@ -2,15 +2,18 @@ jQuery(document).ready(function($){
     $('#form').replaceWith('<%= escape_javascript render :partial => 'new' %>');
     $('#form').fadeIn('fast');
 
-    
-    $.getJSON('classrooms.json', function(data) {
+    -
+    $.getJSON('classrooms.json', {except: '<%= escape_javascript @classrooms.join(',') %>'}, function(data) {
         var classrooms = new Array(0);
         data.each(function(i) {
             classrooms.push(i.classroom.name);
         });
 
-        $('#classrooms_grid_classroom_name').autocomplete({
-            source: classrooms
+        $('#classroom_name').autocomplete({
+            source: classrooms,
+            select: function(event, ui) {
+                $.post('classrooms_grids/', {classroom_name: ui.item.value}, "script");
+            }
         });
     });
 });
