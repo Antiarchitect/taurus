@@ -6,7 +6,7 @@ class ClassroomsController < ApplicationController
   end
 
   def list_respond_to_json
-    render :json => @records.to_json(:only => [:id, :name])
+    render :json => @records.to_json(:only => [:id, :name], :include => { :building => { :only => :name } } )
   end
 
   def conditions_for_collection
