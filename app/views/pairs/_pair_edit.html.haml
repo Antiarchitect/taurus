@@ -1,3 +1,11 @@
 .update_form{:id => "update_pair_#{@pair.id.to_s}"}
-   .flash
+  .flash
     = flash[:error]
+  %p{:id => "lecturer_name_block"}
+    = 'Преподаватель:'
+    %br
+    %input{:id => "lecturer_name", :size => 15}
+  %p{:id => "charge_card_block"}
+    = 'Карта нагрузки'
+    %br
+    %select{:id => "charge_card"}

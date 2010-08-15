@@ -4,6 +4,6 @@ class TeachingPlace < ActiveRecord::Base
   has_many :charge_cards, :dependent => :destroy
 
   def name
-    lecturer.try(:name)
+    lecturer.name + ' (' + department.name + ')'
   end
 end

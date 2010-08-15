@@ -4,11 +4,29 @@ jQuery(document).ready(function($){
         closeText: 'Закрыть',
         draggable: false,
         modal: true,
+        open: function() {
+            $('#charge_card_block').hide();
+        },
         show: 'clip',
         hide: 'clip',
         title: 'Редактировать пару'
     });
-    $('#save_pair_<%= escape_javascript @pair.id.to_s %>').click(function(){
+    
+    $('#save_pair_<%= escape_javascript @pair.id.to_s %>').click( function() {
         dlg.dialog("close");
+    });
+    
+    $.getJSON('teaching_places.json', function(data) {
+        var teaching_places = new Array(0);
+        data.each(function(i) {
+            teaching_places.push({ label: i.teaching_place.name, value: i.teaching_place.id });
+        });
+
+        $('#lecturer_name').autocomplete({
+            source: teaching_places,
+            select: function() {
+                $('#charge_card_block').fadeIn('fast');
+            }
+        });
     });
 });
