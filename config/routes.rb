@@ -3,8 +3,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teaching_places
 
-  map.chain_selects
-
   map.resources :faculties, :active_scaffold => :true
 
   map.resources :departments, :active_scaffold => :true

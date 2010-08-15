@@ -1,5 +1,3 @@
-include ChainSelectsHelper
-
 class PairsController < ApplicationController
   layout nil
   layout 'application', :except => :edit

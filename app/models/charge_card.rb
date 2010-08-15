@@ -6,8 +6,6 @@ class ChargeCard < ActiveRecord::Base
   has_many :groups, :through => :jets
   has_many :pairs
 
-  acts_as_chainable :from => :teaching_place, :select_label => 'Запись в карте'
-
   def name
     groups = []
     self.groups.each do |group|
