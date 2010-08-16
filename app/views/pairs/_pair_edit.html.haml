@@ -1,5 +1,7 @@
 .update_form{:id => "update_pair_#{@pair.id.to_s}"}
-  - remote_form_for(@pair) do |f|
-    %p
-      = chain_select_ajax(:models => [:faculty, :department, :teaching_place, :charge_card], :prefix => 'pair', :spacer => '<br /><br />')
-    = submit_tag 'Сохранить', :id => "save_pair_#{@pair.id.to_s}"
+  .flash
+    = flash[:error]
+  %p{:id => "charge_card_block"}
+    = 'Карта нагрузки'
+    %br
+    %input{:id => "charge_card", :size => 20}

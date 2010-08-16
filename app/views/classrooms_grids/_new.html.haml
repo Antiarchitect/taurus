@@ -2,7 +2,7 @@
   .closebutton{:id => 'form_close'}
   .flash
     = flash[:error]
-  .form
-    .classroom
-      = 'Аудитория'
-      %input{:id => "classroom_name", :size => 10}
+  %p
+    = 'Аудитория:'
+    %br
+    %input{:id => "classroom_name", :size => 10}

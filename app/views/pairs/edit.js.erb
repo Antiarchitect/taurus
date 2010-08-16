@@ -1,6 +1,9 @@
 jQuery(document).ready(function($){
     $('#plus').before('<%= escape_javascript render :partial => 'pair_edit' %>');
     var dlg = $('#update_pair_<%= escape_javascript @pair.id.to_s %>').dialog({
+        beforeClose: function(event, ui) {
+            $('#update_pair_<%= escape_javascript @pair.id.to_s %>').remove();
+        },
         closeText: 'Закрыть',
         draggable: false,
         modal: true,
@@ -8,7 +11,22 @@ jQuery(document).ready(function($){
         hide: 'clip',
         title: 'Редактировать пару'
     });
-    $('#save_pair_<%= escape_javascript @pair.id.to_s %>').click(function(){
-        dlg.dialog("close");
+    
+    $.getJSON('charge_cards.json', function(data) {
+        var charge_cards = new Array(0);
+        data.each(function(i) {
+            charge_cards.push({ label: i.charge_card.name_for_pair_edit, value: i.charge_card.id });
+        });
+
+        $('#charge_card').autocomplete({
+            source: charge_cards,
+            select: function(event, ui) {
+                $.post('pairs/' + '<%= escape_javascript @pair.id.to_s %>', {
+                    charge_card_id: ui.item.value,
+                    _method: 'put'},
+                "script");
+                dlg.dialog("close");
+            }
+        });
     });
 });
