@@ -6,11 +6,17 @@ class ChargeCard < ActiveRecord::Base
   has_many :groups, :through => :jets
   has_many :pairs
 
+  validates_presence_of :discipline, :lesson_type, :teaching_place
+
   def name
     groups = []
     self.groups.each do |group|
-      groups << group.try(:name)
+      groups << group.name
     end
-    self.try(:discipline).try(:name) + ', ' + self.try(:lesson_type).try(:name) + ', ' + groups.map{|g| g + ', '}.to_s.chop.chop
+    discipline.name + ', ' + lesson_type.name + ', ' + groups.map{|g| g + ', '}.to_s.chop.chop
+  end
+
+  def name_for_pair_edit
+    teaching_place.name + ', ' + name
   end
 end
