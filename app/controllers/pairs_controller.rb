@@ -25,9 +25,9 @@ class PairsController < ApplicationController
   end
 
   def update
-    if params[:pair]
+    if params[:charge_card_id]
       Pair.update(params[:id],
-        :charge_card_id => params[:pair][:charge_card]
+        :charge_card_id => params[:charge_card_id]
       )
       @pair = Pair.find_by_id(params[:id])
       @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
@@ -44,6 +44,7 @@ class PairsController < ApplicationController
       @pair.save!
       @container = params[:container]
     end
+    
     respond_to do |format|
       format.js
     end

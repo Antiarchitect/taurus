@@ -16,7 +16,14 @@ jQuery(document).ready(function($){
         });
 
         $('#charge_card').autocomplete({
-            source: charge_cards
+            source: charge_cards,
+            select: function(event, ui) {
+                $.post('pairs/' + '<%= escape_javascript @pair.id.to_s %>', {
+                    charge_card_id: ui.item.value,
+                    _method: 'put'},
+                "script");
+                dlg.dialog("close");
+            }
         });
     });
 });
