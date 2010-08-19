@@ -1,9 +1,0 @@
-.timetable
-  %table
-    %tr
-      %th{:colspan => 7}
-        = h "Расписание учебных пар группы #{@group.name}"
-    %tr
-      %th
-      = render :partial => 'day_header', :collection => @days
-    = render :partial => 'time', :collection => @times
