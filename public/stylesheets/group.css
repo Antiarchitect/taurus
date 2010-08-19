@@ -2,23 +2,32 @@
   font-family: Archangelsk;
   src: url(/fonts/Archangelsk.ttf); }
 
-.group_name {
+.group_name, .group_name_terminal {
   position: absolute;
   margin-left: 35%;
   width: 30%;
-  margin-top: 250px;
+  margin-top: 350px;
   height: 300px;
   border-radius: 1em;
   background: #E6F2FF;
   padding: 10px;
   text-align: center; }
 
-.group_name_label {
+.group_name_label, .group_name_label_terminal {
   margin-top: 70px;
   width: 100%;
   font-family: Archangelsk;
   font-size: 48px; }
 
-.group_name_input {
+.group_name_input, .group_name_input_terminal {
   margin-top: 30px;
   font-size: 40px; }
+
+.group_name_terminal {
+  height: 180px; }
+
+.group_name_label_terminal {
+  margin-top: 20px;
+  width: 100%;
+  font-family: Archangelsk;
+  font-size: 48px; }

@@ -23,7 +23,9 @@ class Timetable::GroupsController < ApplicationController
   ]
 
   def index
-    
+    if params[:terminal]
+      render :index_terminal
+    end
   end
   
   def show
