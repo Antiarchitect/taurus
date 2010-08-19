@@ -1,0 +1,35 @@
+@font-face {
+  font-family: Archangelsk;
+  src: url(/fonts/Archangelsk.ttf);
+}
+
+.group_name {
+  position: absolute;
+  margin-left: 35%;
+  width: 30%;
+  margin-top: 250px;
+  height: 300px;
+  border-radius: 1em;
+  background: #E6F2FF;
+  padding: 10px;
+  text-align: center;
+}
+
+.group_name_label {
+  margin: {
+    top: 70px;
+  }
+  width: 100%;
+  font: {
+    family: Archangelsk;
+    size: 48px;
+  }
+}
+.group_name_input {
+  margin: {
+    top: 30px;
+  }
+  font: {
+    size: 40px;
+  }
+}

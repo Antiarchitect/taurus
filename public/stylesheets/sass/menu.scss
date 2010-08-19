@@ -1,0 +1,38 @@
+$background_color: #e6f2ff;
+
+.menu {
+  ul {
+    background: {
+      color: $background_color;
+    }
+    border: {
+      bottom-radius: 1em;
+    }
+    height: 42px;
+    text-align: center;
+  }
+  li {
+    display: inline;
+    list-style-type: none;
+  }
+  a {
+    background: {
+      color: $background_color;
+    }
+    color: #555555;
+    display: inline-block;
+    font: {
+      family: sans-serif;
+      size: 14px;
+      weight: bold;
+    }
+    padding: 13px 25px;
+    text-decoration: none;
+    &:hover {
+      background: {
+        color: $background_color;
+      }
+      color: #ffff88;
+    }
+  }
+}

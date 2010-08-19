@@ -39,4 +39,25 @@ jQuery(document).ready(function($){
         $.post('classrooms_grids/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
         return false;
     });
+
+    $('.group_name_input').focus();
+
+    if ($('#group_name_input').length > 0) {
+        $.getJSON('/groups.json', function(data) {
+            var groups = new Array(0);
+            data.each(function(i) {
+                groups.push({ label: i.group.name, value: i.group.id });
+            });
+            
+            $('#group_name_input').autocomplete({
+                source: groups,
+                select: function(event, ui) {
+                    window.location.replace('/timetable/groups/' + ui.item.value);
+                }
+            });
+        });
+    }
+
+
+
 });

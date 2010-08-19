@@ -28,6 +28,9 @@ class GroupsController < ApplicationController
     config.update.columns.exclude :course
   end
 
+  def list_respond_to_json
+    render :json => @records.to_json(:only => [:id, :name])
+  end
 # Additional methods
   def timetable
     @group = Group.find_by_id(params[:id])
