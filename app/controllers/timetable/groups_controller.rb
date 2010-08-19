@@ -1,5 +1,9 @@
 class Timetable::GroupsController < ApplicationController
+  def index
+    
+  end
+  
   def show
-    render :text => 'fuck'
+    
   end
 end
