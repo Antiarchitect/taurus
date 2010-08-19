@@ -1,0 +1,2 @@
+module Timetable::GroupsHelper
+end

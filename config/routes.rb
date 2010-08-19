@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.namespace :timetable do |t|
+    t.resources :groups
+  end
+
   map.resources :specialities
 
   map.resources :teaching_places
@@ -11,17 +15,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :jets, :active_scaffold => :true
 
-  map.resources :classrooms_grids, :collection => {
-    :update_classrooms_list => :get
-  }
+  map.resources :classrooms_grids
 
   map.resources :grids, :active_scaffold => :true
 
   map.resources :buildings, :active_scaffold => :true
 
-  map.resources :groups, :active_scaffold => :true, :member => {
-    :timetable => :get
-  }
+  map.resources :groups, :active_scaffold => :true
 
   map.resources :lecturers, :active_scaffold => :true
 
