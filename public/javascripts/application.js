@@ -40,9 +40,8 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    $('.group_name_input').focus();
-
     if ($('#group_name_input').length > 0) {
+        $('#group_name_input').focus();
         $.getJSON('/groups.json', function(data) {
             var groups = new Array(0);
             data.each(function(i) {
@@ -58,6 +57,33 @@ jQuery(document).ready(function($){
         });
     }
 
+    if ($('#group_name_input_terminal').length > 0) {
+        $('#group_name_input_terminal').focus();
+        $.getJSON('/groups.json', function(data) {
+            var groups = new Array(0);
+            data.each(function(i) {
+                groups.push({ label: i.group.name, value: i.group.id });
+            });
+
+            $('#group_name_input_terminal').autocomplete({
+                source: groups,
+                select: function(event, ui) {
+                    window.location.replace('/timetable/groups/' + ui.item.value + '?terminal=true');
+                }
+            });
+        });
+    }
+
+    if ($('#back_terminal').length > 0) {
+        $('#back_terminal').button({
+            label: 'Назад'
+        });
+
+        $("#back_terminal").click(function() {
+            window.location.replace('/timetable/groups?terminal=true');
+            return false;
+        });
+    }
 
 
 });

@@ -1,9 +1,14 @@
-.timetable
-  %table
-    %tr
-      %th{:colspan => 7}
-        = h "Расписание учебных пар группы #{@group.name}"
-    %tr
-      %th
-      = render :partial => 'day_header', :collection => @days
-    = render :partial => 'time', :collection => @times
+.workspace
+  .timetable
+    %table
+      %tr
+        %th{:colspan => 7}
+          = "Расписание учебных пар группы #{@group.name}"
+      %tr
+        %th
+        = render :partial => 'day_header', :collection => @days
+      = render :partial => 'time', :collection => @times
+  - if @terminal
+    .back_terminal{:id => "back_terminal"}
+  - else
+    = link_to "Назад", timetable_groups_path

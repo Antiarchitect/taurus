@@ -29,6 +29,9 @@ class Timetable::GroupsController < ApplicationController
   end
   
   def show
+    if params[:terminal]
+      @terminal = true
+    end
     @group = Group.find_by_id(params[:id])
     charge_cards = @group.charge_cards
     pairs = Array.new
