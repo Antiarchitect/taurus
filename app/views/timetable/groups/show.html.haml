@@ -1,4 +1,6 @@
 .workspace
+  %p{:class => "pdf_link"}
+    = link_to "Загрузить PDF", timetable_group_path(@id, :format => :pdf)
   .timetable
     %table
       %tr
@@ -11,4 +13,5 @@
   - if @terminal
     .back_terminal{:id => "back_terminal"}
   - else
-    = link_to "Назад", timetable_groups_path
+    %p{:class => "pdf_link"}
+      = link_to "Назад", timetable_groups_path

@@ -2,6 +2,10 @@
   font-family: Archangelsk;
   src: url(/fonts/Archangelsk.ttf); }
 
+@media print {
+  .pdf_link {
+    display: none; } }
+
 .group_name, .group_name_terminal {
   position: absolute;
   margin-left: 35%;
