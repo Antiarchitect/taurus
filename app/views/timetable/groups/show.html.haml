@@ -1,6 +1,7 @@
 .workspace
-  %p{:class => "pdf_link"}
-    = link_to "Загрузить PDF", timetable_group_path(@id, :format => :pdf)
+  - unless @terminal
+    %p{:class => "pdf_link"}
+      = link_to "Загрузить PDF", timetable_group_path(@id, :format => :pdf)
   .timetable
     %table
       %tr
