@@ -1,5 +1,44 @@
+= stylesheet_link_tag 'terminal'
 .group_name_terminal
   .group_name_label_terminal
     %span
       =  "Номер группы"
   %input{:class => "group_name_input_terminal", :id => "group_name_input_terminal", :size => 15}
+.numpad
+  .clear
+    = "Очистить"
+  .left_nest
+    .number{:id => "1"}
+      = "1"
+  .middle_nest
+    .number{:id => "2"}
+      = "2"
+  .right_nest
+    .number{:id => "3"}
+      = "3"
+  .left_nest
+    .number{:id => "4"}
+      = "4"
+  .middle_nest
+    .number{:id => "5"}
+      = "5"
+  .right_nest
+    .number{:id => "6"}
+      = "6"
+  .left_nest
+    .number{:id => "7"}
+      = "7"
+  .middle_nest
+    .number{:id => "8"}
+      = "8"
+  .right_nest
+    .number{:id => "9"}
+      = "9"
+  .left_nest
+    .number
+  .middle_nest
+    .number{:id => "0"}
+      = "0"
+  .right_nest
+    .number
+  .dummy_div

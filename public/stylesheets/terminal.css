@@ -1,0 +1,33 @@
+.numpad {
+  background-color: red;
+  border-radius: 3em;
+  width: 340px;
+  text-align: center;
+  line-height: 100px;
+  padding: 20px; }
+
+.clear {
+  background-color: lime;
+  border-radius: 2em;
+  min-height: 100px; }
+
+.left_nest {
+  padding: 20px 20px 0 0;
+  float: left; }
+
+.middle_nest {
+  padding: 20px 20px 0 0;
+  float: left; }
+
+.right_nest {
+  padding: 20px 0 0 0;
+  float: left; }
+
+.number {
+  background-color: lime;
+  border-radius: 2em;
+  height: 100px;
+  width: 100px; }
+
+.dummy_div {
+  clear: both; }
