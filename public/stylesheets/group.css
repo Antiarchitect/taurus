@@ -6,7 +6,7 @@
   .pdf_link {
     display: none; } }
 
-.group_name, .group_name_terminal {
+.group_name {
   position: absolute;
   margin-left: 35%;
   width: 30%;
@@ -17,7 +17,7 @@
   padding: 10px;
   text-align: center; }
 
-.group_name_label, .group_name_label_terminal {
+.group_name_label {
   margin-top: 70px;
   width: 100%;
   font-family: Archangelsk;

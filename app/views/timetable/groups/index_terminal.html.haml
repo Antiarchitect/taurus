@@ -1,12 +1,5 @@
 = stylesheet_link_tag 'terminal'
-.group_name_terminal
-  .group_name_label_terminal
-    %span
-      =  "Номер группы"
-  %input{:class => "group_name_input_terminal", :id => "group_name_input_terminal", :size => 15}
 .numpad
-  .clear
-    = "Очистить"
   .left_nest
     .number{:id => "1"}
       = "1"
@@ -41,4 +34,10 @@
       = "0"
   .right_nest
     .number
+      = "C"
   .dummy_div
+.group_name_terminal
+  .group_name_label_terminal
+    %span
+      =  "Номер группы"
+  %input{:class => "group_name_input_terminal", :id => "group_name_input_terminal", :size => 15}

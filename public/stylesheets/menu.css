@@ -1,5 +1,5 @@
 .menu ul {
-  background-color: #e6f2ff;
+  background-color: #e6e6fa;
   border-bottom-radius: 1em;
   height: 42px;
   text-align: center; }
@@ -7,7 +7,7 @@
   display: inline;
   list-style-type: none; }
 .menu a {
-  background-color: #e6f2ff;
+  background-color: #e6e6fa;
   color: #555555;
   display: inline-block;
   font-family: sans-serif;
@@ -16,5 +16,5 @@
   padding: 13px 25px;
   text-decoration: none; }
   .menu a:hover {
-    background-color: #e6f2ff;
+    background-color: #e6e6fa;
     color: #ffff88; }
