@@ -1,14 +1,15 @@
 .numpad {
   background-color: red;
-  border-radius: 3em;
+  border-radius: 30px;
   width: 340px;
   text-align: center;
   line-height: 100px;
-  padding: 20px; }
+  padding: 20px;
+  font-size: 4em; }
 
 .clear {
   background-color: lime;
-  border-radius: 2em;
+  border-radius: 20px;
   min-height: 100px; }
 
 .left_nest {
@@ -25,7 +26,7 @@
 
 .number {
   background-color: lime;
-  border-radius: 2em;
+  border-radius: 20px;
   height: 100px;
   width: 100px; }
 
