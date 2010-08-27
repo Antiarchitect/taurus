@@ -34,7 +34,7 @@ $font_size: 4em;
   float: left;
 }
 
-.number {
+.number, .clear {
   background-color: $button_background;
   border-radius: $button_border_radius;
   height: $number_size;

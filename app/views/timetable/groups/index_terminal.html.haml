@@ -1,4 +1,6 @@
 = stylesheet_link_tag 'terminal'
+= javascript_include_tag 'terminal'
+
 .numpad
   .left_nest
     .number{:id => "1"}
@@ -33,7 +35,7 @@
     .number{:id => "0"}
       = "0"
   .right_nest
-    .number
+    .clear
       = "C"
   .dummy_div
 .group_name_terminal

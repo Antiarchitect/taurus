@@ -21,7 +21,7 @@
   padding: 20px 0 0 0;
   float: left; }
 
-.number {
+.number, .clear {
   background-color: #e6f2ff;
   border-radius: 20px;
   height: 100px;
