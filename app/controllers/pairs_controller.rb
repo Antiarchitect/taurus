@@ -30,23 +30,29 @@ class PairsController < ApplicationController
         :charge_card_id => params[:charge_card_id]
       )
       @pair = Pair.find_by_id(params[:id])
-      @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
-    else
-      if params[:classroom]
-        Pair.update(params[:id],
-          :classroom_id => params[:classroom]
+      @pair.subgroups.delete_all
+      @pair.charge_card.groups.each do |group|
+        @pair.subgroups.create(
+          :group_id => group.id,
+          :number => 0
         )
       end
+      template = 'show_subgroups'
+    elsif params[:classroom]
+      Pair.update(params[:id],
+        :classroom_id => params[:classroom]
+      )
       @pair = Pair.find_by_id(params[:id])
       @pair.week_number = params[:week_number] if params[:week_number]
       @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
       @pair.pair_number = params[:pair_number] if params[:pair_number]
       @pair.save!
       @container = params[:container]
+      template = 'update'
     end
     
     respond_to do |format|
-      format.js
+      format.js { render template }
     end
   end
 

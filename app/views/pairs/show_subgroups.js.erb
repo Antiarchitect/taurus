@@ -1,0 +1,3 @@
+jQuery(document).ready(function($){
+    $('.subgroups').replaceWith('<%= escape_javascript render :partial => 'subgroup', :collection => @pair.subgroups %>');
+});

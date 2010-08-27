@@ -1,0 +1,2 @@
+class SubgroupsController < ApplicationController
+end

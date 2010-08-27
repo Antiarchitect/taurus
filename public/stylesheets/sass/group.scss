@@ -41,89 +41,11 @@ $font_size: 4em;
   }
 }
 
-.group_name_input, .group_name_input_terminal {
+.group_name_input {
   margin: {
     top: 30px;
   }
   font: {
     size: 40px;
-  }
-}
-
-.numpad {
-  background-color: $numpad_background;
-  border-radius: $numpad_border_radius;
-  width: $numpad_width;
-  text-align: center;
-  line-height: $number_size;
-  padding: 0 $element_base_margin $element_base_margin $element_base_margin;
-  font-size: $font_size;
-  float: left;
-  margin-right: $element_base_margin;
-}
-
-.left_nest {
-  padding: $element_base_margin $element_base_margin 0 0;
-  float: left;
-}
-
-.middle_nest {
-  padding: $element_base_margin $element_base_margin 0 0;
-  float: left;
-}
-
-.right_nest {
-  padding: $element_base_margin 0 0 0;
-  float: left;
-}
-
-.number, .clear {
-  background-color: $button_background;
-  border-radius: $button_border_radius;
-  height: $number_size;
-  width: $number_size;
-}
-
-.dummy_div {
-  clear: both;
-}
-
-.group_name_terminal {
-  width: 40%;
-  height: 220px;
-  border-radius: $numpad_border_radius;
-  background: $numpad_background;
-  padding: 10px;
-  float: left;
-  text-align: center;
-}
-
-.group_name_label_terminal {
-  margin: {
-    top: 35px;
-  }
-  width: 100%;
-  font: {
-    family: Archangelsk;
-    size: $font_size;
-  }
-}
-
-.ui-menu-item {
-  font-size: $font_size - 1em;
-}
-
-.back_terminal {
-  background: {
-    image: none;
-  }
-  margin: {
-    top: 30px;
-  }
-  height: 100px;
-  width: 100%;
-  font: {
-    family: Archangelsk;
-    size: 48px;
   }
 }

@@ -1,6 +1,9 @@
 class Pair < ActiveRecord::Base
   belongs_to :charge_card
   belongs_to :classroom
+  has_many :subgroups, :dependent => :destroy
+
+  accepts_nested_attributes_for :subgroups
 
   def name
     'Пара'

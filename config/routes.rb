@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :subgroups
+
   map.namespace :timetable do |t|
     t.resources :groups
   end

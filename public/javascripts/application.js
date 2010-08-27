@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
     });
 
     $('#plus').click(function(){
-        $.get('classrooms_grids/new', null, null, "script");
+        $.get('/classrooms_grids/new', null, null, "script");
         return false;
     });
 
