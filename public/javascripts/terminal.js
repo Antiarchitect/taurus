@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
         $('#group_name_input_terminal').autocomplete({
             source: groups,
             select: function(event, ui) {
-                window.location.replace('/timetable/groups/' + ui.item.value);
+                window.location.replace('/timetable/groups/' + ui.item.value + '?terminal=true');
             }
         });
         
