@@ -18,9 +18,12 @@
         - first_week_pairs.each do |f|
           %td
             .pair
-              = "#{f.lecturer}<br />"
-              = "#{f.discipline}<br />"
-              = "Ауд. #{f.classroom.name} (#{f.classroom.building.name})<br />"
+              = "#{f.lecturer}"
+              %br
+              = "#{f.discipline}"
+              %br
+              = "Ауд. #{f.classroom.name} (#{f.classroom.building.name})"
+              %br
       %tr
       - if second_week_pairs.empty? && @abs_span == 1
         %td
@@ -32,6 +35,9 @@
         - second_week_pairs.each do |s|
           %td
             .pair
-              = "#{s.lecturer}<br />"
-              = "#{s.discipline}<br />"
-              = "Ауд. #{s.classroom.name} (#{s.classroom.building.name})<br />"
+              = "#{s.lecturer}"
+              %br
+              = "#{s.discipline}"
+              %br
+              = "Ауд. #{s.classroom.name} (#{s.classroom.building.name})"
+              %br

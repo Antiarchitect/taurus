@@ -1,0 +1,86 @@
+@font-face {
+  font-family: Archangelsk;
+  src: url(/fonts/Archangelsk.ttf); }
+
+@media print {
+  .pdf_link {
+    display: none; } }
+
+.group_name {
+  position: absolute;
+  margin-left: 30%;
+  width: 40%;
+  margin-top: 40px;
+  height: 220px;
+  border-radius: 30px;
+  background: #e6e6fa;
+  padding: 10px;
+  text-align: center; }
+
+.group_name_label {
+  margin-top: 70px;
+  width: 100%;
+  font-family: Archangelsk;
+  font-size: 48px; }
+
+.group_name_input, .group_name_input_terminal {
+  margin-top: 30px;
+  font-size: 40px; }
+
+.numpad {
+  background-color: #e6e6fa;
+  border-radius: 30px;
+  width: 340px;
+  text-align: center;
+  line-height: 100px;
+  padding: 0 20px 20px 20px;
+  font-size: 4em;
+  float: left;
+  margin-right: 20px; }
+
+.left_nest {
+  padding: 20px 20px 0 0;
+  float: left; }
+
+.middle_nest {
+  padding: 20px 20px 0 0;
+  float: left; }
+
+.right_nest {
+  padding: 20px 0 0 0;
+  float: left; }
+
+.number, .clear {
+  background-color: #e6f2ff;
+  border-radius: 20px;
+  height: 100px;
+  width: 100px; }
+
+.dummy_div {
+  clear: both; }
+
+.group_name_terminal {
+  width: 40%;
+  height: 220px;
+  border-radius: 30px;
+  background: #e6e6fa;
+  padding: 10px;
+  float: left;
+  text-align: center; }
+
+.group_name_label_terminal {
+  margin-top: 35px;
+  width: 100%;
+  font-family: Archangelsk;
+  font-size: 4em; }
+
+.ui-menu-item {
+  font-size: 3em; }
+
+.back_terminal {
+  background-image: none;
+  margin-top: 30px;
+  height: 100px;
+  width: 100%;
+  font-family: Archangelsk;
+  font-size: 48px; }

@@ -1,0 +1,18 @@
+.workspace
+  - unless @terminal
+    %p{:class => "pdf_link"}
+      = link_to "Загрузить PDF", timetable_group_path(@id, :format => :pdf)
+  .timetable
+    %table
+      %tr
+        %th{:colspan => 7}
+          = "Расписание учебных пар группы #{@group.name}"
+      %tr
+        %th
+        = render :partial => 'day_header', :collection => @days
+      = render :partial => 'time', :collection => @times
+  - if @terminal
+    .back_terminal{:id => "back_terminal"}
+  - else
+    %p{:class => "pdf_link"}
+      = link_to "Назад", timetable_groups_path

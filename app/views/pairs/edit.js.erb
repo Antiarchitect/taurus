@@ -12,7 +12,7 @@ jQuery(document).ready(function($){
         title: 'Редактировать пару'
     });
     
-    $.getJSON('charge_cards.json', function(data) {
+    $.getJSON('/charge_cards.json', function(data) {
         var charge_cards = new Array(0);
         data.each(function(i) {
             charge_cards.push({ label: i.charge_card.name_for_pair_edit, value: i.charge_card.id });

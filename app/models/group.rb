@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   has_many :charge_cards, :through => :jets
 
   validates_presence_of :name, :forming_year
+  validates_uniqueness_of :name, :scope => :forming_year
   validates_format_of :forming_year, :with => /^(20)\d{2}$/,
     :message => '- необходимо вводить год целиком. Допустимы годы от 2000 до 2099'
 
