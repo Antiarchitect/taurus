@@ -1,3 +1,12 @@
+$numpad_width: 340px;
+$element_base_margin: 20px;
+$numpad_background: #E6E6FA;
+$button_background: #E6F2FF;
+$numpad_border_radius: 30px;
+$button_border_radius: 20px;
+$number_size: ($numpad_width - 2*$element_base_margin)/3;
+$font_size: 4em;
+
 @font-face {
   font-family: Archangelsk;
   src: url(/fonts/Archangelsk.ttf);
@@ -11,12 +20,12 @@
 
 .group_name {
   position: absolute;
-  margin-left: 35%;
-  width: 30%;
-  margin-top: 350px;
-  height: 300px;
-  border-radius: 1em;
-  background: #E6F2FF;
+  margin-left: 30%;
+  width: 40%;
+  margin-top: 40px;
+  height: 220px;
+  border-radius: $numpad_border-radius;
+  background: $numpad_background;
   padding: 10px;
   text-align: center;
 }
@@ -41,19 +50,67 @@
   }
 }
 
+.numpad {
+  background-color: $numpad_background;
+  border-radius: $numpad_border_radius;
+  width: $numpad_width;
+  text-align: center;
+  line-height: $number_size;
+  padding: 0 $element_base_margin $element_base_margin $element_base_margin;
+  font-size: $font_size;
+  float: left;
+  margin-right: $element_base_margin;
+}
+
+.left_nest {
+  padding: $element_base_margin $element_base_margin 0 0;
+  float: left;
+}
+
+.middle_nest {
+  padding: $element_base_margin $element_base_margin 0 0;
+  float: left;
+}
+
+.right_nest {
+  padding: $element_base_margin 0 0 0;
+  float: left;
+}
+
+.number, .clear {
+  background-color: $button_background;
+  border-radius: $button_border_radius;
+  height: $number_size;
+  width: $number_size;
+}
+
+.dummy_div {
+  clear: both;
+}
+
 .group_name_terminal {
-  height: 180px;
+  width: 40%;
+  height: 220px;
+  border-radius: $numpad_border_radius;
+  background: $numpad_background;
+  padding: 10px;
+  float: left;
+  text-align: center;
 }
 
 .group_name_label_terminal {
   margin: {
-    top: 20px;
+    top: 35px;
   }
   width: 100%;
   font: {
     family: Archangelsk;
-    size: 48px;
+    size: $font_size;
   }
+}
+
+.ui-menu-item {
+  font-size: $font_size - 1em;
 }
 
 .back_terminal {
