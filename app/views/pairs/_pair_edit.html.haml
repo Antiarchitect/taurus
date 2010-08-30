@@ -1,8 +1,16 @@
 .update_form{:id => "update_pair_#{@pair.id.to_s}"}
-  .flash
-    = flash[:error]
-  %p{:id => "charge_card_block"}
-    = 'Карта нагрузки'
-    %br
-    %input{:id => "charge_card", :size => 20}
-  .subgroups
+  - if flash[:error]
+    .flash
+      = flash[:error]
+  - remote_form_for(@pair) do |f|
+    %p{:id => "charge_card_block"}
+      = 'Карта нагрузки'
+      %br
+      %input{:id => "charge_card", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
+      = f.hidden_field :charge_card_id
+    .subgroups
+      - @pair.subgroups.each do |subgroup|
+        - fields_for :subgroup, subgroup do |s|
+          = render 'subgroup', :f => s
+    %p
+      = f.submit 'Сохранить'

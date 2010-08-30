@@ -25,7 +25,7 @@ class PairsController < ApplicationController
   end
 
   def update
-    template = if params[:charge_card_id]
+    if params[:charge_card_id]
       Pair.update(params[:id],
         :charge_card_id => params[:charge_card_id]
       )
@@ -37,8 +37,8 @@ class PairsController < ApplicationController
           :number => 0
         )
       end
-      'show_subgroups'
-    elsif params[:classroom]
+      redirect_to :action => 'edit'
+    else params[:classroom]
       Pair.update(params[:id],
         :classroom_id => params[:classroom]
       )
@@ -48,11 +48,10 @@ class PairsController < ApplicationController
       @pair.pair_number = params[:pair_number] if params[:pair_number]
       @pair.save!
       @container = params[:container]
-      'update'
-    end
-    
-    respond_to do |format|
-      format.js { render template }
+
+      respond_to do |format|
+        format.js
+      end
     end
   end
 

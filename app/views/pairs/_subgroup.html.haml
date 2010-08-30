@@ -1,12 +1,12 @@
 .subgroup
   %br
-  = subgroup.group.name
+  = subgroup.try(:group).try(:name)
   %br
-  = radio_button_tag subgroup.group.id, "0", true
+  = f.radio_button 'number', '0'
   = 'Без подгрупп'
   %br
-  = radio_button_tag subgroup.group.id, "1"
+  = f.radio_button 'number', '1'
   = 'Первая подгруппа'
   %br
-  = radio_button_tag subgroup.group.id, "2"
+  = f.radio_button 'number', '2'
   = 'Вторая подгруппа'
