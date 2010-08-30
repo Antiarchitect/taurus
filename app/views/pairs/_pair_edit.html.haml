@@ -8,11 +8,17 @@
       %br
       %input{:id => "charge_card", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
     .subgroups
-      - @pair.subgroups.each do |subgroup|
-        - fields_for :subgroups, subgroup, :index => subgroup.id do |s|
-          .subgroup
-            %br
-            = subgroup.group.name
-            = render 'subgroup', :f => s
+      - f.fields_for :subgroups, @pair.subgroups do |s|
+        .subgroup
+          %br
+          %br
+          = s.radio_button :number, 0
+          = 'Без подгрупп'
+          %br
+          = s.radio_button :number, 1
+          = 'Первая подгруппа'
+          %br
+          = s.radio_button :number, 2
+          = 'Вторая подгруппа'
     %p
       = f.submit 'Сохранить'

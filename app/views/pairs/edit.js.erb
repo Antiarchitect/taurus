@@ -13,8 +13,8 @@ jQuery(document).ready(function($){
         title: 'Редактировать пару'
     });
 
-    $('#pair_submit').click(function() {
-        $dlg.dialog("close");
+    $('#edit_pair_<%= escape_javascript @pair.id.to_s %>').submit(function() {
+        dlg.dialog("close");
     });
     
     $.getJSON('/charge_cards.json', function(data) {
