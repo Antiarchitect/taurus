@@ -25,11 +25,9 @@ class PairsController < ApplicationController
   end
 
   def update
-    if params[:charge_card_id]
-      Pair.update(params[:id],
-        :charge_card_id => params[:charge_card_id]
-      )
-      @pair = Pair.find_by_id(params[:id])
+    @pair = Pair.find(params[:id])
+    if params[:get_subgroups] && params[:charge_card_id]
+      @pair.update_attributes(:charge_card_id => params[:charge_card_id])
       @pair.subgroups.delete_all
       @pair.charge_card.groups.each do |group|
         @pair.subgroups.create(
@@ -38,7 +36,7 @@ class PairsController < ApplicationController
         )
       end
       redirect_to :action => 'edit'
-    else params[:classroom]
+    elsif params[:classroom]
       Pair.update(params[:id],
         :classroom_id => params[:classroom]
       )
@@ -49,6 +47,12 @@ class PairsController < ApplicationController
       @pair.save!
       @container = params[:container]
 
+      respond_to do |format|
+        format.js
+      end
+    else
+      @pair.update_attributes(params[:pair])
+      
       respond_to do |format|
         format.js
       end

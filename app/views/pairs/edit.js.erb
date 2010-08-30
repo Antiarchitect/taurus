@@ -12,6 +12,10 @@ jQuery(document).ready(function($){
         hide: 'clip',
         title: 'Редактировать пару'
     });
+
+    $('#pair_submit').click(function() {
+        $dlg.dialog("close");
+    });
     
     $.getJSON('/charge_cards.json', function(data) {
         var charge_cards = new Array(0);
@@ -22,9 +26,9 @@ jQuery(document).ready(function($){
         $('#charge_card').autocomplete({
             source: charge_cards,
             select: function(event, ui) {
-                $('#pair_charge_card_id').val(ui.item.value);
                 $.post('/pairs/' + '<%= escape_javascript @pair.id.to_s %>', {
                     charge_card_id: ui.item.value,
+                    get_subgroups: true,
                     _method: 'put'},
                 "script");
             }
