@@ -11,6 +11,7 @@
       - f.fields_for :subgroups, @pair.subgroups do |s|
         .subgroup
           %br
+          = 'Группа ' + s.object.group.name
           %br
           = s.radio_button :number, 0
           = 'Без подгрупп'
