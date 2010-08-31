@@ -57,16 +57,5 @@ jQuery(document).ready(function($){
         });
     }
 
-    if ($('#back_terminal').length > 0) {
-        $('#back_terminal').button({
-            label: 'Назад'
-        });
-
-        $("#back_terminal").click(function() {
-            window.location.replace('/timetable/groups?terminal=true');
-            return false;
-        });
-    }
-
 
 });

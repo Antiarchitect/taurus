@@ -3,10 +3,10 @@
   border-radius: 30px;
   width: 340px;
   text-align: center;
-  line-height: 100px;
+  line-height: 93.667px;
   padding: 0 20px 20px 20px;
-  font-size: 4em;
   float: left;
+  font-size: 3em;
   margin-right: 20px; }
 
 .left_nest {
@@ -24,8 +24,12 @@
 .number, .clear {
   background-color: #e6f2ff;
   border-radius: 20px;
-  height: 100px;
-  width: 100px; }
+  height: 93.667px;
+  width: 93.667px; }
+  .number .ui-button-text, .clear .ui-button-text {
+    padding: 0 !important;
+    margin: auto !important;
+    line-height: 93.667px !important; }
 
 .dummy_div {
   clear: both; }
@@ -47,10 +51,10 @@
   margin-top: 35px;
   width: 100%;
   font-family: Archangelsk;
-  font-size: 4em; }
+  font-size: 3em; }
 
 .ui-menu-item {
-  font-size: 3em; }
+  font-size: 2em; }
 
 .back_terminal {
   background-image: none;
