@@ -1,11 +1,10 @@
 - first_week_pairs = @pairs[day_counter][time][0]
 - second_week_pairs = @pairs[day_counter][time][1]
 %td
-  .day_cell
   - if first_week_pairs.empty? && second_week_pairs.empty?
     .nopair
   - else
-    %table
+    %table{:class => 'daycell'}
       %tr
       - if first_week_pairs.empty?
         %td{:colspan => 2}

@@ -33,7 +33,7 @@
   .grid td {
     border-style: solid;
     border-width: thin;
-    height: 48px;
+    min-height: 48px;
     width: 7.7%; }
   .grid th {
     border-style: solid;
@@ -95,10 +95,12 @@ img {
     width: 7.7%;
     border-style: solid;
     border-width: thin; }
-  .timetable .day_cell table {
-    width: 100%;
-    border: none; }
-  .timetable .day_cell td {
-    border-collapse: collapse;
-    height: 48px;
-    width: 7.7%; }
+
+.daycell table {
+  width: 100%;
+  border-collapse: collapse; }
+.daycell td {
+  border-style: solid;
+  border-width: thin;
+  height: 24px;
+  width: 50%; }
