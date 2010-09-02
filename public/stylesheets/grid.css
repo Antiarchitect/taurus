@@ -33,7 +33,7 @@
   .grid td {
     border-style: solid;
     border-width: thin;
-    min-height: 48px;
+    min-height: 110px;
     width: 7.7%; }
   .grid th {
     border-style: solid;
@@ -54,7 +54,8 @@
   cursor: move;
   background-color: #F5F9BD;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  border: 1px solid black; }
   .pair .pair_content {
     float: left; }
   .pair .management_panel {
@@ -89,7 +90,7 @@ img {
   .timetable td {
     border-style: solid;
     border-width: thin;
-    height: 48px;
+    height: 110px;
     width: 7.7%; }
   .timetable th {
     width: 7.7%;
@@ -101,6 +102,6 @@ img {
   border-collapse: collapse; }
 .daycell td {
   border-style: solid;
-  border-width: thin;
-  height: 24px;
+  border-width: 0;
+  height: 55px;
   width: 50%; }

@@ -15,8 +15,12 @@ class Pair < ActiveRecord::Base
 
   def lecturer
     unless full_lecturer.blank?
-      full_lecturer.split(' ')[0]
+      apart = full_lecturer.split(' ')
+      name = apart[0]
+      name += (' ' + apart[1].slice(/^./) + '.') if apart[1]
+      name += (apart[2].slice(/^./) + '.') if apart[2]
     end
+    name || ''
   end
 
   def full_discipline

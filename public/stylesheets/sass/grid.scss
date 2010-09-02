@@ -4,7 +4,7 @@ $days_width: $workspace_width - $times_width;
 $day_width: 100% / 6;
 $week_width: 100% / 2;
 $header_height: 30px;
-$container_height: 48px;
+$container_height: 110px;
 $grid_background: #E6F2FF;
 
 @mixin table_border {
@@ -12,10 +12,6 @@ $grid_background: #E6F2FF;
     style: solid;
     width: thin;
   }
-}
-
-@mixin inner_table_border {
-  border: 0;
 }
 
 .workspace {
@@ -98,6 +94,7 @@ $grid_background: #E6F2FF;
   .pair_content {
     float: left;
   }
+  border: 1px solid black;
   .management_panel {
     float: right;
     width: 12px;
@@ -164,7 +161,10 @@ img {
     }
   }
   td {
-    @include table_border;
+     border: {
+      style: solid;
+      width: 0;
+    }
     height: $container_height / 2;
     width: 50%;
   }
