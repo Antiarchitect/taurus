@@ -8,36 +8,53 @@
     %table
       %tr
       - if first_week_pairs.empty?
-        %td
+        %td{:colspan => 2}
           .nopair
       - elsif first_week_pairs.size > 2
-        %td
+        %td{:colspan => 2}
           .error_pair
-      - else
-        - @abs_span = 1
+      - elsif first_week_pairs.size == 2
         - first_week_pairs.each do |f|
           %td
-            .pair
-              = "#{f.lecturer}"
-              %br
-              = "#{f.discipline}"
-              %br
-              = "Ауд. #{f.classroom.name} (#{f.classroom.building.name})"
-              %br
+            = render 'pair', :p => f[0]
+      - elsif first_week_pairs.size == 1
+        - first_week_pairs.each do |f|
+          - if f[1] == 0
+            %td{:colspan => 2}
+              = render 'pair', :p => f[0]
+          - elsif f[1] == 1
+            %td
+              = render 'pair', :p => f[0]
+            %td
+              .nopair
+          - elsif f[1] == 2
+            %td
+              .nopair
+            %td
+              = render 'pair', :p => f[0]
       %tr
-      - if second_week_pairs.empty? && @abs_span == 1
-        %td
+      - if second_week_pairs.empty?
+        %td{:colspan => 2}
           .nopair
       - elsif second_week_pairs.size > 2
-        %td
+        %td{:colspan => 2}
           .error_pair
-      - else
-        - second_week_pairs.each do |s|
+      - elsif second_week_pairs.size == 2
+        - second_week_pairs.each do |f|
           %td
-            .pair
-              = "#{s.lecturer}"
-              %br
-              = "#{s.discipline}"
-              %br
-              = "Ауд. #{s.classroom.name} (#{s.classroom.building.name})"
-              %br
+            = render 'pair', :p => f[0]
+      - elsif second_week_pairs.size == 1
+        - second_week_pairs.each do |f|
+          - if f[1] == 0
+            %td{:colspan => 2}
+              = render 'pair', :p => f[0]
+          - elsif f[1] == 1
+            %td
+              = render 'pair', :p => f[0]
+            %td
+              .nopair
+          - elsif f[1] == 2
+            %td
+              .nopair
+            %td
+              = render 'pair', :p => f[0]

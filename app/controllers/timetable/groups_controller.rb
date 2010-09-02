@@ -37,7 +37,7 @@ class Timetable::GroupsController < ApplicationController
     charge_cards = @group.charge_cards
     pairs = Array.new
     charge_cards.each do |card|
-      pairs << card.pairs
+      pairs << card.pairs(:include => :subgroups)
     end
     pairs.flatten!
     @days = self.class.days
@@ -45,7 +45,7 @@ class Timetable::GroupsController < ApplicationController
     @weeks = self.class.weeks
     @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size).map!{Array.new}}}
     pairs.each do |pair|
-      @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week_number - 1] << pair
+      @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week_number - 1] << [pair, pair.subgroups.find_by_group_id(@group.id).number]
     end
   end
 end
