@@ -33,7 +33,7 @@
   .grid td {
     border-style: solid;
     border-width: thin;
-    min-height: 110px;
+    height: 110px;
     width: 7.7%; }
   .grid th {
     border-style: solid;
@@ -54,8 +54,7 @@
   cursor: move;
   background-color: #F5F9BD;
   height: 100%;
-  width: 100%;
-  border: 1px solid black; }
+  width: 100%; }
   .pair .pair_content {
     float: left; }
   .pair .management_panel {

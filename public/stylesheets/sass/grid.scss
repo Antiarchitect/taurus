@@ -61,7 +61,7 @@ $grid_background: #E6F2FF;
   }
   td {
     @include table_border;
-    min-height: $container_height;
+    height: $container_height;
     width: 7.7%;
   }
   th {
@@ -94,7 +94,6 @@ $grid_background: #E6F2FF;
   .pair_content {
     float: left;
   }
-  border: 1px solid black;
   .management_panel {
     float: right;
     width: 12px;
