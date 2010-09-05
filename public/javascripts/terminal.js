@@ -24,11 +24,11 @@ jQuery(document).ready(function($){
         $('#group_name_input_terminal').val('');
     });
 
-    $('#back_terminal').button({
+    $('.back_terminal').button({
         label: 'Назад'
     });
 
-    $("#back_terminal").click(function() {
+    $(".back_terminal").click(function() {
         window.location.replace('/timetable/groups?terminal=true');
         return false;
     });

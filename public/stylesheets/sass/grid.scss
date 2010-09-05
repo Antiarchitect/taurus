@@ -4,7 +4,7 @@ $days_width: $workspace_width - $times_width;
 $day_width: 100% / 6;
 $week_width: 100% / 2;
 $header_height: 30px;
-$container_height: 110px;
+$container_height: 55px;
 $grid_background: #E6F2FF;
 
 @mixin table_border {
@@ -152,19 +152,21 @@ img {
   }
 }
 
+.timetable.groups {
+  td {
+    height: $container_height;
+  }
+}
+
 .daycell {
-  table {
-    width: 100%;
+  width: 100%;
+  td {
     border: {
       collapse: collapse;
+       style: solid;
+       width: 0;
     }
-  }
-  td {
-     border: {
-      style: solid;
-      width: 0;
-    }
-    height: $container_height / 2;
-    width: 50%;
+    height: $container_height;
+    width: 50%
   }
 }
