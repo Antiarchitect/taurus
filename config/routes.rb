@@ -1,11 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |a|
-    a.devise_for :users
+    
     a.resources :departments
     a.resources :editors
     a.resources :supervisors
     a.resources :admins
   end
+
+  map.devise_for :users
 
   map.resources :subgroups
 
