@@ -22,6 +22,8 @@ Rails::Initializer.run do |config|
   config.gem "haml", :source => "http://rubygems.org"
   config.gem "erubis", :source => "http://rubygems.org"
   config.gem "pdfkit", :source => "http://rubygems.org"
+  config.gem "warden", :source => "http://rubygems.org"
+  config.gem "devise", :source => "http://rubygems.org", :version => "1.0.8"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
