@@ -25,7 +25,22 @@ Faculty.create([
   {:name => 'ФМИ', :full_name => 'Факультет математики и информатики'}
 ])
 
-Admin::Admin.create([
+Admin.create([
   { :login => "admin", :name => "Воронков Андрей Алексеевич",
     :email => "voronkovaa@gmail.com", :password => "12345678", :password_confirmation => "12345678"}
+])
+
+Supervisor.create([
+  { :login => "supervisor", :name => "Воронков Андрей Алексеевич",
+    :email => "supervisor@example.com", :password => "12345678", :password_confirmation => "12345678"}
+])
+
+Editor.create([
+  { :login => "editor", :name => "Воронков Андрей Алексеевич",
+    :email => "editor@example.com", :password => "12345678", :password_confirmation => "12345678"}
+])
+
+DeptHead.create([
+  { :login => "dept_head", :name => "Воронков Андрей Алексеевич",
+    :email => "dept_head@example.com", :password => "12345678", :password_confirmation => "12345678"}
 ])
