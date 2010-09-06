@@ -4,6 +4,6 @@ class Admin::BaseController < ApplicationController
   private
 
   def require_admin
-    current_user && current_user.is_admin?
+    current_user && current_user.admin?
   end
 end

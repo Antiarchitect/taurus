@@ -24,3 +24,8 @@ Faculty.create([
   {:name => 'ИФФ', :full_name => 'Инженерно-физический факультет'},
   {:name => 'ФМИ', :full_name => 'Факультет математики и информатики'}
 ])
+
+Admin::Admin.create([
+  { :login => "admin", :name => "Воронков Андрей Алексеевич",
+    :email => "voronkovaa@gmail.com", :password => "12345678", :password_confirmation => "12345678"}
+])
