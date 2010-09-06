@@ -192,7 +192,6 @@ module ActiveScaffold
       [controller_namespace, ''].each do |namespace|
         ["#{klass.to_s.underscore.pluralize}", "#{klass.to_s.underscore.pluralize.singularize}"].each do |controller_name|
           begin
-            Rails.logger.debug "Trying #{namespace}#{controller_name.camelize}Controller"
             controller = "#{namespace}#{controller_name.camelize}Controller".constantize
           rescue NameError => error
             # Only rescue NameError associated with the controller constant not existing - not other compile errors

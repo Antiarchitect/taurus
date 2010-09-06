@@ -113,17 +113,6 @@ module ActiveScaffold
         truncate(clean_column_value(record.send(column.name)), :length => column.options[:truncate] || 50)
       end
 
-      def active_scaffold_column_select(column, record)
-        if column.association
-          format_column_value(record, column)
-        else
-          value = record.send(column.name)
-          text, val = column.options[:options].find {|text, val| (val.nil? ? text : val).to_s == value.to_s}
-          value = active_scaffold_translated_option(column, text, val).first if text
-          format_column_value(record, column, value)
-        end
-      end
-
       def active_scaffold_column_checkbox(column, record)
         if inplace_edit?(record, column)
           id_options = {:id => record.id.to_s, :action => 'update_column', :name => column.name.to_s}
@@ -164,7 +153,7 @@ module ActiveScaffold
 
       def format_column_checkbox(record, column)
         checked = ActionView::Helpers::InstanceTag.check_box_checked?(record.send(column.name), '1')
-        script = remote_function(:method => 'POST', :url => {:controller => params_for[:controller], :action => "update_column", :column => column.name, :id => record.id.to_s, :value => !checked, :eid => params[:eid]})
+        script = remote_function(:method => 'POST', :url => {:controller => params_for[:controller], :action => "update_column", :column => column.name, :id => record.id.to_s, :value => checked ? false : 1, :eid => params[:eid]})
         check_box(:record, column.name, :onclick => script, :id => nil, :object => record)
       end
 
@@ -175,6 +164,10 @@ module ActiveScaffold
           cache_association(value, column)
         end
         if column.association.nil? or column_empty?(value)
+          if column.form_ui == :select && column.options[:options]
+            text, val = column.options[:options].find {|text, val| (val.nil? ? text : val).to_s == value.to_s}
+            value = active_scaffold_translated_option(column, text, val).first if text
+          end
           if value.is_a? Numeric
             format_number_value(value, column.options)
           else
@@ -207,16 +200,16 @@ module ActiveScaffold
             format_value(value.to_label)
           when :has_many, :has_and_belongs_to_many
             if column.associated_limit.nil?
-              firsts = value.collect { |v| v.to_label }
+              firsts = value.collect { |v| clean_column_value(v.to_label) }
             else
               firsts = value.first(column.associated_limit)
-              firsts.collect! { |v| v.to_label }
+              firsts.collect! { |v| clean_column_value(v.to_label) }
               firsts[column.associated_limit] = '…' if value.size > column.associated_limit
             end
             if column.associated_limit == 0
               size if column.associated_number?
             else
-              joined_associated = format_value(firsts.join(', '))
+              joined_associated = firsts.join(active_scaffold_config.list.association_join_text)
               joined_associated << " (#{size})" if column.associated_number? and column.associated_limit and value.size > column.associated_limit
               joined_associated
             end
