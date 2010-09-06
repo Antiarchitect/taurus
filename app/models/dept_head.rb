@@ -1,4 +1,4 @@
-class Admin::Department < User
+class DeptHead < User
   def department?
     true
   end

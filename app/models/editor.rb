@@ -1,4 +1,4 @@
-class Admin::Editor < User
+class Editor < User
   def editor?
     true
   end

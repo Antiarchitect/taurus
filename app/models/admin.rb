@@ -1,4 +1,4 @@
-class Admin::Admin < User
+class Admin < User
   def admin?
     true
   end
