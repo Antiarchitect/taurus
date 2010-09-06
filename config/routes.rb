@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.devise_for :users
+  map.namespace :admin do |a|
+    a.devise_for :users
+  end
 
   map.resources :subgroups
 
