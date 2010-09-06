@@ -1,3 +1,3 @@
-class Admin::DepartmentsController < ApplicationController
+class Admin::DepartmentsController < Admin::BaseController
   active_scaffold Admin::Department
 end

@@ -1,3 +1,3 @@
-class Admin::SupervisorsController < ApplicationController
+class Admin::SupervisorsController < Admin::BaseController
   active_scaffold Admin::Supervisor
 end
