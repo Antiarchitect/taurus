@@ -1,14 +1,23 @@
 ActionController::Routing::Routes.draw do |map|
   map.admin_root '/admin/departments', :controller => 'admin/departments'
-  map.editor_root '/classrooms_grids', :controller => 'classrooms_grids'
+  map.editor_root '/editor/classrooms', :controller => 'editor/classrooms'
   map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'
-  map.dept_head_root '/department/lecturers', :controller => 'department/lecturers'
+  map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/lecturers'
   
   map.namespace :admin do |a|
     a.resources :departments
     a.resources :editors
     a.resources :supervisors
     a.resources :admins
+  end
+
+  map.namespace :editor do |e|
+    e.resources :classrooms
+    e.resources :pairs
+  end
+
+  map.namespace :dept_head do |d|
+    d.resources :charge_cards
   end
 
   map.devise_for :admin, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
@@ -27,9 +36,9 @@ ActionController::Routing::Routes.draw do |map|
   map.destroy_supervisor_session '/supervisor/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
 
   map.devise_for :dept_head, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
-  map.new_dept_head_session '/department/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
-  map.dept_head_session '/department/login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
-  map.destroy_dept_head_session '/department/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
+  map.new_dept_head_session '/dept_head/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
+  map.dept_head_session '/dept_head/login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
+  map.destroy_dept_head_session '/dept_head/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
 
   map.resources :subgroups
 
@@ -48,8 +57,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :charge_cards, :active_scaffold => :true
 
   map.resources :jets, :active_scaffold => :true
-
-  map.resources :classrooms_grids
 
   map.resources :grids, :active_scaffold => :true
 

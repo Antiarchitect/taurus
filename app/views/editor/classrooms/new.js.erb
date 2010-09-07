@@ -14,7 +14,7 @@ jQuery(document).ready(function($){
         $('#classroom_name').autocomplete({
             source: classrooms,
             select: function(event, ui) {
-                $.post('/classrooms_grids/', {classroom_id: ui.item.value}, "script");
+                $.get('/editor/classrooms/' + ui.item.value, "script");
             }
         });
     });

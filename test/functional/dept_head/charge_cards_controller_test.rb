@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PairsControllerTest < ActionController::TestCase
+class DeptHead::ChargeCardsControllerTest < ActionController::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true

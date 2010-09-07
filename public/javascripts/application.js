@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
     });
 
     $('#plus').click(function(){
-        $.get('/classrooms_grids/new', null, null, "script");
+        $.get('/editor/classrooms/new', null, null, "script");
         return false;
     });
 
@@ -36,7 +36,7 @@ jQuery(document).ready(function($){
     });
 
     $('.grid_close').live('click', function() {
-        $.post('classrooms_grids/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
+        $.post('/editor/classrooms_grids/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
         return false;
     });
 

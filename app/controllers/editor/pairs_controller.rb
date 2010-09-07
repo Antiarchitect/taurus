@@ -1,4 +1,4 @@
-class PairsController < ApplicationController
+class Editor::PairsController < Editor::BaseController
   layout nil
   layout 'application', :except => :edit
   
