@@ -1,12 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.namespace :admin do |a|    
-    a.devise_for :departments
-    a.devise_for :editors
-    a.devise_for :supervisors
-    a.devise_for :admins
+  map.namespace :admin do |a|
+    a.resources :dept_heads
+    a.resources :editors
+    a.resources :supervisors
+    a.resources :admins
   end
 
-  map.devise_for :users
+  map.devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+  map.new_user_session 'login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
+  map.user_session 'login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
+  map.destroy_user_session 'logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
 
   map.resources :subgroups
 
@@ -81,11 +84,8 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-
-  map.admin_admin_root 'admin/departments', :controller => "admin/departments"
-  map.admin_editor_root 'classrooms_grids', :controller => "classrooms_grids"
-  
-  map.root :controller => 'users', :action => 'sign_in'
+  map.admin_root '/admin/departments', :controller => 'admin/departments'
+  # map.root :controller => "sessions", :action => "new"
 
   # See how all your routes lay out with "rake routes"
 
