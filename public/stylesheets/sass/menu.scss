@@ -14,6 +14,10 @@ $background_color: #E6E6FA;
   li {
     display: inline;
     list-style-type: none;
+
+    a.red {
+      color: #c00;
+    }
   }
   a {
     background: {

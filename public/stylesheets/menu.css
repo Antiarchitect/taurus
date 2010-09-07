@@ -6,6 +6,8 @@
 .menu li {
   display: inline;
   list-style-type: none; }
+  .menu li a.red {
+    color: #c00; }
 .menu a {
   background-color: #e6e6fa;
   color: #555555;
