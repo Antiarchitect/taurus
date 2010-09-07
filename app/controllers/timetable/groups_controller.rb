@@ -1,4 +1,5 @@
 class Timetable::GroupsController < ApplicationController
+  skip_before_filter :authenticate_user!
   cattr_reader :days, :times, :weeks
   @@days = [
     'Понедельник',

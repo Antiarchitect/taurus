@@ -12,13 +12,12 @@
     = stylesheet_link_tag 'grid', :media => 'all'
     = stylesheet_link_tag 'group', :media => 'all'
   %body
-    - if current_user
-      - if current_user.admin?
-        = render 'layouts/admin_menu'
-      - if current_user.supervisor?
-        = render 'layouts/supervisor_menu'
-      - if current_user.editor?
-        = render 'layouts/editor_menu'
-      - if current_user.department?
-        = render 'layouts/department_menu'
+    - if admin_signed_in?
+      = render 'layouts/admin_menu'
+    - if supervisor_signed_in?
+      = render 'layouts/supervisor_menu'
+    - if editor_signed_in?
+      = render 'layouts/editor_menu'
+    - if dept_head_signed_in?
+      = render 'layouts/department_menu'
     = yield

@@ -1,15 +1,35 @@
 ActionController::Routing::Routes.draw do |map|
+  map.admin_root '/admin/departments', :controller => 'admin/departments'
+  map.editor_root '/classrooms_grids', :controller => 'classrooms_grids'
+  map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'
+  map.dept_head_root '/department/lecturers', :controller => 'department/lecturers'
+  
   map.namespace :admin do |a|
-    a.resources :dept_heads
+    a.resources :departments
     a.resources :editors
     a.resources :supervisors
     a.resources :admins
   end
 
-  map.devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
-  map.new_user_session 'login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
-  map.user_session 'login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
-  map.destroy_user_session 'logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
+  map.devise_for :admin, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+  map.new_admin_session '/admin/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
+  map.admin_session '/admin/login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
+  map.destroy_admin_session '/admin/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
+
+  map.devise_for :editor, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+  map.new_editor_session '/editor/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
+  map.editor_session '/editor/login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
+  map.destroy_editor_session '/editor/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
+
+  map.devise_for :supervisor, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+  map.new_supervisor_session '/supervisor/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
+  map.supervisor_session '/supervisor/login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
+  map.destroy_supervisor_session '/supervisor/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
+
+  map.devise_for :dept_head, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+  map.new_dept_head_session '/department/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
+  map.dept_head_session '/department/login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
+  map.destroy_dept_head_session '/department/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
 
   map.resources :subgroups
 
@@ -51,41 +71,8 @@ ActionController::Routing::Routes.draw do |map|
     :edit_from_classrooms => :get,
     :update_on_drop => :put
   }
-
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
   
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.admin_root '/admin/departments', :controller => 'admin/departments'
-  # map.root :controller => "sessions", :action => "new"
+  map.root :controller => "timetable/groups"
 
   # See how all your routes lay out with "rake routes"
 
