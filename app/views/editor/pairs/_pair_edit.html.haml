@@ -2,7 +2,7 @@
   - if flash[:error]
     .flash
       = flash[:error]
-  - remote_form_for(@pair) do |f|
+  - remote_form_for([:editor, @pair]) do |f|
     %p{:id => "charge_card_block"}
       = 'Карта нагрузки'
       %br

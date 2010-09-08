@@ -21,12 +21,12 @@ jQuery(document).ready(function($){
     });
 
     $('.edit').live('click', function() {
-      $.get('pairs/' + $(this).attr('pair_id') + '/edit', null, "script");
+      $.get('/editor/pairs/' + $(this).attr('pair_id') + '/edit', null, "script");
       return false;
     });
 
     $('.destroy').live('click', function() {
-      $.post('pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
+      $.post('/editor/pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
       return false;
     });
 

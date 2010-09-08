@@ -14,11 +14,13 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :editor do |e|
     e.resources :classrooms
     e.resources :pairs
+    e.resources :charge_cards
   end
 
   map.namespace :dept_head do |d|
     d.resources :teaching_places
     d.resources :disciplines
+    d.resources :specialities
   end
 
   map.namespace :supervisor do |s|

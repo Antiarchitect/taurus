@@ -1,2 +1,0 @@
-module TeachingPlacesHelper
-end
