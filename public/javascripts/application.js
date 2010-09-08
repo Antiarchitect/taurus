@@ -36,7 +36,7 @@ jQuery(document).ready(function($){
     });
 
     $('.grid_close').live('click', function() {
-        $.post('/editor/classrooms_grids/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
+        $.post('/editor/classrooms/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
         return false;
     });
 
