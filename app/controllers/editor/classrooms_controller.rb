@@ -24,7 +24,7 @@ class Editor::ClassroomsController < Editor::BaseController
 
 # RESTful methods
   def index
-    cookies[:classrooms_grids] = YAML.dump([0])
+    cookies[:classrooms] = YAML.dump([0])
   end
 
   def show
@@ -32,7 +32,7 @@ class Editor::ClassroomsController < Editor::BaseController
   end
 
   def new
-    @classrooms = YAML.load(cookies[:classrooms_grids])
+    @classrooms = YAML.load(cookies[:classrooms])
 
     respond_to do |format|
       format.js
@@ -49,9 +49,9 @@ class Editor::ClassroomsController < Editor::BaseController
       redirect_to :action => :new
     else
       @pairs = @classroom.pairs
-      grids = YAML.load(cookies[:classrooms_grids])
+      grids = YAML.load(cookies[:classrooms])
       grids << @classroom.id
-      cookies[:classrooms_grids] = YAML.dump(grids)
+      cookies[:classrooms] = YAML.dump(grids)
 
       respond_to do |format|
         format.js
@@ -69,9 +69,9 @@ class Editor::ClassroomsController < Editor::BaseController
 
   def destroy
     @id = params[:id]
-    grids = YAML.load(cookies[:classrooms_grids])
+    grids = YAML.load(cookies[:classrooms])
     grids.delete(@id.to_i)
-    cookies[:classrooms_grids] = YAML.dump(grids)
+    cookies[:classrooms] = YAML.dump(grids)
 
     respond_to do |format|
       format.js
