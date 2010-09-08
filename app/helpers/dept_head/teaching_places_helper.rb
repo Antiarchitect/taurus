@@ -1,0 +1,2 @@
+module DeptHead::TeachingPlacesHelper
+end

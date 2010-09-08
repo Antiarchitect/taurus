@@ -5,4 +5,5 @@ class Department < ActiveRecord::Base
   has_many :teaching_places, :dependent => :destroy
   has_many :lecturers, :through => :teaching_places
   has_many :specialities
+  has_many :dept_heads
 end

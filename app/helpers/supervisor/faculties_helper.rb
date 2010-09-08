@@ -1,0 +1,2 @@
+module Supervisor::FacultiesHelper
+end

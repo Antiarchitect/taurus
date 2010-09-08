@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/lecturers'
   
   map.namespace :admin do |a|
-    a.resources :departments
+    a.resources :dept_heads
     a.resources :editors
     a.resources :supervisors
     a.resources :admins
@@ -17,7 +17,14 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :dept_head do |d|
-    d.resources :charge_cards
+    d.resources :teaching_places
+    d.resources :disciplines
+  end
+
+  map.namespace :supervisor do |s|
+    s.resources :lecturers
+    s.resources :faculties
+    s.resources :departments
   end
 
   map.devise_for :admin, :path_names => { :sign_in => 'login', :sign_out => 'logout'}

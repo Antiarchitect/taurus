@@ -1,0 +1,2 @@
+module DeptHead::GroupsHelper
+end

@@ -1,0 +1,10 @@
+.menu
+  %ul
+    %li
+      = link_to 'Преподаватели кафедры', dept_head_teaching_places_path
+    %li
+      = link_to 'Дисциплины', dept_head_disciplines_path
+    %li
+      = link_to 'Специальности', dept_head_specialities_path
+    %li
+      = link_to 'Выход', destroy_dept_head_session_path, :class => "red"

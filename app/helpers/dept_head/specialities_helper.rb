@@ -1,0 +1,2 @@
+module DeptHead::SpecialitiesHelper
+end
