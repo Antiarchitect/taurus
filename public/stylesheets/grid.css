@@ -13,7 +13,7 @@
   float: left;
   padding: 5px;
   border: 1px solid #000000;
-  background-color: #e6f2ff; }
+  background-color: #e6e6fa; }
 
 .closebutton {
   background-image: url("/images/close_16.ico");
@@ -23,7 +23,7 @@
   width: 16px; }
 
 .grid {
-  background-color: #e6f2ff;
+  background-color: #e6e6fa;
   clear: both;
   margin-bottom: 5px;
   width: 100%; }
@@ -71,12 +71,12 @@ img {
   border: none; }
 
 .timetable {
-  background-color: #e6f2ff;
+  background-color: #e6e6fa;
   clear: both;
   margin-bottom: 5px;
   width: 100%; }
   .timetable .nopair {
-    background-color: #e6f2ff;
+    background-color: #e6e6fa;
     height: 100%;
     width: 100%; }
   .timetable .error_pair {

@@ -1,22 +1,23 @@
-.menu ul {
-  background-color: #e6e6fa;
-  border-bottom-radius: 1em;
-  height: 42px;
-  text-align: center; }
-.menu li {
-  display: inline;
-  list-style-type: none; }
-  .menu li a.red {
-    color: #c00; }
-.menu a {
-  background-color: #e6e6fa;
-  color: #555555;
-  display: inline-block;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 13px 25px;
-  text-decoration: none; }
-  .menu a:hover {
+.menu {
+  width: 100%; }
+  .menu ul {
     background-color: #e6e6fa;
-    color: #ffff88; }
+    height: 46px;
+    text-align: center; }
+  .menu li {
+    display: inline;
+    list-style-type: none; }
+    .menu li a.red {
+      color: #c00; }
+  .menu a {
+    background-color: #e6e6fa;
+    color: #555555;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 13px 25px;
+    text-decoration: none; }
+    .menu a:hover {
+      background-color: #e6e6fa;
+      color: #ffff88; }

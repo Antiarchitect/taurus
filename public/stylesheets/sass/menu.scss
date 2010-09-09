@@ -1,14 +1,12 @@
 $background_color: #E6E6FA;
 
 .menu {
+  width: 100%;
   ul {
     background: {
       color: $background_color;
     }
-    border: {
-      bottom-radius: 1em;
-    }
-    height: 42px;
+    height: 46px;
     text-align: center;
   }
   li {
