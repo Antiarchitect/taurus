@@ -4,19 +4,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :login, :name, :email, :password, :password_confirmation
 
-  def admin?
-    false
-  end
-
-  def supervisor?
-    false
-  end
-
-  def editor?
-    false
-  end
-
-  def department?
-    false
-  end
+  protected
+   def password_required?
+     new_record? || destroyed? || password.present? || password_confirmation.present?
+   end
 end
