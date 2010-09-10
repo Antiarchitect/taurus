@@ -35,13 +35,9 @@ class Pair < ActiveRecord::Base
   end
 
   def groups
-    groups_string = []
-    unless (groups = self.try(:charge_card).try(:groups)).nil?
-      groups.each do |group|
-        groups_string << group.try(:name)
-      end
+    unless charge_card.nil?
+      charge_card.groups
     end
-    groups_string.map{|g| g + ', '}.to_s.chop.chop
   end
 
   def lesson_type

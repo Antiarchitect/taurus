@@ -10,7 +10,9 @@
     %abbr{:title => "#{pair.full_lecturer}"}
       = "#{pair.lecturer}"
     %br
-    = "#{pair.groups}"
+    - pair.groups.each_with_index do |group, i|
+      = ", " unless i == 0
+      = link_to "#{group.name}", timetable_group_path(group.id), :target => '_blank'
   .management_panel
     =# link_to image_tag('show_12.png'), pair_path(pair.id), :method => :get, :class => 'lbOn'
     .edit{:pair_id => "#{pair.id}"}
