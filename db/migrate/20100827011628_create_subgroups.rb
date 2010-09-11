@@ -1,7 +1,7 @@
 class CreateSubgroups < ActiveRecord::Migration
   def self.up
     create_table :subgroups do |t|
-      t.integer :group_id
+      t.integer :jet_id
       t.integer :pair_id
 
       t.integer :number # 0 - no subgroups
