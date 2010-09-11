@@ -29,9 +29,9 @@ class Editor::PairsController < Editor::BaseController
     if params[:get_subgroups] && params[:charge_card_id]
       @pair.update_attributes(:charge_card_id => params[:charge_card_id])
       @pair.subgroups.delete_all
-      @pair.charge_card.groups.each do |group|
+      @pair.charge_card.jets.each do |jet|
         @pair.subgroups.create(
-          :group_id => group.id,
+          :jet_id => jet.id,
           :number => 0
         )
       end

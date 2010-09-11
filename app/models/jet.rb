@@ -7,11 +7,11 @@ class Jet < ActiveRecord::Base
 
   private
 
-  def create_subgroups(jet)
-    card = jet.charge_card
+  def create_subgroups
+    card = self.charge_card
     pairs = card.pairs
     pairs.each do |pair|
-      jet.subgroups.create(
+      self.subgroups.create(
         :pair_id => pair.id
       )
     end

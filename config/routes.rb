@@ -29,10 +29,12 @@ ActionController::Routing::Routes.draw do |map|
     t.resources :groups
   end
 
+  map.resources :classrooms
+  
   map.admin_root '/admin/departments', :controller => 'admin/departments'
   map.editor_root '/editor/classrooms', :controller => 'editor/classrooms'
   map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'
-  map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/lecturers'
+  map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/teaching_places'
 
   map.devise_for :admin, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
   map.new_admin_session '/admin/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
