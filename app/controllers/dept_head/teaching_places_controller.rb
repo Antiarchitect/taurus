@@ -8,10 +8,16 @@ class DeptHead::TeachingPlacesController < DeptHead::BaseController
   protected
 
   def before_create_save(record)
-    record.department_id = current_dept_head.department.id
+    if dept = current_dept_head.department
+      record.department_id = dept.id
+    end
   end
 
   def conditions_for_collection
-    {:department_id => current_dept_head.department.id}
+    if dept = current_dept_head.department
+      {:department_id => dept.id}
+    else
+      {:department_id => nil}
+    end
   end
 end

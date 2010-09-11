@@ -1,0 +1,2 @@
+module Supervisor::BuildingsHelper
+end

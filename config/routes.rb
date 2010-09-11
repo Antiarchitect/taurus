@@ -1,9 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.admin_root '/admin/departments', :controller => 'admin/departments'
-  map.editor_root '/editor/classrooms', :controller => 'editor/classrooms'
-  map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'
-  map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/lecturers'
-  
   map.namespace :admin do |a|
     a.resources :dept_heads
     a.resources :editors
@@ -24,10 +19,20 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :supervisor do |s|
-    s.resources :lecturers
     s.resources :faculties
     s.resources :departments
+    s.resources :classrooms
+    s.resources :lecturers
   end
+
+  map.namespace :timetable do |t|
+    t.resources :groups
+  end
+
+  map.admin_root '/admin/departments', :controller => 'admin/departments'
+  map.editor_root '/editor/classrooms', :controller => 'editor/classrooms'
+  map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'
+  map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/lecturers'
 
   map.devise_for :admin, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
   map.new_admin_session '/admin/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
@@ -49,52 +54,8 @@ ActionController::Routing::Routes.draw do |map|
   map.dept_head_session '/dept_head/login', :controller => 'sessions', :action => 'create', :conditions => { :method => :post }
   map.destroy_dept_head_session '/dept_head/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }
 
-  map.resources :subgroups
-
-  map.namespace :timetable do |t|
-    t.resources :groups
-  end
-
-  map.resources :specialities
-
-  map.resources :teaching_places
-
-  map.resources :faculties, :active_scaffold => :true
-
-  map.resources :departments, :active_scaffold => :true
-
-  map.resources :charge_cards, :active_scaffold => :true
-
-  map.resources :jets, :active_scaffold => :true
-
-  map.resources :grids, :active_scaffold => :true
-
-  map.resources :buildings, :active_scaffold => :true
-
-  map.resources :groups, :active_scaffold => :true
-
-  map.resources :lecturers, :active_scaffold => :true
-
-  map.resources :disciplines, :active_scaffold => :true
-
-  map.resources :lesson_types, :active_scaffold => :true
-
-  map.resources :lessons, :active_scaffold => :true
-
-  map.resources :classrooms, :active_scaffold => :true
-
-  map.resources :pairs, :active_scaffold => :true, :member => {
-    :edit_from_classrooms => :get,
-    :update_on_drop => :put
-  }
-  
   map.root :controller => "timetable/groups"
 
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
