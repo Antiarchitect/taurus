@@ -12,7 +12,8 @@ class Jet < ActiveRecord::Base
     pairs = card.pairs
     pairs.each do |pair|
       self.subgroups.create(
-        :pair_id => pair.id
+        :pair_id => pair.id,
+        :number => 0
       )
     end
   end

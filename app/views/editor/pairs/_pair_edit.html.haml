@@ -1,4 +1,4 @@
-.update_form{:id => "update_pair_#{@pair.id.to_s}"}
+.update_form{:id => "pair_edit_#{@pair.id.to_s}"}
   - if flash[:error]
     .flash
       = flash[:error]
@@ -6,7 +6,7 @@
     %p{:id => "charge_card_block"}
       = 'Карта нагрузки'
       %br
-      %input{:id => "charge_card", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
+      %input{:class => "charge_card", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
     .subgroups
       - f.fields_for :subgroups, @pair.subgroups do |s|
         = render 'subgroup', :s => s
