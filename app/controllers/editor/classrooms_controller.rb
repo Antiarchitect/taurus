@@ -2,6 +2,16 @@ class Editor::ClassroomsController < Editor::BaseController
 
   def index
     cookies[:classrooms] = YAML.dump([0])
+    if params[:except]
+      except = params[:except].split(',').collect { |e| e.to_i }
+    else
+      except = "0"
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => Classroom.all(:conditions => ['classrooms.id NOT IN (?)', except]).to_json(:only => [:id, :name], :include => { :building => { :only => :name } } )}
+    end
   end
 
   def show
