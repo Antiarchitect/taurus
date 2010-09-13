@@ -1,0 +1,9 @@
+- flow = p.charge_card.groups.map{|g| g.name + ', '}.to_s.chop.chop
+.pair
+  = "#{flow}"
+  %br
+  = "#{p.discipline}"
+  %br
+  = "Ауд.: #{p.classroom.name}"
+  %br
+  = "Корп.: #{p.classroom.building.name}"

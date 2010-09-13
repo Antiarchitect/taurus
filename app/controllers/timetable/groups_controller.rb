@@ -8,9 +8,7 @@ class Timetable::GroupsController < ApplicationController
     respond_to do |format|
       format.html { render template || 'index' }
       format.json { render :json => Group.all.to_json(:only => [:id, :name]) }
-    end
-
-    
+    end    
   end
   
   def show
@@ -25,7 +23,7 @@ class Timetable::GroupsController < ApplicationController
     charge_cards.each do |card|
       pairs << card.pairs(:include => :subgroups)
     end
-    pairs.flatten!
+    pairs = pairs.flatten
     @days = Timetable.days
     @times = Timetable.times
     @weeks = Timetable.weeks
