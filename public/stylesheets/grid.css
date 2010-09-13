@@ -100,7 +100,8 @@ img {
   height: 55px; }
 
 .daycell {
-  width: 100%; }
+  width: 100%;
+  background-color: #000; }
   .daycell td {
     border-collapse: collapse;
     border-style: solid;

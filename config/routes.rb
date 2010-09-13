@@ -27,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :timetable do |t|
     t.resources :groups
+    t.resources :lecturers
   end
 
   map.resources :classrooms

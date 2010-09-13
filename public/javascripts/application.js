@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
 
     if ($('#group_name_input').length > 0) {
         $('#group_name_input').focus();
-        $.getJSON('/groups.json', function(data) {
+        $.getJSON('/timetable/groups.json', function(data) {
             var groups = new Array(0);
             data.each(function(i) {
                 groups.push({ label: i.group.name, value: i.group.id });

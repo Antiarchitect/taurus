@@ -1,3 +1,0 @@
-class DisciplinesController < ApplicationController
-  
-end
