@@ -1,30 +1,17 @@
 class Editor::ClassroomsController < Editor::BaseController
-  cattr_reader :days, :times, :weeks
-  @@days = [
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота'
-  ]
-  @@times = [
-    '08:15 - 09:45',
-    '09:55 - 11:25',
-    '11:35 - 13:05',
-    '14:00 - 15:30',
-    '15:40 - 17:10',
-    '17:20 - 18:50',
-    '19:00 - 20:30'
-  ]
-  @@weeks = [
-    '1 неделя',
-    '2 неделя'
-  ]
 
-# RESTful methods
   def index
     cookies[:classrooms] = YAML.dump([0])
+    if params[:except]
+      except = params[:except].split(',').collect { |e| e.to_i }
+    else
+      except = "0"
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => Classroom.all(:conditions => ['classrooms.id NOT IN (?)', except]).to_json(:only => [:id, :name], :include => { :building => { :only => :name } } )}
+    end
   end
 
   def show
@@ -40,9 +27,9 @@ class Editor::ClassroomsController < Editor::BaseController
   end
 
   def show
-    @days = self.class.days
-    @times = self.class.times
-    @weeks = self.class.weeks
+    @days = Timetable.days
+    @times = Timetable.times
+    @weeks = Timetable.weeks
     @classroom = Classroom.find_by_id(params[:id], :include => :pairs)
     unless @classroom
       flash[:error] = 'Нет аудитории с таким названием'

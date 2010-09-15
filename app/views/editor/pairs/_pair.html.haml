@@ -1,14 +1,12 @@
+- short_lesson_type = truncate("#{pair.lesson_type}", :length => 6, :omission => '.')
 .pair{:id => "#{pair.id}"}
   .pair_content
     %abbr{:title => "#{pair.discipline}"}
-      = "#{pair.discipline}"
+      = "#{pair.discipline}, #{short_lesson_type}"
     %br
-    %abbr{:title => "#{pair.lesson_type}"}
-      - short_lesson_type = truncate("#{pair.lesson_type}", :length => 6, :omission => '.')
-      = short_lesson_type
-    %br
-    %abbr{:title => "#{pair.full_lecturer}"}
-      = "#{pair.lecturer}"
+    - if pair.lecturer && pair.lecturer_id
+      %abbr{:title => "#{pair.full_lecturer}"}
+        = link_to "#{pair.lecturer}", timetable_lecturer_path(pair.lecturer_id), :target => '_blank'
     %br
     - if pair.groups
       - pair.groups.each_with_index do |group, i|

@@ -1,0 +1,22 @@
+= stylesheet_link_tag 'terminal'
+= javascript_include_tag 'terminal'
+.workspace
+  - unless @terminal
+    %p{:class => "pdf_link"}
+      = link_to "Загрузить PDF", timetable_lecturer_path(@id, :format => :pdf)
+  - else
+    .back_terminal{:id => "back_terminal_top"}
+  .timetable{:class => "lecturers"}
+    %table
+      %tr
+        %th{:colspan => 7}
+          = "#{@lecturer.name}. Расписание учебных пар."
+      %tr
+        %th
+        = render :partial => 'day_header', :collection => @days
+      = render :partial => 'time', :collection => @times
+  - unless @terminal
+    %p{:class => "pdf_link"}
+      = link_to "Назад", timetable_lecturers_path
+  - else
+    .back_terminal{:id => "back_terminal_bottom"}

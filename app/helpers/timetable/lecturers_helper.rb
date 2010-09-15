@@ -1,0 +1,2 @@
+module Timetable::LecturersHelper
+end

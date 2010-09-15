@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-    $.getJSON('/groups.json', function(data) {
+    $.getJSON('/timetable/groups.json', function(data) {
         var groups = new Array(0);
         data.each(function(i) {
             groups.push({ label: i.group.name, value: i.group.id });

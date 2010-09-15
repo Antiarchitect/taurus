@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DisciplinesControllerTest < ActionController::TestCase
+class TimetableTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true

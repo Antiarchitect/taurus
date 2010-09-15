@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
     });
 
     
-    $.getJSON('/classrooms.json', {except: '<%= escape_javascript @classrooms.join(',') %>'}, function(data) {
+    $.getJSON('/editor/classrooms.json', {except: '<%= escape_javascript @classrooms.join(',') %>'}, function(data) {
         var classrooms = new Array(0);
         data.each(function(i) {
             classrooms.push({ label: i.classroom.name + ' (' + i.classroom.building.name + ')', value: i.classroom.id });

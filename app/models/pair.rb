@@ -23,6 +23,10 @@ class Pair < ActiveRecord::Base
     name || ''
   end
 
+  def lecturer_id
+    self.try(:charge_card).try(:teaching_place).try(:lecturer).try(:id)
+  end
+
   def full_discipline
     full = self.try(:charge_card).try(:discipline).try(:full_name)
     unless (lesson = self.try(:charge_card).try(:lesson_type).try(:name)).nil?
