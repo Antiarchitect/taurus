@@ -1,6 +1,9 @@
 class DeptHead::DisciplinesController < DeptHead::BaseController
   active_scaffold do |config|
     config.columns = [:name, :full_name]
+    config.create.columns = [:full_name, :name]
+    config.update.columns = [:full_name, :name]
+    config.list.sorting = { :name => :asc }
   end
 
   protected

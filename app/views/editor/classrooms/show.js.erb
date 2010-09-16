@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-    $('#plus').before('<%= escape_javascript render :partial => 'grid', :object => @classroom %>');
+    $('body').prepend('<%= escape_javascript render :partial => 'grid', :object => @classroom %>');
     $('.receiver').droppable({
         accept: '.pair',
         over: function(){ $(this).addClass('hovered_receiver');},

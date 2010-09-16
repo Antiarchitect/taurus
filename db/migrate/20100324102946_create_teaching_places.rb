@@ -3,6 +3,7 @@ class CreateTeachingPlaces < ActiveRecord::Migration
     create_table :teaching_places do |t|
       t.integer :department_id
       t.integer :lecturer_id
+      t.integer :position_id
 
       t.timestamps
     end
