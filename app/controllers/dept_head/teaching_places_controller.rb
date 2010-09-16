@@ -1,7 +1,11 @@
 class DeptHead::TeachingPlacesController < DeptHead::BaseController
   active_scaffold do |config|
-    config.columns = [:lecturer]
+    config.columns = [:lecturer, :position]
     config.columns[:lecturer].form_ui = :select
+    config.columns[:position].form_ui = :select
+    config.columns[:position].includes = [:position]
+    config.columns[:lecturer].includes = [:lecturer, :department]
+    config.columns[:lecturer].sort_by :sql => 'lecturers.name'
     config.nested.add_link('Карта распределения нагрузки', [:charge_cards])
   end
 

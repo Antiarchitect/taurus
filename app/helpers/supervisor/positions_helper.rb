@@ -1,0 +1,2 @@
+module Supervisor::PositionsHelper
+end
