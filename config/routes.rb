@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :dept_head do |d|
-    d.resources :teaching_places
+    d.resources :teaching_places, :active_scaffold => true
     d.resources :disciplines
     d.resources :specialities
   end
