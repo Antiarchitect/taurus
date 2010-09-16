@@ -101,6 +101,7 @@ ru:
         name: 'Название специальности'
       teaching_place:
         lecturer: 'Преподаватель'
+        position: 'Должность'
     description:
       discipline:
         full_name: 'Полное название дисциплины'
