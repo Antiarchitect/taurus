@@ -8,6 +8,8 @@ class Editor::PairsController < Editor::BaseController
       p.day_of_the_week = params[:day_of_the_week]
       p.pair_number = params[:pair_number]
       p.week_number = params[:week_number]
+      p.active_at = Date.today
+      p.expired_at = Date.new(2010, 12, 31)
     end
     @container = params[:container]
 
