@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |a|
-    a.resources :dept_heads
-    a.resources :editors
-    a.resources :supervisors
-    a.resources :admins
+    a.resources :dept_heads, :active_scaffold => true
+    a.resources :editors, :active_scaffold => true
+    a.resources :supervisors, :active_scaffold => true
+    a.resources :admins, :active_scaffold => true
   end
 
   map.namespace :editor do |e|
@@ -14,15 +14,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :dept_head do |d|
     d.resources :teaching_places, :active_scaffold => true
-    d.resources :disciplines
-    d.resources :specialities
+    d.resources :disciplines, :active_scaffold => true
+    d.resources :specialities, :active_scaffold => true
   end
 
   map.namespace :supervisor do |s|
-    s.resources :faculties
-    s.resources :departments
-    s.resources :classrooms
-    s.resources :lecturers
+    s.resources :faculties, :active_scaffold => true
+    s.resources :classrooms, :active_scaffold => true
+    s.resources :lecturers, :active_scaffold => true
   end
 
   map.namespace :timetable do |t|

@@ -3,8 +3,7 @@ module ActiveScaffold::Config
     self.crud_type = :read
 
     def initialize(core_config)
-      @core = core_config
-
+      super
       # inherit from global scope
       # full configuration path is: defaults => global table => local table
       @per_page = self.class.per_page
@@ -121,7 +120,6 @@ module ActiveScaffold::Config
     
     def search_partial
       return "search" if @core.actions.include?(:search)
-      return "live_search" if @core.actions.include?(:live_search)
       return "field_search" if @core.actions.include?(:field_search)
     end
     
