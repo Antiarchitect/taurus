@@ -36,12 +36,31 @@ jQuery(document).ready(function($){
         });
     });
 
+    var months = [
+        'Январь',
+        'Февраль',
+        'Март',
+        'Апрель',
+        'Май',
+        'Июнь',
+        'Июль',
+        'Август',
+        'Сентябрь',
+        'Октябрь',
+        'Ноябрь',
+        'Декабрь'];
     $('#pair_active_at').datepicker({
+        firstDay: 1,
+        dateFormat: 'dd.mm.yy',
+        monthNames: months,
         showOn: 'button',
         buttonImage: '/images/calendar.gif',
         buttonImageOnly: true
     });
     $('#pair_expired_at').datepicker({
+        firstDay: 1,
+        dateFormat: 'dd.mm.yy',
+        monthNames: months,
         showOn: 'button',
         buttonImage: '/images/calendar.gif',
         buttonImageOnly: true
