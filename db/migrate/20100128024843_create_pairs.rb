@@ -11,7 +11,9 @@ class CreatePairs < ActiveRecord::Migration
                              # 0 - both weeks
                              # 1 - first week
                              # 2 - second week
-
+      t.date :active_at      # activation date
+      t.date :expired_at     # expiration date
+      
       t.timestamps
     end
   end

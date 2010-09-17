@@ -7,6 +7,14 @@
       = 'Карта нагрузки'
       %br
       %input{:class => "charge_card", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
+    %p{:id => "dates_block"}
+      %span{:id => "active_at_label"} Начало занятий
+      %br
+      = f.text_field :active_at, {:value => @pair.active_at.strftime('%d.%m.%Y'),:size => 10}
+      %br
+      %span{:id => "expired_at_label"} Конец занятий
+      %br
+      = f.text_field :expired_at, {:value => @pair.expired_at.strftime('%d.%m.%Y'), :size => 10}
     .subgroups
       - f.fields_for :subgroups, @pair.subgroups do |s|
         = render 'subgroup', :s => s
