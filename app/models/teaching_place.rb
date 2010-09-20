@@ -9,4 +9,8 @@ class TeachingPlace < ActiveRecord::Base
   def name
     lecturer.name + ' (' + department.name + ')'
   end
+
+  def to_label
+    lecturer.name
+  end
 end

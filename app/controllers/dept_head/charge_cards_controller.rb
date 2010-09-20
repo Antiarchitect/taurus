@@ -6,5 +6,7 @@ class DeptHead::ChargeCardsController < DeptHead::BaseController
     config.columns[:discipline].form_ui = :select
     config.columns[:lesson_type].form_ui = :select
     config.columns[:teaching_place].form_ui = :select
+    config.columns[:discipline].clear_link
+    config.columns[:groups].clear_link
   end
 end
