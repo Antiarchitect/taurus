@@ -1,0 +1,2 @@
+module DeptHead::LecturersHelper
+end
