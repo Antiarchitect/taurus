@@ -70,6 +70,7 @@ ru:
         groups: 'Группы'
         jets: 'Группы'
         lesson_type: 'Тип занятия'
+        hours_quantity: 'Количество часов'
       classroom:
         building: 'Корпус'
         department: 'Кафедра'
@@ -79,8 +80,8 @@ ru:
         name: 'Сокращенное название'
         full_name: 'Название кафедры'
       discipline:
-        full_name: 'Название дисциплины'
-        name: 'Сокращенное название'
+        name: 'Название дисциплины'
+        short_name: 'Сокращенное название'
       faculty:
         full_name: 'Название факультета'
         name: 'Сокращенное название'
@@ -103,6 +104,5 @@ ru:
         lecturer: 'Преподаватель'
         position: 'Должность'
     description:
-      discipline:
-        full_name: 'Полное название дисциплины'
-        name: 'Сокращенное название дисциплины'
+      charge_card:
+        hours_quantity: 'в неделю'

@@ -1,6 +1,6 @@
 class DeptHead::ChargeCardsController < DeptHead::BaseController
   active_scaffold do |config|
-    config.columns = [:teaching_place, :jets, :discipline, :lesson_type]
+    config.columns = [:teaching_place, :jets, :discipline, :lesson_type, :hours_quantity]
     config.list.columns << :groups
     config.list.columns.exclude :jets
     config.columns[:discipline].form_ui = :select
