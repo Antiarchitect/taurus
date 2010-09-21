@@ -103,6 +103,3 @@ ru:
       teaching_place:
         lecturer: 'Преподаватель'
         position: 'Должность'
-    description:
-      charge_card:
-        hours_quantity: 'в неделю'
