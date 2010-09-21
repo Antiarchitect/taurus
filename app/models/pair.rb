@@ -38,6 +38,10 @@ class Pair < ActiveRecord::Base
     self.try(:charge_card).try(:discipline).try(:name)
   end
 
+  def short_discipline
+    self.try(:charge_card).try(:discipline).try(:short_name)
+  end
+
   def groups
     unless charge_card.nil?
       charge_card.groups

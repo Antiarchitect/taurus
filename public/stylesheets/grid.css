@@ -33,7 +33,7 @@
   .grid td {
     border-style: solid;
     border-width: thin;
-    height: 55px;
+    height: 68px;
     width: 7.7%; }
   .grid th {
     border-style: solid;
@@ -59,10 +59,13 @@
     float: left; }
   .pair .management_panel {
     float: right;
-    width: 12px;
-    cursor: pointer; }
-    .pair .management_panel a {
-      display: inline-block; }
+    clear: both;
+    cursor: pointer;
+    height: 16px; }
+  .pair .management_panel div {
+    display: inline;
+    height: 16px;
+    width: 16px; }
 
 abbr {
   cursor: help; }
@@ -89,7 +92,7 @@ img {
   .timetable td {
     border-style: solid;
     border-width: thin;
-    height: 55px;
+    height: 68px;
     width: 7.7%; }
   .timetable th {
     width: 7.7%;
@@ -97,7 +100,7 @@ img {
     border-width: thin; }
 
 .timetable.groups td {
-  height: 55px; }
+  height: 68px; }
 
 .daycell {
   width: 100%;
@@ -106,5 +109,5 @@ img {
     border-collapse: collapse;
     border-style: solid;
     border-width: 0;
-    height: 55px;
+    height: 68px;
     width: 50%; }

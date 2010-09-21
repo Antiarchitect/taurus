@@ -1,9 +1,14 @@
 - short_lesson_type = truncate("#{pair.lesson_type}", :length => 6, :omission => '.')
 .pair{:id => "#{pair.id}"}
+  .management_panel
+    .edit{:pair_id => "#{pair.id}"}
+      = image_tag('edit_16.png')
+    .destroy{:pair_id => "#{pair.id}"}
+      = image_tag('delete_16.png')
   .pair_content
     %abbr{:title => "#{pair.discipline}"}
-      = "#{pair.discipline}"
-      %br
+      = "#{pair.short_discipline}"
+    %br
     %abbr{:title => "#{pair.lesson_type}"}
       = "#{short_lesson_type}"
     %br
@@ -15,9 +20,3 @@
       - pair.groups.each_with_index do |group, i|
         = ", " unless i == 0
         = link_to "#{group.name}", timetable_group_path(group.id), :target => '_blank'
-  .management_panel
-    =# link_to image_tag('show_12.png'), pair_path(pair.id), :method => :get, :class => 'lbOn'
-    .edit{:pair_id => "#{pair.id}"}
-      = image_tag('edit_12.png')
-    .destroy{:pair_id => "#{pair.id}"}
-      = image_tag('delete_12.png')

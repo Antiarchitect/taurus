@@ -4,7 +4,7 @@ $days_width: $workspace_width - $times_width;
 $day_width: 100% / 6;
 $week_width: 100% / 2;
 $header_height: 30px;
-$container_height: 55px;
+$container_height: 68px;
 $grid_background: #E6E6FA;
 
 @mixin table_border {
@@ -96,11 +96,14 @@ $grid_background: #E6E6FA;
   }
   .management_panel {
     float: right;
-    width: 12px;
+    clear: both;
     cursor: pointer;
-    a {
-      display: inline-block;
-    }
+    height: 16px;
+  }
+  .management_panel div {
+    display: inline;
+    height: 16px;
+    width: 16px;
   }
 }
 
