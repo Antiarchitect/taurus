@@ -1,4 +1,5 @@
 class DeptHead::DisciplinesController < DeptHead::BaseController
+  record_select :search_on => :name, :order_by => :name
   active_scaffold do |config|
     config.columns = [:short_name, :name]
     config.create.columns = [:name, :short_name]

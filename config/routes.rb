@@ -4,37 +4,44 @@ ActionController::Routing::Routes.draw do |map|
     a.resources :editors, :active_scaffold => true
     a.resources :supervisors, :active_scaffold => true
     a.resources :admins, :active_scaffold => true
+    a.root :controller => 'dept_heads'
   end
 
   map.namespace :editor do |e|
     e.resources :classrooms
     e.resources :pairs
     e.resources :charge_cards
+    e.root :controller => 'classrooms'
   end
 
   map.namespace :dept_head do |d|
     d.resources :teaching_places, :active_scaffold => true
-    d.resources :disciplines, :active_scaffold => true
+    d.resources :disciplines, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
+    d.resources :groups, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
+    d.resources :lecturers, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
     d.resources :specialities, :active_scaffold => true
+    d.root :controller => 'teaching_places'
   end
 
   map.namespace :supervisor do |s|
     s.resources :faculties, :active_scaffold => true
     s.resources :classrooms, :active_scaffold => true
     s.resources :lecturers, :active_scaffold => true
+    s.root :controller => 'lecturers'
   end
 
   map.namespace :timetable do |t|
     t.resources :groups
     t.resources :lecturers
+    t.root :controller => 'groups'
   end
 
   map.resources :classrooms
   
-  map.admin_root '/admin/departments', :controller => 'admin/departments'
-  map.editor_root '/editor/classrooms', :controller => 'editor/classrooms'
-  map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'
-  map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/teaching_places'
+#  map.admin_root '/admin/departments', :controller => 'admin/dept_heads'
+#  map.editor_root '/editor/classrooms', :controller => 'editor/classrooms'
+#  map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'
+#  map.dept_head_root '/dept_head/lecturers', :controller => 'dept_head/teaching_places'
 
   map.devise_for :admin, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
   map.new_admin_session '/admin/login', :controller => 'sessions', :action => 'new', :conditions => { :method => :get }
