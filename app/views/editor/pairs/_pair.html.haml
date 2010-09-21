@@ -2,7 +2,10 @@
 .pair{:id => "#{pair.id}"}
   .pair_content
     %abbr{:title => "#{pair.discipline}"}
-      = "#{pair.discipline}, #{short_lesson_type}"
+      = "#{pair.discipline}"
+      %br
+    %abbr{:title => "#{pair.lesson_type}"}
+      = "#{short_lesson_type}"
     %br
     - if pair.lecturer && pair.lecturer_id
       %abbr{:title => "#{pair.full_lecturer}"}
