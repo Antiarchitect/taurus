@@ -91,6 +91,7 @@ ru:
         name: 'Номер группы'
       jet:
         group: 'Группа'
+        subgroups_quantity: 'Количество подргупп'
       lecturer:
         name: 'ФИО'
       pair:
@@ -103,3 +104,6 @@ ru:
       teaching_place:
         lecturer: 'Преподаватель'
         position: 'Должность'
+    description:
+      jet:
+        subgroups_quantity: 'Значение "1" не допускается. В случае отсутствия подгрупп выставить "0"'
