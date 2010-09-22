@@ -7,7 +7,7 @@ class ChargeCard < ActiveRecord::Base
   has_many :pairs
 
   validates_presence_of :discipline, :lesson_type, :teaching_place, :week_quantity, :hours_per_week
-  validates_numericality_of :week_quantity, :hours_per_week
+  validates_numericality_of :weeks_quantity, :hours_per_week
 
   def name
     groups = []
