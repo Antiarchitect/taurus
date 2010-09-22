@@ -70,7 +70,9 @@ ru:
         groups: 'Группы'
         jets: 'Группы'
         lesson_type: 'Тип занятия'
-        hours_quantity: 'Количество часов'
+        hours_quantity: 'Общее количество часов'
+        hours_per_week: 'Количество часов в неделю'
+        weeks_quantity: 'Количество недель'
       classroom:
         building: 'Корпус'
         department: 'Кафедра'

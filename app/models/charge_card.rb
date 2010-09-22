@@ -6,7 +6,8 @@ class ChargeCard < ActiveRecord::Base
   has_many :groups, :through => :jets
   has_many :pairs
 
-  validates_presence_of :discipline, :lesson_type, :teaching_place
+  validates_presence_of :discipline, :lesson_type, :teaching_place, :week_quantity, :hours_per_week
+  validates_numericality_of :week_quantity, :hours_per_week
 
   def name
     groups = []
@@ -18,5 +19,9 @@ class ChargeCard < ActiveRecord::Base
 
   def name_for_pair_edit
     teaching_place.name + ', ' + name
+  end
+
+  def hours_quantity
+    weeks_quantity * hours_per_week
   end
 end

@@ -5,9 +5,11 @@ class Jet < ActiveRecord::Base
   belongs_to :group
   has_many :subgroups, :dependent => :destroy
 
+  validates_presence_of :group, :charge_card
+  validates_numericality_of :subgroups_quantity
   validates_exclusion_of :subgroups_quantity, :in => 1..1
 
-  private
+private
 
   def create_subgroups
     card = self.charge_card
