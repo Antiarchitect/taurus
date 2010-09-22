@@ -1,8 +1,8 @@
 .pair
-  = "#{p.lecturer}"
+  %span #{p.lecturer}
   %br
-  = "#{p.discipline}"
+  %span #{p.discipline}
   %br
-  = "Ауд.: #{p.classroom.name}"
+  %span Ауд.: #{p.classroom.name}
   %br
-  = "Корп.: #{p.classroom.building.name}"
+  %span Корп.: #{p.classroom.building.name}
