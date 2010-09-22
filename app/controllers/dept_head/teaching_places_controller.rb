@@ -2,6 +2,7 @@ class DeptHead::TeachingPlacesController < DeptHead::BaseController
   active_scaffold do |config|
     config.columns = [:lecturer, :position]
     config.columns[:lecturer].form_ui = :record_select
+    config.columns[:lecturer].clear_link
     config.columns[:position].form_ui = :select
     config.columns[:lecturer].sort_by :sql => 'lecturers.name'
     config.search.columns = :lecturer
