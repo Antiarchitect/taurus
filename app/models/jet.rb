@@ -5,6 +5,8 @@ class Jet < ActiveRecord::Base
   belongs_to :group
   has_many :subgroups, :dependent => :destroy
 
+  validates_exclusion_of :subgroups_quantity, :in => 1..1
+
   private
 
   def create_subgroups
