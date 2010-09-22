@@ -3,3 +3,4 @@ db/schema.rb
 log/*
 tmp/*
 nbproject/*
+.redcar/*
