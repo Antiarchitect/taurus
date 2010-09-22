@@ -20,7 +20,6 @@ ActionController::Routing::Routes.draw do |map|
     d.resources :groups, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
     d.resources :lecturers, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
     d.resources :specialities, :active_scaffold => true
-    d.resources :charge_cards, :active_scaffold => true
     d.root :controller => 'teaching_places'
   end
 
