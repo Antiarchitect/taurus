@@ -16,7 +16,7 @@ class Timetable::LecturersController < ApplicationController
       @terminal = true
     end
     @id = params[:id].to_i
-    unless @lecturer = Lecturer.find_by_id(params[:id])
+    unless @lecturer = Lecturer.find_by_id(@id)
       suffix = @terminal ? '?terminal=true' : ''
       redirect_to :controller => 'timetable/lecturers' + suffix
     else
