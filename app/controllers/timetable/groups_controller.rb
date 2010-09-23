@@ -15,21 +15,25 @@ class Timetable::GroupsController < ApplicationController
     if params[:terminal]
       @terminal = true
     end
-    @id = params[:id]
-    @group = Group.first(:conditions => {:id => params[:id]}, :include => [{ :jets => { :charge_card => [ :pairs, :teaching_place ] } }])
-    jets = @group.jets
-    charge_cards = @group.charge_cards
-    pairs = Array.new
-    charge_cards.each do |card|
-      pairs << card.pairs(:include => :subgroups)
-    end
-    pairs = pairs.flatten
-    @days = Timetable.days
-    @times = Timetable.times
-    @weeks = Timetable.weeks
-    @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size).map!{Array.new}}}
-    pairs.each do |pair|
-      @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week_number - 1] << [pair, pair.subgroups.find_by_jet_id(jets.find_by_charge_card_id(pair.charge_card.id).id).try(:number)]
+    @id = params[:id].to_i
+    unless @group = Group.first(:conditions => { :id => @id })
+      suffix = @terminal ? '?terminal=true' : ''
+      redirect_to :controller => 'timetable/groups' + suffix
+    else
+      jets = @group.jets
+      charge_cards = @group.charge_cards
+      pairs = Array.new
+      charge_cards.each do |card|
+        pairs << card.pairs(:include => :subgroups)
+      end
+      pairs = pairs.flatten
+      @days = Timetable.days
+      @times = Timetable.times
+      @weeks = Timetable.weeks
+      @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size).map!{Array.new}}}
+      pairs.each do |pair|
+        @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week_number - 1] << [pair, pair.subgroups.find_by_jet_id(jets.find_by_charge_card_id(pair.charge_card.id).id).try(:number)]
+      end
     end
   end
 end
