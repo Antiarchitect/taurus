@@ -6,32 +6,32 @@
   - else
     %table{:class => 'daycell'}
       %tr
-      - if first_week_pairs.empty?
-        %td{:colspan => 2}
-          .nopair
-      - elsif first_week_pairs.size > 2
-        %td{:colspan => 2}
-          .error_pair
-      - elsif first_week_pairs.size == 2
-        - first_week_pairs.each do |f|
-          %td
-            = render 'pair', :p => f
-      - elsif first_week_pairs.size == 1
-        - first_week_pairs.each do |f|
+        - if first_week_pairs.empty?
           %td{:colspan => 2}
-            = render 'pair', :p => f
+            .nopair
+        - elsif first_week_pairs.size > 2
+          %td{:colspan => 2}
+            .error_pair
+        - elsif first_week_pairs.size == 2
+          - first_week_pairs.each do |f|
+            %td
+              = render 'pair', :p => f
+        - elsif first_week_pairs.size == 1
+          - first_week_pairs.each do |f|
+            %td{:colspan => 2}
+              = render 'pair', :p => f
       %tr
-      - if second_week_pairs.empty?
-        %td{:colspan => 2}
-          .nopair
-      - elsif second_week_pairs.size > 2
-        %td{:colspan => 2}
-          .error_pair
-      - elsif second_week_pairs.size == 2
-        - second_week_pairs.each do |f|
-          %td
-            = render 'pair', :p => f
-      - elsif second_week_pairs.size == 1
-        - second_week_pairs.each do |f|
+        - if second_week_pairs.empty?
           %td{:colspan => 2}
-            = render 'pair', :p => f
+            .nopair
+        - elsif second_week_pairs.size > 2
+          %td{:colspan => 2}
+            .error_pair
+        - elsif second_week_pairs.size == 2
+          - second_week_pairs.each do |f|
+            %td
+              = render 'pair', :p => f
+        - elsif second_week_pairs.size == 1
+          - second_week_pairs.each do |f|
+            %td{:colspan => 2}
+              = render 'pair', :p => f
