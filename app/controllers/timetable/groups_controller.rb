@@ -16,7 +16,7 @@ class Timetable::GroupsController < ApplicationController
       @terminal = true
     end
     @id = params[:id]
-    @group = Group.find_by_id(params[:id])
+    @group = Group.first(:conditions => {:id => params[:id]}, :include => [{ :jets => { :charge_card => [ :pairs, :teaching_place ] } }])
     jets = @group.jets
     charge_cards = @group.charge_cards
     pairs = Array.new
