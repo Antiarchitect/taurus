@@ -2,7 +2,7 @@ jQuery(document).ready(function($){
     $.getJSON('/timetable/groups.json', function(data) {
         var groups = new Array(0);
         data.each(function(i) {
-            groups.push({ label: i.group.name, value: i.group.id });
+            groups.push({ label: i.group.name + ' (Нажать)', value: i.group.id });
         });
 
         $('#group_name_input_terminal').autocomplete({
