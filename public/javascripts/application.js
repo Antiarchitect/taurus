@@ -10,7 +10,7 @@ jQuery(document).ready(function($){
     });
 
     $('.receiver').live('dblclick', function() {
-        $.post('pairs/', {
+        $.post('/editor/pairs/', {
             container: $(this).attr('id'),
             classroom_id: $(this).attr('grid_id'),
             week_number: $(this).attr('week_number'),

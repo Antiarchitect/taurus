@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
         over: function(){ $(this).addClass('hovered_receiver');},
         out: function(){ $(this).removeClass('hovered_receiver');},
         drop: function(event, ui){
-            $.post('pairs/' + ui.draggable.attr('id'), {
+            $.post('/editor/pairs/' + ui.draggable.attr('id'), {
                 _method: 'put',
                 classroom: $(this).attr('grid_id'),
                 week_number: $(this).attr('week_number'),
