@@ -52,6 +52,7 @@ jQuery(document).ready(function($){
                 source: groups,
                 select: function(event, ui) {
                     window.location.replace('/timetable/groups/' + ui.item.value);
+                    return false;
                 }
             });
         });
