@@ -10,7 +10,7 @@ class Editor::ClassroomsController < Editor::BaseController
 
     respond_to do |format|
       format.html
-      format.json { render :json => Classroom.all(:conditions => ['classrooms.id NOT IN (?)', except]).to_json(:only => [:id, :name], :include => { :building => { :only => :name } } )}
+      format.json { render :json => Classroom.all(:conditions => ['classrooms.id NOT IN (?)', except], :include => [:building]).to_json(:only => [:id, :name], :include => { :building => { :only => :name } } )}
     end
   end
 
