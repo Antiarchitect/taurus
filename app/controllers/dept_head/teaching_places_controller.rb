@@ -1,4 +1,5 @@
-class DeptHead::TeachingPlacesController < DeptHead::BaseController
+class DeptHead::TeachingPlacesController < DeptHead::BaseController  
+  record_select :search_on => 'lecturers.name', :include => :lecturer
   active_scaffold do |config|
     config.columns = [:lecturer, :position]
     config.columns[:lecturer].form_ui = :record_select

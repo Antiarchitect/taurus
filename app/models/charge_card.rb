@@ -1,6 +1,9 @@
 class ChargeCard < ActiveRecord::Base
   belongs_to :discipline
   belongs_to :teaching_place
+  
+  # this needs to ActiveScaffold can display teaching place in charge cards for moving
+  belongs_to :teaching_place_for_move, :class_name => 'TeachingPlace', :foreign_key => 'teaching_place_id'
   belongs_to :lesson_type
   has_many :jets, :dependent => :destroy
   has_many :groups, :through => :jets
