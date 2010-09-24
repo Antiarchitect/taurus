@@ -10,14 +10,22 @@ class DeptHead::DisciplinesController < DeptHead::BaseController
   protected
 
   def before_create_save(record)
-    if dept = current_dept_head.department
-      record.department_id = dept.id
+    if @dept ||= current_dept_head.department
+      record.department_id = @dept.id
     end
   end
 
   def conditions_for_collection
-    if dept = current_dept_head.department
-      {:department_id => dept.id}
+    if @dept ||= current_dept_head.department
+      {:department_id => @dept.id}
+    else
+      {:department_id => nil}
+    end
+  end
+  
+  def record_select_conditions_from_controller
+    if @dept ||= current_dept_head.department
+      {:department_id => @dept.id}
     else
       {:department_id => nil}
     end

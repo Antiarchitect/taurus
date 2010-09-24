@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :password
   ActiveScaffold.set_defaults do |config|
+    config.actions.exclude :show, :delete
     config.search.live = true
     config.ignore_columns = [:created_at, :updated_at, :lock_version]
     config.list.per_page = 30

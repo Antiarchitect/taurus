@@ -4,7 +4,6 @@ class DeptHead::ChargeCardsController < DeptHead::BaseController
     config.create.columns.exclude :groups, :hours_quantity
     config.update.columns.exclude :groups, :hours_quantity
     config.list.columns.exclude :jets
-    config.show.columns.exclude :jets
     config.columns[:discipline].form_ui = :record_select
     config.columns[:lesson_type].form_ui = :select
     config.columns[:discipline].clear_link
