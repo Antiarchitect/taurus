@@ -43,6 +43,7 @@ jQuery(document).ready(function($){
     if ($('#group_name_input').length > 0) {
         $('#group_name_input').focus();
         $('#group_name_input').autocomplete({
+            minLength: 2,
             source: function(request, response) {
                 $.getJSON('/timetable/groups.json', {
                     group: request.term
