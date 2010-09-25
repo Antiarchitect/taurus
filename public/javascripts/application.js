@@ -42,19 +42,23 @@ jQuery(document).ready(function($){
 
     if ($('#group_name_input').length > 0) {
         $('#group_name_input').focus();
-        $.getJSON('/timetable/groups.json', function(data) {
-            var groups = new Array(0);
-            data.each(function(i) {
-                groups.push({ label: i.group.name, value: i.group.id });
-            });
-            
-            $('#group_name_input').autocomplete({
-                source: groups,
-                select: function(event, ui) {
-                    window.location.replace('/timetable/groups/' + ui.item.value);
-                    return false;
-                }
-            });
+        $('#group_name_input').autocomplete({
+            source: function(request, response) {
+                $.getJSON('/timetable/groups.json', {
+                    group: request.term
+                },
+                function(data) {
+                    var groups = new Array(0);
+                    data.each(function(i) {
+                        groups.push({ label: i.group.name, value: i.group.id });
+                    });
+                    response(groups);
+                });
+            },
+            select: function(event, ui) {
+                window.location.replace('/timetable/groups/' + ui.item.value);
+                return false;
+            }
         });
     }
 });

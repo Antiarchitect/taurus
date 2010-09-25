@@ -20,6 +20,7 @@ jQuery(document).ready(function($){
     
     $('.charge_card').autocomplete({
         disabled: false,
+        delay: 800,
         source: function(request, response) {
             $.getJSON('/editor/charge_cards.json', {
               charge_card: request.term

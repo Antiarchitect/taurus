@@ -4,10 +4,11 @@ class Timetable::GroupsController < ApplicationController
     if params[:terminal]
       template = 'index_terminal'
     end
-
+    
+    @group = params[:group].to_s + '%'
     respond_to do |format|
       format.html { render template || 'index' }
-      format.json { render :json => Group.all.to_json(:only => [:id, :name]) }
+      format.json { render :json => Group.all(:conditions => ['groups.name LIKE ?', @group]).to_json(:only => [:id, :name]) }
     end    
   end
   
