@@ -18,23 +18,28 @@ jQuery(document).ready(function($){
         return false;
     });
     
-    $.getJSON('/editor/charge_cards.json', function(data) {
-        var charge_cards = new Array(0);
-        data.each(function(i) {
-            charge_cards.push({ label: i.charge_card.name_for_pair_edit, value: i.charge_card.id });
-        });
-
-        $('.charge_card').autocomplete({
-            source: charge_cards,
-            select: function(event, ui) {
-                $.post('/editor/pairs/' + '<%= escape_javascript @pair.id.to_s %>', {
-                    charge_card_id: ui.item.value,
-                    get_subgroups: true,
-                    _method: 'put'},
-                "script");
-                return false;
-            }
-        });
+    $('.charge_card').autocomplete({
+        disabled: false,
+        source: function(request, response) {
+            $.getJSON('/editor/charge_cards.json', {
+              charge_card: request.term
+            },
+            function(data) {
+                var charge_cards = new Array(0);
+                data.each(function(i) {
+                    charge_cards.push({ label: i.charge_card.name_for_pair_edit, value: i.charge_card.id });
+                });
+                response(charge_cards);
+            });
+        },
+        select: function(event, ui) {
+            $.post('/editor/pairs/' + '<%= escape_javascript @pair.id.to_s %>', {
+                charge_card_id: ui.item.value,
+                get_subgroups: true,
+                _method: 'put'},
+            "script");
+            return false;
+        }
     });
 
     var months = [
