@@ -27,7 +27,7 @@ class Editor::PairsController < Editor::BaseController
   end
 
   def update
-    @pair = Pair.find(params[:id])
+    @pair = Pair.find_by_id(params[:id].to_i)
     @prev_pair = @pair.clone
     @prev_pair.readonly!
     if params[:get_subgroups] && params[:charge_card_id]
@@ -40,14 +40,23 @@ class Editor::PairsController < Editor::BaseController
         )
       end
       redirect_to :action => 'edit'
-    elsif params[:classroom]
-      Pair.update(params[:id],
-        :classroom_id => params[:classroom]
-      )
-      @pair = Pair.find_by_id(params[:id])
-      @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
-      @pair.pair_number = params[:pair_number] if params[:pair_number]
-      @pair.save!
+    elsif params[:classroom]      
+      @pair = Pair.find_by_id(params[:id].to_i)
+      @pair.classroom_id = params[:classroom].to_i    
+      @pair.day_of_the_week = params[:day_of_the_week].to_i if params[:day_of_the_week]
+      @pair.pair_number = params[:pair_number].to_i if params[:pair_number]
+      candidates = Pair.all(:conditions => {:classroom_id => @pair.classroom_id, :day_of_the_week => @pair.day_of_the_week, :pair_number => @pair.pair_number }).to_a
+      if candidates.size > 0
+        if @pair.week == 0 && candidates.select { |c| c.id != @pair.id }.size > 0 
+          @pair = Pair.find_by_id(params[:id].to_i)
+        elsif @pair.week != 0 && candidates.select { |c| c.id != @pair.id && (c.week == 0 || c.week == @pair.week) }.size > 0
+          @pair = Pair.find_by_id(params[:id].to_i)
+        else
+          @pair.save!
+        end
+      else
+        @pair.save!
+      end      
       
       respond_to do |format|
         format.js

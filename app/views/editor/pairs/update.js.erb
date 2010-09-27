@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
       $('#td_grid<%= @pair.classroom_id %>_week1_day<%= @pair.day_of_the_week %>_time<%= @pair.pair_number %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => @pair, :colspan => 2} %>');
       $('#td_grid<%= @pair.classroom_id %>_week2_day<%= @pair.day_of_the_week %>_time<%= @pair.pair_number %>').remove();
     }
-    <% if @prev_pair.week == 0 && (@prev_pair.classroom_id != @pair.classroom_id || @prev_pair.day_of_the_week != @pair.day_of_the_week || @prev_pair.pair_number != @pair.pair_number) %>
+    <% if @prev_pair.week == 0 && (@prev_pair.classroom_id != @pair.classroom_id || @prev_pair.week != @pair.week || @prev_pair.day_of_the_week != @pair.day_of_the_week || @prev_pair.pair_number != @pair.pair_number) %>
       $('#td<%= escape_javascript prev_container %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => @prev_pair, :colspan => 1} %>');
     <% end %>
     $('#container<%= escape_javascript container %>').append('<%= escape_javascript render :partial => @pair %>');
