@@ -13,6 +13,10 @@ class DeptHead::TeachingPlacesController < DeptHead::BaseController
 
   protected
 
+  def record_select_includes
+    :lecturer
+  end
+  
   def before_create_save(record)
     @dept ||= current_dept_head.department
     record.department_id = @dept.id
