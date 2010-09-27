@@ -1,0 +1,4 @@
+- td_id = "td_grid#{@grid}_week#{@week}_day#{@day_of_the_week}_time#{@pair_number}"
+- id = "container_grid#{@grid}_week#{@week}_day#{@day_of_the_week}_time#{@pair_number}"
+%td{ :id => "#{td_id}", :colspan => "2" }  
+  .receiver{ :id => "#{id}", :grid_id => "#{@grid}", :week_number => "#{@week}", :day_of_the_week => "#{@day_of_the_week}", :pair_number => "#{@pair_number}" }

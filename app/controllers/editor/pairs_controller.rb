@@ -7,7 +7,7 @@ class Editor::PairsController < Editor::BaseController
       p.classroom_id = params[:classroom_id]
       p.day_of_the_week = params[:day_of_the_week]
       p.pair_number = params[:pair_number]
-      p.week_number = params[:week_number]
+      p.week = params[:week_number]
       p.active_at = Date.today
       p.expired_at = Date.new(2010, 12, 31)
     end
@@ -54,7 +54,11 @@ class Editor::PairsController < Editor::BaseController
       end
     else
       @pair.update_attributes(params[:pair])
-      @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
+      @week = @pair.week
+      @day_of_the_week = @pair.day_of_the_week
+      @pair_number = @pair.pair_number
+      @grid = @pair.classroom_id
+      @container = "container_grid#{@grid}_week#{@week}_day#{@day_of_the_week}_time#{@pair_number}"
 
       respond_to do |format|
         format.js
