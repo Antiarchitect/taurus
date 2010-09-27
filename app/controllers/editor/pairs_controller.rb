@@ -28,11 +28,8 @@ class Editor::PairsController < Editor::BaseController
 
   def update
     @pair = Pair.find(params[:id])
-    week = @pair.week
-    day_of_the_week = @pair.day_of_the_week
-    pair_number = @pair.pair_number
-    grid = @pair.classroom_id
-    @previous_container = "_grid#{grid}_week#{week}_day#{day_of_the_week}_time#{pair_number}"
+    @prev_pair = Car.new(@car.clone_attributes)
+    @prev_pair.readonly!
     if params[:get_subgroups] && params[:charge_card_id]
       @pair.update_attributes(:charge_card_id => params[:charge_card_id])
       @pair.subgroups.delete_all
@@ -51,12 +48,7 @@ class Editor::PairsController < Editor::BaseController
       @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
       @pair.pair_number = params[:pair_number] if params[:pair_number]
       @pair.save!
-      @week = @pair.week
-      @day_of_the_week = @pair.day_of_the_week
-      @pair_number = @pair.pair_number
-      @grid = @pair.classroom_id
-      @container = "_grid#{@grid}_week#{@week}_day#{@day_of_the_week}_time#{@pair_number}"
-
+      
       respond_to do |format|
         format.js
       end
