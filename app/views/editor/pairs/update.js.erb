@@ -1,10 +1,9 @@
 jQuery(document).ready(function($){
     $('#<%= escape_javascript @pair.id.to_s %>').remove();
-    if ($('#<%= escape_javascript @container %>').length == 0) {
-      $('#td_grid<%= escape_javascript @grid.to_s %>_week1_day<%= escape_javascript @day_of_the_week.to_s %>_time<%= escape_javascript @pair_number.to_s %>').before('<%= escape_javascript render "/editor/classrooms/container" %>');
-      $('#td_grid<%= escape_javascript @grid.to_s %>_week1_day<%= escape_javascript @day_of_the_week.to_s %>_time<%= escape_javascript @pair_number.to_s %>').remove();
+    if ($('#td<%= escape_javascript @container %>').length == 0) {
+      $('#td_grid<%= escape_javascript @grid.to_s %>_week1_day<%= escape_javascript @day_of_the_week.to_s %>_time<%= escape_javascript @pair_number.to_s %>').replaceWith('<%= escape_javascript render "/editor/classrooms/container" %>');
       $('#td_grid<%= escape_javascript @grid.to_s %>_week2_day<%= escape_javascript @day_of_the_week.to_s %>_time<%= escape_javascript @pair_number.to_s %>').remove();
     }
-    $('#<%= escape_javascript @container %>').append('<%= escape_javascript render :partial => @pair %>');
+    $('#container<%= escape_javascript @container %>').append('<%= escape_javascript render :partial => @pair %>');
     $('#<%= escape_javascript @pair.id.to_s %>').draggable();
 });

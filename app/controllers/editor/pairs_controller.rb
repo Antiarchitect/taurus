@@ -28,6 +28,11 @@ class Editor::PairsController < Editor::BaseController
 
   def update
     @pair = Pair.find(params[:id])
+    week = @pair.week
+    day_of_the_week = @pair.day_of_the_week
+    pair_number = @pair.pair_number
+    grid = @pair.classroom_id
+    @previous_container = "_grid#{grid}_week#{week}_day#{day_of_the_week}_time#{pair_number}"
     if params[:get_subgroups] && params[:charge_card_id]
       @pair.update_attributes(:charge_card_id => params[:charge_card_id])
       @pair.subgroups.delete_all
@@ -43,11 +48,14 @@ class Editor::PairsController < Editor::BaseController
         :classroom_id => params[:classroom]
       )
       @pair = Pair.find_by_id(params[:id])
-      @pair.week_number = params[:week_number] if params[:week_number]
       @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
       @pair.pair_number = params[:pair_number] if params[:pair_number]
       @pair.save!
-      @container = params[:container]
+      @week = @pair.week
+      @day_of_the_week = @pair.day_of_the_week
+      @pair_number = @pair.pair_number
+      @grid = @pair.classroom_id
+      @container = "_grid#{@grid}_week#{@week}_day#{@day_of_the_week}_time#{@pair_number}"
 
       respond_to do |format|
         format.js
@@ -58,7 +66,7 @@ class Editor::PairsController < Editor::BaseController
       @day_of_the_week = @pair.day_of_the_week
       @pair_number = @pair.pair_number
       @grid = @pair.classroom_id
-      @container = "container_grid#{@grid}_week#{@week}_day#{@day_of_the_week}_time#{@pair_number}"
+      @container = "_grid#{@grid}_week#{@week}_day#{@day_of_the_week}_time#{@pair_number}"
 
       respond_to do |format|
         format.js
