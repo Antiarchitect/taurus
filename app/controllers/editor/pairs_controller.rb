@@ -45,7 +45,7 @@ class Editor::PairsController < Editor::BaseController
       @pair.classroom_id = params[:classroom].to_i    
       @pair.day_of_the_week = params[:day_of_the_week].to_i if params[:day_of_the_week]
       @pair.pair_number = params[:pair_number].to_i if params[:pair_number]
-      candidates = Pair.all(:conditions => {:classroom_id => @pair.classroom_id, :day_of_the_week => @pair.day_of_the_week, :pair_number => @pair.pair_number }).to_a
+      candidates = Pair.find_candidates(@pair)
       if candidates.size > 0
         if @pair.week == 0 && candidates.select { |c| c.id != @pair.id }.size > 0 
           @pair = Pair.find_by_id(params[:id].to_i)
@@ -62,6 +62,12 @@ class Editor::PairsController < Editor::BaseController
         format.js
       end
     else
+      candidates = Pair.find_candidates(@pair)
+      if candidates.size > 0
+        if (params[:pair][:week] == "0" && candidates.select { |c| c.week != 0  && c.id != @pair.id }.size > 0) || (params[:pair][:week] == "1" && candidates.select { |c| c.week == 1 && c.id != @pair.id }.size > 0) || (params[:pair][:week] == "2" && candidates.select { |c| c.week == 2 && c.id != @pair.id }.size > 0)
+          params[:pair][:week] = @pair.week
+        end
+      end
       @pair.update_attributes(params[:pair])
       respond_to do |format|
         format.js
