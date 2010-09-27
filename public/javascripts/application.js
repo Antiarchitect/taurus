@@ -40,9 +40,9 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    if ($('#group_name_input').length > 0) {
-        $('#group_name_input').focus();
-        $('#group_name_input').autocomplete({
+    
+        $('#group_name_input, #group_name_input_terminal').focus();
+        $('#group_name_input, #group_name_input_terminal').autocomplete({
             minLength: 2,
             source: function(request, response) {
                 $.getJSON('/timetable/groups.json', {
@@ -57,9 +57,13 @@ jQuery(document).ready(function($){
                 });
             },
             select: function(event, ui) {
-                window.location.replace('/timetable/groups/' + ui.item.value);
+                if ($(this).attr('id') == "group_name_input_terminal") {
+                  var suffix = "?terminal=true";
+                } else {
+                  var suffix = "";
+                }
+                window.location.replace('/timetable/groups/' + ui.item.value + suffix);
                 return false;
             }
         });
-    }
 });
