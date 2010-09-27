@@ -1,2 +1,11 @@
-%td{ :id => "td#{@container}", :colspan => "2" }  
-  .receiver{ :id => "container#{@container}", :grid_id => "#{@grid}", :week_number => "#{@week}", :day_of_the_week => "#{@day_of_the_week}", :pair_number => "#{@pair_number}" }
+- if colspan == 2
+  - cont = "_grid#{pair.classroom_id}_week0_day#{pair.day_of_the_week}_time#{pair.pair_number}"
+  %td{ :id => "td#{cont}", :colspan => "2" }  
+    .receiver{ :id => "container#{cont}", :grid_id => "#{pair.classroom_id}", :week_number => "0", :day_of_the_week => "#{pair.day_of_the_week}", :pair_number => "#{pair.pair_number}" }
+- elsif colspan == 1
+  - cont1 = "_grid#{pair.classroom_id}_week1_day#{pair.day_of_the_week}_time#{pair.pair_number}"
+  - cont2 = "_grid#{pair.classroom_id}_week2_day#{pair.day_of_the_week}_time#{pair.pair_number}"
+  %td{ :id => "td#{cont1}", :colspan => "1" }  
+    .receiver{ :id => "container#{cont1}", :grid_id => "#{pair.classroom_id}", :week_number => "1", :day_of_the_week => "#{pair.day_of_the_week}", :pair_number => "#{pair.pair_number}" }
+  %td{ :id => "td#{cont2}", :colspan => "1" }  
+    .receiver{ :id => "container#{cont2}", :grid_id => "#{pair.classroom_id}", :week_number => "2", :day_of_the_week => "#{pair.day_of_the_week}", :pair_number => "#{pair.pair_number}" }
