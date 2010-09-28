@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
             });
         },
         select: function(event, ui) {
-          $.get('/editor/classrooms/' + ui.item.value, "script");
+          $.get('/editor/classrooms/' + ui.item.value);
           return false;
         }
     });

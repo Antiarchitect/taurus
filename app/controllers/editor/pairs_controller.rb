@@ -37,16 +37,22 @@ class Editor::PairsController < Editor::BaseController
     @prev_pair = @pair.clone
     @prev_pair.readonly!
     if params[:get_subgroups] && params[:pair]
-      @pair.update_attributes(params[:pair])
-      candidates = Pair.find_candidates(@pair)
-      @pair.subgroups.delete_all
-      @pair.charge_card.jets.each do |jet|
-        @pair.subgroups.create(
-          :jet_id => jet.id,
-          :number => 0
-        )
-      end
-      redirect_to :action => 'edit'
+      @pair.attributes = params[:pair]
+      unless @pair.valid?
+        flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+        @pair = @prev_pair
+      else
+        @pair.save
+        @pair.subgroups.delete_all
+        @pair.charge_card.jets.each do |jet|
+          @pair.subgroups.create(
+            :jet_id => jet.id,
+            :number => 0
+          )
+        end
+        @subgroups_only = true
+        redirect_to :action => 'edit'
+      end      
     elsif params[:classroom]    
       @pair.classroom_id = params[:classroom].to_i    
       @pair.day_of_the_week = params[:day_of_the_week].to_i if params[:day_of_the_week]

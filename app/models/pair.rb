@@ -85,10 +85,27 @@ class Pair < ActiveRecord::Base
                    :week => [ 0, week ] }
     if (conflicts = Pair.all(:conditions => conditions)).size > 0
       pairs = conflicts.map { |p| p.name }.join('<br />')
-      logger.info(pairs)
       errors.add_to_base "Невозможно создать пару, так как следующая пара:<br /><br />" +
       pairs +
       "<br /><br />уже существует в этом временном окне этой аудитории."
+    end
+  end
+  
+  def validate_on_update
+    conditions = ['pairs.id <> ? AND pairs.day_of_the_week = ? AND pairs.pair_number = ? AND pairs.week IN (?)',
+                  id, day_of_the_week, pair_number, [0, week]]
+    if (candidates = Pair.all(:conditions => conditions)).size > 0
+      # classroom busyness
+      # lecturer busyness
+      if (conflicts = candidates.select { |c| c.charge_card.lecturer == charge_card.lecturer }).size > 0
+        pairs = conflicts.map { |p| p.name }.join('<br />')
+        errors.add_to_base "Невозможно сохранить пару, так как этот преподаватель уже ведет следующие пары:<br /><br />" +
+        pairs +
+        "<br /><br />в этом временном окне."
+        candidates -= conflicts 
+      end
+      # subgroups busyness
+      if (conflicts = candidates.select { |c| c.subgroups == subgroups }).size > 0
     end
   end
 end
