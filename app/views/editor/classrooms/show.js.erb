@@ -17,9 +17,13 @@ jQuery(document).ready(function($){
         }
     });
     <% @pairs.each do |pair| %>
-    $('#<%=  escape_javascript "container_grid#{@classroom.id}_week#{pair.week}_day#{pair.day_of_the_week}_time#{pair.pair_number}" %>').append(
+      <% if pair.week == 0 %>
+        $('#td_grid<%= pair.classroom_id %>_week1_day<%= pair.day_of_the_week %>_time<%= pair.pair_number %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => pair, :colspan => 2} %>');
+        $('#td_grid<%= pair.classroom_id %>_week2_day<%= pair.day_of_the_week %>_time<%= pair.pair_number %>').remove();
+      <% end %>
+      $('#<%= escape_javascript "container_grid#{@classroom.id}_week#{pair.week}_day#{pair.day_of_the_week}_time#{pair.pair_number}" %>').append(
         '<%= escape_javascript render :partial => '/editor/pairs/pair', :object => pair %>'
-    );
+      );        
     <% end %>
     $('.pair').draggable();
     $('#form').fadeOut('slow');

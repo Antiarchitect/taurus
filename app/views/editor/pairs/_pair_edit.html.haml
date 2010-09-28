@@ -16,7 +16,7 @@
     %p{:id => "charge_card_block"}
       = 'Карта нагрузки'
       %br
-      %input{:class => "charge_card", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
+      %input{:class => "charge_card", :id => "charge_card_name", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
     %p{:id => "dates_block"}
       %span{:id => "active_at_label"} Начало занятий
       %br

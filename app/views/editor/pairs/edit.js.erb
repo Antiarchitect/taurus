@@ -1,8 +1,9 @@
 jQuery(document).ready(function($){
+    $('#pair_edit_<%= @pair.id %>').remove();
     $('body').prepend('<%= escape_javascript render :partial => 'pair_edit' %>');
-    var dlg = $('#pair_edit_<%= escape_javascript @pair.id.to_s %>').dialog({
+    var dlg = $('#pair_edit_<%= @pair.id %>').dialog({
         beforeClose: function(event, ui) {
-            $('#pair_edit_<%= escape_javascript @pair.id.to_s %>').remove();
+            $('#pair_edit_<%= @pair.id %>').remove();
         },
         closeText: 'Закрыть',
         draggable: false,
@@ -43,7 +44,11 @@ jQuery(document).ready(function($){
             return false;
         }
     });
-
+    
+    $('.charge_card').focus(function() {
+        $('.charge_card').val('');
+    });
+    
     var months = [
         'Январь',
         'Февраль',

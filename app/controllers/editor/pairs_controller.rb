@@ -3,7 +3,7 @@ class Editor::PairsController < Editor::BaseController
   layout 'application', :except => :edit
   
   def create
-    @pair = Pair.create do |p|
+    @pair = Pair.new do |p|
       p.classroom_id = params[:classroom_id]
       p.day_of_the_week = params[:day_of_the_week]
       p.pair_number = params[:pair_number]
@@ -11,7 +11,13 @@ class Editor::PairsController < Editor::BaseController
       p.active_at = Date.today
       p.expired_at = Date.new(2010, 12, 31)
     end
-    @container = params[:container]
+    candidates = Pair.find_candidates(@pair)
+    if candidates.select { |c| c.week == @pair.week || c.week == 0 }.size > 0 
+      @pair = false
+    else
+      @pair.save
+      @container = params[:container]
+    end    
 
     respond_to do |format|
       format.js
@@ -52,10 +58,10 @@ class Editor::PairsController < Editor::BaseController
         elsif @pair.week != 0 && candidates.select { |c| c.id != @pair.id && (c.week == 0 || c.week == @pair.week) }.size > 0
           @pair = Pair.find_by_id(params[:id].to_i)
         else
-          @pair.save!
+          @pair.save
         end
       else
-        @pair.save!
+        @pair.save
       end      
       
       respond_to do |format|
@@ -76,8 +82,10 @@ class Editor::PairsController < Editor::BaseController
   end
 
   def destroy
-    @id = params[:id]
+    @id = params[:id].to_i
     pair = Pair.find_by_id(@id)
+    @pair = pair.clone
+    @pair.readonly!
     pair.destroy
 
     respond_to do |format|

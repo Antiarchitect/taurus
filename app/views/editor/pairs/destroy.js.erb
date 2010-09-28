@@ -2,4 +2,7 @@ jQuery(document).ready(function($){
     $('#<%= @id %>').fadeOut('fast', function() {
         $('#<%= @id %>').remove();
     });
+    <% if @pair.week == 0 %>    
+      $('#td_grid<%= @pair.classroom_id %>_week0_day<%= @pair.day_of_the_week %>_time<%= @pair.pair_number %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => @pair, :colspan => 1} %>');
+    <% end %>
 });

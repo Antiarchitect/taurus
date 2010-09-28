@@ -1,5 +1,7 @@
 jQuery(document).ready(function($){
+  <% if @pair %>
     $('#<%= escape_javascript @container %>').prepend('<%= escape_javascript render :partial => @pair %>');
-    $('#<%= escape_javascript @pair.id.to_s %>').draggable();
-    $.get('/editor/pairs/' + '<%= escape_javascript @pair.id.to_s %>' + '/edit', null, "script");
+    $('#<%= @pair.id %>').draggable();
+    $.get('/editor/pairs/' + '<%= @pair.id %>' + '/edit', null, "script");
+  <% end %>
 });
