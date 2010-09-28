@@ -17,6 +17,7 @@
       = 'Карта нагрузки'
       %br
       %input{:class => "charge_card", :id => "charge_card_name", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
+      = f.hidden_field :charge_card_id
     %p{:id => "dates_block"}
       %span{:id => "active_at_label"} Начало занятий
       %br

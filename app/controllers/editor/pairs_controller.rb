@@ -36,8 +36,8 @@ class Editor::PairsController < Editor::BaseController
     @pair = Pair.find_by_id(params[:id].to_i)
     @prev_pair = @pair.clone
     @prev_pair.readonly!
-    if params[:get_subgroups] && params[:charge_card_id]
-      @pair.update_attributes(:charge_card_id => params[:charge_card_id])
+    if params[:get_subgroups] && params[:pair]
+      @pair.update_attributes(params[:pair])
       @pair.subgroups.delete_all
       @pair.charge_card.jets.each do |jet|
         @pair.subgroups.create(
