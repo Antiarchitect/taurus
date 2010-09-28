@@ -11,14 +11,14 @@ class Editor::PairsController < Editor::BaseController
       p.active_at = Date.today
       p.expired_at = Date.new(2010, 12, 31)
     end
-    candidates = Pair.find_candidates(@pair)
-    if candidates.select { |c| c.week == @pair.week || c.week == 0 }.size > 0 
-      @pair = false
+    @container = params[:container]
+    unless @pair.valid?
+      flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+      @pair = nil
     else
       @pair.save
-      @container = params[:container]
-    end    
-
+    end
+    
     respond_to do |format|
       format.js
     end

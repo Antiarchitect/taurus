@@ -1,6 +1,8 @@
 jQuery(document).ready(function($){
+    $('#error').replaceWith('<div id="error"></div>');
     $('#pair_edit_<%= @pair.id %>').remove();
     $('body').prepend('<%= escape_javascript render :partial => 'pair_edit' %>');
+    $('#flash').replaceWith('<div id="flash"></div>');
     var dlg = $('#pair_edit_<%= @pair.id %>').dialog({
         beforeClose: function(event, ui) {
             $('#pair_edit_<%= @pair.id %>').remove();

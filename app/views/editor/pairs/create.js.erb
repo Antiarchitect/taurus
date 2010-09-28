@@ -1,7 +1,11 @@
 jQuery(document).ready(function($){
+  $('#error').remove();
   <% if @pair %>
     $('#<%= escape_javascript @container %>').prepend('<%= escape_javascript render :partial => @pair %>');
     $('#<%= @pair.id %>').draggable();
     $.get('/editor/pairs/' + '<%= @pair.id %>' + '/edit', null, "script");
+  <% elsif flash[:error] %>
+    $('.workspace').prepend('<div id="error"></div>');
+    $('#error').append('<%= escape_javascript flash[:error] %>');
   <% end %>
 });
