@@ -53,6 +53,6 @@ class Pair < ActiveRecord::Base
   end
   
   def self.find_candidates(pair)
-    candidates = Pair.all(:conditions => {:classroom_id => pair.classroom_id, :day_of_the_week => pair.day_of_the_week, :pair_number => pair.pair_number }).to_a
+    candidates = Pair.all(:conditions => { :day_of_the_week => pair.day_of_the_week, :pair_number => pair.pair_number }).to_a
   end
 end
