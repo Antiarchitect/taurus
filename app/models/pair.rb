@@ -86,9 +86,9 @@ class Pair < ActiveRecord::Base
     if (conflicts = Pair.all(:conditions => conditions)).size > 0
       pairs = conflicts.map { |p| p.name }.join('<br />')
       logger.info(pairs)
-      errors.add_to_base "Невозможно создать пару, так как следующие пары:<br /><br />" +
+      errors.add_to_base "Невозможно создать пару, так как следующая пара:<br /><br />" +
       pairs +
-      "<br /><br />уже существуют в этом временном окне этой аудитории."
+      "<br /><br />уже существует в этом временном окне этой аудитории."
     end
   end
 end
