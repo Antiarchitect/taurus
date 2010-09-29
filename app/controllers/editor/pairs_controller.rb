@@ -33,7 +33,7 @@ class Editor::PairsController < Editor::BaseController
   end
 
   def update
-    @pair = Pair.find_by_id(params[:id].to_i)
+    @pair = Pair.find_by_id(params[:id].to_i, :include => [:subgroups])
     @prev_pair = @pair.clone
     @prev_pair.readonly!
     if params[:get_subgroups] && params[:pair]
@@ -69,7 +69,8 @@ class Editor::PairsController < Editor::BaseController
         format.js
       end
     else
-      unless @pair.update_attributes(params[:pair])
+      @pair.attributes = params[:pair]
+      unless @pair.valid?
         flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
         @pair = @prev_pair
       else
