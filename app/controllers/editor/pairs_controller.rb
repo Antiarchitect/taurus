@@ -52,21 +52,15 @@ class Editor::PairsController < Editor::BaseController
         end
         @subgroups_only = true
         redirect_to :action => 'edit'
-      end      
-    elsif params[:classroom]    
+      end
+    elsif params[:classroom]
       @pair.classroom_id = params[:classroom].to_i    
       @pair.day_of_the_week = params[:day_of_the_week].to_i if params[:day_of_the_week]
       @pair.week = params[:week].to_i if params[:week]
       @pair.pair_number = params[:pair_number].to_i if params[:pair_number]
-      candidates = Pair.find_candidates(@pair)
-      if candidates.size > 0
-        if @pair.week == 0 && candidates.select { |c| c.id != @pair.id }.size > 0 
-          @pair = Pair.find_by_id(params[:id].to_i)
-        elsif @pair.week != 0 && candidates.select { |c| c.id != @pair.id && (c.week == 0 || c.week == @pair.week) }.size > 0
-          @pair = Pair.find_by_id(params[:id].to_i)
-        else          
-          @pair.save
-        end
+      unless @pair.valid?
+        flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+        @pair = @prev_pair
       else
         @pair.save
       end
@@ -75,13 +69,12 @@ class Editor::PairsController < Editor::BaseController
         format.js
       end
     else
-      candidates = Pair.find_candidates(@pair)
-      if candidates.size > 0
-        if (params[:pair][:week] == "0" && candidates.select { |c| c.week != 0  && c.id != @pair.id }.size > 0) || (params[:pair][:week] == "1" && candidates.select { |c| c.week == 1 && c.id != @pair.id }.size > 0) || (params[:pair][:week] == "2" && candidates.select { |c| c.week == 2 && c.id != @pair.id }.size > 0)
-          params[:pair][:week] = @pair.week
-        end
-      end
-      @pair.update_attributes(params[:pair])
+      unless @pair.update_attributes(params[:pair])
+        flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+        @pair = @prev_pair
+      else
+        @pair.save
+      end      
       respond_to do |format|
         format.js
       end

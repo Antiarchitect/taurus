@@ -3,6 +3,11 @@ prev_container = "_grid#{@prev_pair.classroom_id}_week#{@prev_pair.week}_day#{@p
 container = "_grid#{@pair.classroom_id}_week#{@pair.week}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
 %>
 jQuery(document).ready(function($){
+    $('#error').remove();
+    <% if flash[:error] %>
+      $('.workspace').prepend('<div id="error"></div>');
+      $('#error').append('<%= escape_javascript flash[:error] %>');
+    <% end %>
     $('#<%= @pair.id %>').remove();
     if ($('#td<%= escape_javascript container %>').length == 0) {
       $('#td_grid<%= @pair.classroom_id %>_week1_day<%= @pair.day_of_the_week %>_time<%= @pair.pair_number %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => @pair, :colspan => 2} %>');

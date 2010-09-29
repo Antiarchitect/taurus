@@ -78,7 +78,7 @@ class Pair < ActiveRecord::Base
   
   private
   
-  def validate_on_create
+  def validate_on_create    
     conditions = { :classroom_id => classroom_id,
                    :day_of_the_week => day_of_the_week,
                    :pair_number => pair_number,
@@ -96,16 +96,43 @@ class Pair < ActiveRecord::Base
                   id, day_of_the_week, pair_number, [0, week]]
     if (candidates = Pair.all(:conditions => conditions)).size > 0
       # classroom busyness
+      if (conflicts = candidates.select { |c| c.classroom_id == classroom.id }).size > 0
+        pairs = conflicts.map { |p| p.name }.join('<br />')
+        errors.add_to_base "Невозможно сохранить пару, так как следующие пары:<br /><br />" +
+        pairs +
+        "<br /><br />уже существуют в этом временном окне этой аудитории."
+        candidates -= conflicts 
+      end
       # lecturer busyness
-      if (conflicts = candidates.select { |c| c.charge_card.lecturer == charge_card.lecturer }).size > 0
+      if (conflicts = candidates.select { |c| c.charge_card && charge_card && c.charge_card.teaching_place.lecturer == charge_card.teaching_place.lecturer }).size > 0
         pairs = conflicts.map { |p| p.name }.join('<br />')
         errors.add_to_base "Невозможно сохранить пару, так как этот преподаватель уже ведет следующие пары:<br /><br />" +
         pairs +
         "<br /><br />в этом временном окне."
-        candidates -= conflicts 
+        candidates -= conflicts
       end
       # subgroups busyness
-      if (conflicts = candidates.select { |c| c.subgroups == subgroups }).size > 0
+      if (conflicts = candidates.select { |c| c.charge_card && charge_card && (c.charge_card.groups & charge_card.groups).size > 0 }).size > 0
+        groups_intersect = conflicts.map { |c| [c, c.charge_card.groups & charge_card.groups] }
+        conflicts = []
+        groups_intersect.each do |intersect|
+          intersect[1].each do |group|
+            pair = subgroups.select { |s| group.jets.map { |j| j.id }.include?(s.jet_id) }.first
+            candidate = group.subgroups.find_by_pair_id(intersect[0].id)
+            if pair && candidate && (pair.number == 0 || candidate.number == 0 || pair.number == candidate.number)
+              logger.info("pair.number: #{pair.number}, candidate.number: #{candidate.number}")
+              conflicts << intersect[0]
+            end
+          end
+        end
+        if conflicts.size > 0
+          pairs = conflicts.map { |p| p.name }.join('<br />')
+          errors.add_to_base "Невозможно сохранить пару, так как у одной или нескольких групп существуют следующие пары:<br /><br />" +
+          pairs +
+          "<br /><br />в этом временном окне."
+          candidates -= conflicts
+        end
+      end
     end
   end
 end
