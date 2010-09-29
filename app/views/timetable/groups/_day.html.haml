@@ -7,7 +7,7 @@
   - else
     %table{:class => 'daycell'}
       - if both_week_pairs.size == 1
-        %tr{:rowspan => 2}
+        %tr
           - both_week_pairs.each do |b|
             - if b[1] == 0
               %td{:colspan => 2}
