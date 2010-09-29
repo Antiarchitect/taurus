@@ -92,8 +92,9 @@ class Pair < ActiveRecord::Base
   end
   
   def validate_on_update
+    week_conditions = week == 0 ? [0, 1, 2] : [0, week]
     conditions = ['pairs.id <> ? AND pairs.day_of_the_week = ? AND pairs.pair_number = ? AND pairs.week IN (?)',
-                  id, day_of_the_week, pair_number, [0, week]]
+                  id, day_of_the_week, pair_number, week_conditions]
     if (candidates = Pair.all(:conditions => conditions)).size > 0
       # classroom busyness
       if (conflicts = candidates.select { |c| c.classroom_id == classroom.id }).size > 0
