@@ -1,8 +1,11 @@
 jQuery(document).ready(function($){
+    $('#error').replaceWith('<div id="error"></div>');
+    $('#pair_edit_<%= @pair.id %>').remove();
     $('body').prepend('<%= escape_javascript render :partial => 'pair_edit' %>');
-    var dlg = $('#pair_edit_<%= escape_javascript @pair.id.to_s %>').dialog({
+    $('#flash').replaceWith('<div id="flash"></div>');
+    var dlg = $('#pair_edit_<%= @pair.id %>').dialog({
         beforeClose: function(event, ui) {
-            $('#pair_edit_<%= escape_javascript @pair.id.to_s %>').remove();
+            $('#pair_edit_<%= @pair.id %>').remove();
         },
         closeText: 'Закрыть',
         draggable: false,
@@ -34,15 +37,19 @@ jQuery(document).ready(function($){
             });
         },
         select: function(event, ui) {
-            $.post('/editor/pairs/' + '<%= escape_javascript @pair.id.to_s %>', {
-                charge_card_id: ui.item.value,
-                get_subgroups: true,
-                _method: 'put'},
-            "script");
+            $('#pair_charge_card_id').val(ui.item.value);
+            $('#charge_card_name').val(ui.item.label);
+            $.post($('#edit_pair_<%= @pair.id %>').attr('action'),
+                $('#edit_pair_<%= @pair.id %>').serialize() + '&get_subgroups=true',
+                null, "script");
             return false;
         }
     });
-
+    
+    $('.charge_card').focus(function() {
+        $('.charge_card').val('');
+    });
+    
     var months = [
         'Январь',
         'Февраль',

@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
             $.post('/editor/pairs/' + ui.draggable.attr('id'), {
                 _method: 'put',
                 classroom: $(this).attr('grid_id'),
-                week_number: $(this).attr('week_number'),
+                week: $(this).attr('week_number'),
                 day_of_the_week: $(this).attr('day_of_the_week'),
                 pair_number: $(this).attr('pair_number'),
                 container: $(this).attr('id')
@@ -17,9 +17,13 @@ jQuery(document).ready(function($){
         }
     });
     <% @pairs.each do |pair| %>
-    $('#<%=  escape_javascript "container_grid#{@classroom.id}_week#{pair.week_number}_day#{pair.day_of_the_week}_time#{pair.pair_number}" %>').append(
+      <% if pair.week == 0 %>
+        $('#td_grid<%= pair.classroom_id %>_week1_day<%= pair.day_of_the_week %>_time<%= pair.pair_number %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => pair, :colspan => 2} %>');
+        $('#td_grid<%= pair.classroom_id %>_week2_day<%= pair.day_of_the_week %>_time<%= pair.pair_number %>').remove();
+      <% end %>
+      $('#<%= escape_javascript "container_grid#{@classroom.id}_week#{pair.week}_day#{pair.day_of_the_week}_time#{pair.pair_number}" %>').append(
         '<%= escape_javascript render :partial => '/editor/pairs/pair', :object => pair %>'
-    );
+      );        
     <% end %>
     $('.pair').draggable();
     $('#form').fadeOut('slow');

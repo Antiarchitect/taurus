@@ -1,6 +1,7 @@
 class Editor::ClassroomsController < Editor::BaseController
 
   def index
+    flash[:error] = nil
     cookies[:classrooms] = YAML.dump([0])
     if params[:except]
       except = params[:except].split(',').collect { |e| e.to_i }

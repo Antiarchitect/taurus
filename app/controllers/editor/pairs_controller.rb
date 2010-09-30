@@ -3,16 +3,22 @@ class Editor::PairsController < Editor::BaseController
   layout 'application', :except => :edit
   
   def create
-    @pair = Pair.create do |p|
+    @pair = Pair.new do |p|
       p.classroom_id = params[:classroom_id]
       p.day_of_the_week = params[:day_of_the_week]
       p.pair_number = params[:pair_number]
-      p.week_number = params[:week_number]
+      p.week = params[:week]
       p.active_at = Date.today
       p.expired_at = Date.new(2010, 12, 31)
     end
     @container = params[:container]
-
+    unless @pair.valid?
+      flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+      @pair = nil
+    else
+      @pair.save
+    end
+    
     respond_to do |format|
       format.js
     end
@@ -27,35 +33,49 @@ class Editor::PairsController < Editor::BaseController
   end
 
   def update
-    @pair = Pair.find(params[:id])
-    if params[:get_subgroups] && params[:charge_card_id]
-      @pair.update_attributes(:charge_card_id => params[:charge_card_id])
-      @pair.subgroups.delete_all
-      @pair.charge_card.jets.each do |jet|
-        @pair.subgroups.create(
-          :jet_id => jet.id,
-          :number => 0
-        )
+    @pair = Pair.find_by_id(params[:id].to_i, :include => [:subgroups])
+    @prev_pair = @pair.clone
+    @prev_pair.readonly!
+    if params[:get_subgroups] && params[:pair]
+      @pair.attributes = params[:pair]
+      unless @pair.valid?
+        flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+        @pair = @prev_pair
+      else
+        @pair.save
+        @pair.subgroups.delete_all
+        @pair.charge_card.jets.each do |jet|
+          @pair.subgroups.create(
+            :jet_id => jet.id,
+            :number => 0
+          )
+        end
+        @subgroups_only = true
+        redirect_to :action => 'edit'
       end
-      redirect_to :action => 'edit'
     elsif params[:classroom]
-      Pair.update(params[:id],
-        :classroom_id => params[:classroom]
-      )
-      @pair = Pair.find_by_id(params[:id])
-      @pair.week_number = params[:week_number] if params[:week_number]
-      @pair.day_of_the_week = params[:day_of_the_week] if params[:day_of_the_week]
-      @pair.pair_number = params[:pair_number] if params[:pair_number]
-      @pair.save!
-      @container = params[:container]
-
+      @pair.classroom_id = params[:classroom].to_i    
+      @pair.day_of_the_week = params[:day_of_the_week].to_i if params[:day_of_the_week]
+      @pair.week = params[:week].to_i if params[:week]
+      @pair.pair_number = params[:pair_number].to_i if params[:pair_number]
+      unless @pair.valid?
+        flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+        @pair = @prev_pair
+      else
+        @pair.save
+      end
+      
       respond_to do |format|
         format.js
       end
     else
-      @pair.update_attributes(params[:pair])
-      @container = "container_grid#{@pair.classroom_id}_week#{@pair.week_number}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
-
+      @pair.attributes = params[:pair]
+      unless @pair.valid?
+        flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
+        @pair = @prev_pair
+      else
+        @pair.save
+      end      
       respond_to do |format|
         format.js
       end
@@ -63,8 +83,10 @@ class Editor::PairsController < Editor::BaseController
   end
 
   def destroy
-    @id = params[:id]
+    @id = params[:id].to_i
     pair = Pair.find_by_id(@id)
+    @pair = pair.clone
+    @pair.readonly!
     pair.destroy
 
     respond_to do |format|

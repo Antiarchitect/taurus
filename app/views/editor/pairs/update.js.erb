@@ -1,5 +1,37 @@
+<% 
+prev_container = "_grid#{@prev_pair.classroom_id}_week#{@prev_pair.week}_day#{@prev_pair.day_of_the_week}_time#{@prev_pair.pair_number}"
+container = "_grid#{@pair.classroom_id}_week#{@pair.week}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
+%>
 jQuery(document).ready(function($){
-    $('#<%= escape_javascript @pair.id.to_s %>').remove();
-    $('#<%= escape_javascript @container %>').append('<%= escape_javascript render :partial => @pair %>');
-    $('#<%= escape_javascript @pair.id.to_s %>').draggable();
+    $('#error').remove();
+    <% if flash[:error] %>
+      $('.workspace').prepend('<div id="error"></div>');
+      $('#error').append('<%= escape_javascript flash[:error] %>');
+    <% end %>
+    $('#<%= @pair.id %>').remove();
+    if ($('#td<%= escape_javascript container %>').length == 0) {
+      $('#td_grid<%= @pair.classroom_id %>_week1_day<%= @pair.day_of_the_week %>_time<%= @pair.pair_number %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => @pair, :colspan => 2} %>');
+      $('#td_grid<%= @pair.classroom_id %>_week2_day<%= @pair.day_of_the_week %>_time<%= @pair.pair_number %>').remove();
+    }
+    <% if @prev_pair.week == 0 && (@prev_pair.classroom_id != @pair.classroom_id || @prev_pair.week != @pair.week || @prev_pair.day_of_the_week != @pair.day_of_the_week || @prev_pair.pair_number != @pair.pair_number) %>
+      $('#td<%= escape_javascript prev_container %>').replaceWith('<%= escape_javascript render :partial => "/editor/classrooms/container", :locals => {:pair => @prev_pair, :colspan => 1} %>');
+    <% end %>
+    $('#container<%= escape_javascript container %>').append('<%= escape_javascript render :partial => @pair %>');
+    $('#<%= @pair.id %>').draggable();
+    $('.receiver').droppable({
+        accept: '.pair',
+        over: function(){ $(this).addClass('hovered_receiver');},
+        out: function(){ $(this).removeClass('hovered_receiver');},
+        drop: function(event, ui){
+            $.post('/editor/pairs/' + ui.draggable.attr('id'), {
+                _method: 'put',
+                classroom: $(this).attr('grid_id'),
+                week: $(this).attr('week_number'),
+                day_of_the_week: $(this).attr('day_of_the_week'),
+                pair_number: $(this).attr('pair_number'),
+                container: $(this).attr('id')
+            }, null, "script");
+            $(this).removeClass('hovered_receiver');
+        }
+    });
 });

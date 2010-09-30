@@ -35,9 +35,9 @@ class Timetable::LecturersController < ApplicationController
       @days = Timetable.days
       @times = Timetable.times
       @weeks = Timetable.weeks
-      @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size).map!{Array.new}}}
+      @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size + 1).map!{Array.new}}}
       pairs.each do |pair|
-        @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week_number - 1] << pair
+        @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << pair
       end
     end
   end

@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   belongs_to :speciality
   has_many :jets, :dependent => :destroy
+  has_many :subgroups, :through => :jets
   has_many :charge_cards, :through => :jets
 
   validates_presence_of :name, :forming_year

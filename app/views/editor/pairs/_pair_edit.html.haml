@@ -1,12 +1,23 @@
 .update_form{:id => "pair_edit_#{@pair.id.to_s}"}
   - if flash[:error]
-    .flash
+    #flash
       = flash[:error]
   - remote_form_for([:editor, @pair]) do |f|
+    %p{:id => "week_block"}
+      %br
+      = f.radio_button :week, 0
+      = 'Обе недели'
+      %br
+      = f.radio_button :week, 1
+      = 'Первая неделя'
+      %br
+      = f.radio_button :week, 2
+      = 'Вторая неделя'
     %p{:id => "charge_card_block"}
       = 'Карта нагрузки'
       %br
-      %input{:class => "charge_card", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
+      %input{:class => "charge_card", :id => "charge_card_name", :size => 20, :value => "#{@pair.charge_card.name_for_pair_edit if @pair.charge_card}"}
+      = f.hidden_field :charge_card_id
     %p{:id => "dates_block"}
       %span{:id => "active_at_label"} Начало занятий
       %br

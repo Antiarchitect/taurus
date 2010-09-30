@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
         $.post('/editor/pairs/', {
             container: $(this).attr('id'),
             classroom_id: $(this).attr('grid_id'),
-            week_number: $(this).attr('week_number'),
+            week: $(this).attr('week_number'),
             day_of_the_week: $(this).attr('day_of_the_week'),
             pair_number: $(this).attr('pair_number')
         }, null, "script");
@@ -26,9 +26,26 @@ jQuery(document).ready(function($){
     });
 
     $('.destroy').live('click', function() {
-      $.post('/editor/pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
-      return false;
+      $(this).after('<span id="destroy-confirm">Вы уверены в том, что хотите удалить эту пару?</span>');
+      $('#destroy-confirm').dialog({
+        resizable: false,
+        height: 140,
+        width: 450,
+  			modal: true,
+        buttons: {
+          "Удалить!": function() {
+            $.post('/editor/pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
+  					$('#destroy-confirm').dialog( "close" );
+            $('#destroy-confirm').dialog( "destroy" );
+          },
+          "Отмена": function() {
+  					$('#destroy-confirm').dialog( "close" );
+            $('#destroy-confirm').dialog( "destroy" );
+          }
+        }
+		  });
     });
+    
 
     $('#form_close').live('click', function() {
         $('#form').fadeOut('fast');
