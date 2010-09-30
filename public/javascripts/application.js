@@ -26,6 +26,7 @@ jQuery(document).ready(function($){
     });
 
     $('.destroy').live('click', function() {
+      var pair_id = $(this).attr('pair_id');
       $(this).after('<span id="destroy-confirm">Вы уверены в том, что хотите удалить эту пару?</span>');
       $('#destroy-confirm').dialog({
         resizable: false,
@@ -34,7 +35,7 @@ jQuery(document).ready(function($){
   			modal: true,
         buttons: {
           "Удалить!": function() {
-            $.post('/editor/pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
+            $.post('/editor/pairs/' + pair_id, {_method: 'delete'}, null, "script");
             $('#destroy-confirm').dialog( "close" );
             $('#destroy-confirm').remove();
           },
