@@ -5,8 +5,7 @@ jQuery(document).ready(function($){
     });    
 
     $('#classroom_name').autocomplete({
-        disabled: false,
-        delay: 800,
+        disabled: false,        
         source: function(request, response) {
             $.getJSON('/editor/classrooms.json', {
               classroom: request.term,
