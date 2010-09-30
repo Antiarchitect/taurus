@@ -7,21 +7,22 @@
   - else
     %table{:class => 'daycell'}
       - if both_week_pairs.size == 1
-        %tr{:rowspan => 2}
+        %tr
           - both_week_pairs.each do |b|
             - if b[1] == 0
-              %td{:colspan => 2}
+              %td{:colspan => 2, :rowspan => 2}
                 = render 'pair', :p => b[0]
             - elsif b[1] == 1
-              %td
+              %td{:rowspan => 2}
                 = render 'pair', :p => b[0]
-              %td
+              %td{:rowspan => 2}
                 .nopair
             - elsif b[1] == 2
-              %td
+              %td{:rowspan => 2}
                 .nopair
-              %td
-                = render 'pair', :p => b[0]     
+              %td{:rowspan => 2}
+                = render 'pair', :p => b[0]
+        %tr
       - else
         %tr
           - if first_week_pairs.empty?
