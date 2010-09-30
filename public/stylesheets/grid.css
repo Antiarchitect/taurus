@@ -3,12 +3,6 @@
   font-size: 12px;
   width: 100%; }
 
-#plus {
-  height: 32px;
-  width: 32px;
-  clear: left;
-  cursor: pointer; }
-
 #form {
   float: left;
   padding: 5px;
