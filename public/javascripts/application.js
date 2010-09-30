@@ -35,12 +35,12 @@ jQuery(document).ready(function($){
         buttons: {
           "Удалить!": function() {
             $.post('/editor/pairs/' + $(this).attr('pair_id'), {_method: 'delete'}, null, "script");
-  					$('#destroy-confirm').dialog( "close" );
-            $('#destroy-confirm').dialog( "destroy" );
+            $('#destroy-confirm').dialog( "close" );
+            $('#destroy-confirm').remove();
           },
           "Отмена": function() {
   					$('#destroy-confirm').dialog( "close" );
-            $('#destroy-confirm').dialog( "destroy" );
+            $('#destroy-confirm').remove();
           }
         }
 		  });
