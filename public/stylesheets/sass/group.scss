@@ -67,28 +67,6 @@ $numpad_border_radius: 30px;
   width: $workspace_width;
 }
 
-#plus {
-  height: 32px;
-  width: 32px;
-  clear: left;
-  cursor: pointer;
-}
-
-#form {
-  float: left;
-  padding: 5px;
-  border: 1px solid #000000;
-  background-color: $grid_background;
-}
-
-.closebutton {
-  background-image: url('/images/close_16.ico');
-  cursor: pointer;
-  float: right;
-  height: 16px;
-  width: 16px;
-}
-
 .grid {
   background: {
     color: $grid_background;

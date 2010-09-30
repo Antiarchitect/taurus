@@ -32,25 +32,6 @@
   font-size: 12px;
   width: 100%; }
 
-#plus {
-  height: 32px;
-  width: 32px;
-  clear: left;
-  cursor: pointer; }
-
-#form {
-  float: left;
-  padding: 5px;
-  border: 1px solid #000000;
-  background-color: #e6e6fa; }
-
-.closebutton {
-  background-image: url("/images/close_16.ico");
-  cursor: pointer;
-  float: right;
-  height: 16px;
-  width: 16px; }
-
 .grid {
   background-color: #e6e6fa;
   clear: both;

@@ -4,10 +4,28 @@ jQuery(document).ready(function($){
         'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
     });
 
-    $('#plus').click(function(){
-        $.get('/editor/classrooms/new', null, null, "script");
-        return false;
+    // editor/classrooms/index
+    $('#classroom_name').autocomplete({
+        disabled: false,
+        source: function(request, response) {
+            $.getJSON('/editor/classrooms.json', {
+              classroom: request.term
+            },
+            function(data) {
+                var classrooms = new Array(0);
+                data.each(function(i) {
+                    classrooms.push({ label: i.classroom.name + ' (' + i.classroom.building.name + ')', value: i.classroom.id });
+                });
+                response(classrooms);
+            });
+        },
+        select: function(event, ui) {
+          $.get('/editor/classrooms/' + ui.item.value);
+          return false;
+        }
     });
+
+    $('#classroom_name').focus();
 
     $('.receiver').live('dblclick', function() {
         $.post('/editor/pairs/', {
@@ -46,42 +64,35 @@ jQuery(document).ready(function($){
         }
 		  });
     });
-    
-
-    $('#form_close').live('click', function() {
-        $('#form').fadeOut('fast');
-        return false;
-    });
 
     $('.grid_close').live('click', function() {
         $.post('/editor/classrooms/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
         return false;
     });
-
     
-        $('#group_name_input, #group_name_input_terminal').focus();
-        $('#group_name_input, #group_name_input_terminal').autocomplete({
-            minLength: 2,
-            source: function(request, response) {
-                $.getJSON('/timetable/groups.json', {
-                    group: request.term
-                },
-                function(data) {
-                    var groups = new Array(0);
-                    data.each(function(i) {
-                        groups.push({ label: i.group.name, value: i.group.id });
-                    });
-                    response(groups);
-                });
+    $('#group_name_input, #group_name_input_terminal').focus();
+    $('#group_name_input, #group_name_input_terminal').autocomplete({
+        minLength: 2,
+        source: function(request, response) {
+            $.getJSON('/timetable/groups.json', {
+                group: request.term
             },
-            select: function(event, ui) {
-                if ($(this).attr('id') == "group_name_input_terminal") {
-                  var suffix = "?terminal=true";
-                } else {
-                  var suffix = "";
-                }
-                window.location.replace('/timetable/groups/' + ui.item.value + suffix);
-                return false;
+            function(data) {
+                var groups = new Array(0);
+                data.each(function(i) {
+                    groups.push({ label: i.group.name, value: i.group.id });
+                });
+                response(groups);
+            });
+        },
+        select: function(event, ui) {
+            if ($(this).attr('id') == "group_name_input_terminal") {
+              var suffix = "?terminal=true";
+            } else {
+              var suffix = "";
             }
-        });
+            window.location.replace('/timetable/groups/' + ui.item.value + suffix);
+            return false;
+        }
+    });
 });
