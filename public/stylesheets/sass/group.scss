@@ -1,11 +1,13 @@
-$numpad_width: 340px;
-$element_base_margin: 20px;
+$workspace_width: 100%;
+$times_width: 10%;
+$days_width: $workspace_width - $times_width;
+$day_width: 100% / 6;
+$week_width: 100% / 2;
+$header_height: 30px;
+$container_height: 68px;
+$grid_background: #E6E6FA;
 $numpad_background: #E6E6FA;
-$button_background: #E6F2FF;
 $numpad_border_radius: 30px;
-$button_border_radius: 20px;
-$number_size: ($numpad_width - 2*$element_base_margin)/3;
-$font_size: 4em;
 
 @font-face {
   font-family: Archangelsk;
@@ -24,7 +26,7 @@ $font_size: 4em;
   width: 40%;
   margin-top: 40px;
   height: 220px;
-  border-radius: $numpad_border-radius;
+  border-radius: $numpad_border_radius;
   background: $numpad_background;
   padding: 10px;
   text-align: center;
@@ -47,5 +49,175 @@ $font_size: 4em;
   }
   font: {
     size: 40px;
+  }
+}
+
+@mixin table_border {
+  border: {
+    style: solid;
+    width: thin;
+  }
+}
+
+.workspace {
+  font: {
+    family: sans-serif;
+    size: 12px;
+  }
+  width: $workspace_width;
+}
+
+#plus {
+  height: 32px;
+  width: 32px;
+  clear: left;
+  cursor: pointer;
+}
+
+#form {
+  float: left;
+  padding: 5px;
+  border: 1px solid #000000;
+  background-color: $grid_background;
+}
+
+.closebutton {
+  background-image: url('/images/close_16.ico');
+  cursor: pointer;
+  float: right;
+  height: 16px;
+  width: 16px;
+}
+
+.grid {
+  background: {
+    color: $grid_background;
+  }
+  clear: both;
+  margin: {
+    bottom: 5px;
+  }
+  width: 100%;
+  table {
+    width: 100%;
+    border: {
+      collapse: collapse;
+    }
+  }
+  td {
+    @include table_border;
+    height: $container_height;
+  }
+  th {
+    @include table_border;
+  }
+}
+
+.receiver {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  height: 100%;
+  width: 100%;
+}
+
+.hovered_receiver {
+  background: #F00;
+}
+
+.pair {
+  font: {
+    family: sans-serif;
+    size: 11px;
+  }
+  cursor: move;
+  background: {
+    color: #F5F9BD;
+  }
+  height: 100%;
+  width: 100%;
+  .pair_content {
+    float: left;
+  }
+  .management_panel {
+    float: right;
+    clear: both;
+    cursor: pointer;
+    height: 16px;
+  }
+  .management_panel div {
+    display: inline;
+    height: 16px;
+    width: 16px;
+  }
+}
+
+abbr {
+  cursor: help;
+}
+
+img {
+  border: none;
+}
+
+.timetable {
+  background: {
+    color: $grid_background;
+  }
+  clear: both;
+  margin: {
+    bottom: 5px;
+  }
+  width: 100%;
+  .nopair {
+    background: {
+      color: $grid_background;
+    }
+    height: 100%;
+    width: 100%;
+  }
+  .error_pair {
+    background: {
+      color: #FF0000;
+    }
+    height: 100%;
+    width: 100%;
+  }
+  table {
+    width: 100%;
+    border: {
+      collapse: collapse;
+    }
+  }
+  td {
+    @include table_border;
+    height: $container_height;
+  }
+  th {
+    @include table_border;
+  }
+  th.timecell {
+    width: 100px;
+    max-width: 100px;
+  }
+}
+
+.timetable.groups {
+  td {
+    height: $container_height;
+  }
+}
+
+.daycell {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  td {
+    border: {
+       collapse: collapse;
+       style: solid;
+       width: 0;
+    }
+    height: $container_height;
+    width: 50%;
   }
 }

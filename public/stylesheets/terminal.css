@@ -21,12 +21,12 @@
   padding: 20px 0 0 0;
   float: left; }
 
-.number, .clear {
+.number, .clear, .backspace {
   background-color: #e6f2ff;
   border-radius: 20px;
   height: 93.667px;
   width: 93.667px; }
-  .number .ui-button-text, .clear .ui-button-text {
+  .number .ui-button-text, .clear .ui-button-text, .backspace .ui-button-text {
     padding: 0 !important;
     margin: auto !important;
     line-height: 93.667px !important; }
