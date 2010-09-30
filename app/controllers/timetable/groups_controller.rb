@@ -6,7 +6,7 @@ class Timetable::GroupsController < ApplicationController
       template = 'index_terminal'
     end
     
-    group = params[:group].to_s.gsub ('%', '\%').gsub ('_', '\_') + '%'
+    group = params[:group].to_s.gsub('%', '\%').gsub('_', '\_') + '%'
     respond_to do |format|
       format.html { render template || 'index' }
       format.json { render :json => Group.all(:conditions => ['groups.name LIKE ?', group]).to_json(:only => [:id, :name]) }
