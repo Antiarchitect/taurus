@@ -12,7 +12,7 @@
         %th{:colspan => 7}
           = "Расписание учебных пар группы #{@group.name}"
       %tr
-        %th
+        %th.timecell
         = render :partial => 'day_header', :collection => @days
       = render :partial => 'time', :collection => @times
   - unless @terminal

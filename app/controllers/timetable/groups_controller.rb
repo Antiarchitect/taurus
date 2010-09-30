@@ -1,5 +1,6 @@
 class Timetable::GroupsController < ApplicationController
-
+  layout 'group'
+  
   def index
     if params[:terminal]
       template = 'index_terminal'
