@@ -5,74 +5,68 @@
   - if both_week_pairs.empty? && first_week_pairs.empty? && second_week_pairs.empty?
     .nopair
   - else
-    %table{:class => 'daycell'}
-      - if both_week_pairs.size == 1
-        %tr
-          - both_week_pairs.each do |b|
-            - if b[1] == 0
-              %td{:colspan => 2, :rowspan => 2}
-                = render 'pair', :p => b[0]
-            - elsif b[1] == 1
-              %td{:rowspan => 2}
-                = render 'pair', :p => b[0]
-              %td{:rowspan => 2}
-                .nopair
-            - elsif b[1] == 2
-              %td{:rowspan => 2}
-                .nopair
-              %td{:rowspan => 2}
-                = render 'pair', :p => b[0]
-        %tr
-      - else
-        %tr
-          - if first_week_pairs.empty?
-            %td{:colspan => 2}
-              .nopair
-          - elsif first_week_pairs.size > 2
-            %td{:colspan => 2}
-              .error_pair
-          - elsif first_week_pairs.size == 2
-            - first_week_pairs.each do |f|
-              %td
-                = render 'pair', :p => f[0]
-          - elsif first_week_pairs.size == 1
-            - first_week_pairs.each do |f|
-              - if f[1] == 0
-                %td{:colspan => 2}
-                  = render 'pair', :p => f[0]
-              - elsif f[1] == 1
+    .daycellcontainer
+      %table{:class => 'daycell'}
+        - if both_week_pairs.size == 1
+          %tr
+            - both_week_pairs.each do |b|
+              - if b[1] == 0
+                %td{:colspan => 2, :rowspan => 2}
+                  = render 'pair', :p => b[0]
+              - elsif b[1] == 1
+                %td{:rowspan => 2}
+                  = render 'pair', :p => b[0]
+                %td.empty{:rowspan => 2}
+              - elsif b[1] == 2
+                %td.empty{:rowspan => 2}
+                %td{:rowspan => 2}
+                  = render 'pair', :p => b[0]
+          %tr
+        - else
+          %tr
+            - if first_week_pairs.empty?
+              %td.empty{:colspan => 2}
+                
+            - elsif first_week_pairs.size > 2
+              %td{:colspan => 2}
+                .error_pair
+            - elsif first_week_pairs.size == 2
+              - first_week_pairs.each do |f|
                 %td
                   = render 'pair', :p => f[0]
-                %td
-                  .nopair
-              - elsif f[1] == 2
-                %td
-                  .nopair
-                %td
-                  = render 'pair', :p => f[0]
-        %tr
-          - if second_week_pairs.empty?
-            %td{:colspan => 2}
-              .nopair
-          - elsif second_week_pairs.size > 2
-            %td{:colspan => 2}
-              .error_pair
-          - elsif second_week_pairs.size == 2
-            - second_week_pairs.each do |f|
-              %td
-                = render 'pair', :p => f[0]
-          - elsif second_week_pairs.size == 1
-            - second_week_pairs.each do |f|
-              - if f[1] == 0
-                %td{:colspan => 2}
-                  = render 'pair', :p => f[0]
-              - elsif f[1] == 1
+            - elsif first_week_pairs.size == 1
+              - first_week_pairs.each do |f|
+                - if f[1] == 0
+                  %td{:colspan => 2}
+                    = render 'pair', :p => f[0]
+                - elsif f[1] == 1
+                  %td
+                    = render 'pair', :p => f[0]
+                  %td.empty
+                - elsif f[1] == 2
+                  %td.empty
+                  %td
+                    = render 'pair', :p => f[0]
+          %tr
+            - if second_week_pairs.empty?
+              %td.empty{:colspan => 2}
+            - elsif second_week_pairs.size > 2
+              %td{:colspan => 2}
+                .error_pair
+            - elsif second_week_pairs.size == 2
+              - second_week_pairs.each do |f|
                 %td
                   = render 'pair', :p => f[0]
-                %td
-                  .nopair
-              - elsif f[1] == 2
-                %td
-                  .nopair
-                %td
-                  = render 'pair', :p => f[0]
+            - elsif second_week_pairs.size == 1
+              - second_week_pairs.each do |f|
+                - if f[1] == 0
+                  %td{:colspan => 2}
+                    = render 'pair', :p => f[0]
+                - elsif f[1] == 1
+                  %td
+                    = render 'pair', :p => f[0]
+                  %td.empty
+                - elsif f[1] == 2
+                  %td.empty
+                  %td
+                    = render 'pair', :p => f[0]
