@@ -73,6 +73,9 @@ jQuery(document).ready(function($){
     $('#group_name_input, #group_name_input_terminal').focus();
     $('#group_name_input, #group_name_input_terminal').autocomplete({
         minLength: 2,
+        focus: function(event, ui) {
+          return false;
+        },
         source: function(request, response) {
             $.getJSON('/timetable/groups.json', {
                 group: request.term
