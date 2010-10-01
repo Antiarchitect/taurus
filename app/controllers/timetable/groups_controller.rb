@@ -18,14 +18,13 @@ class Timetable::GroupsController < ApplicationController
       @terminal = true
     end
     @id = params[:id].to_i
-    unless @group = Group.find_by_id(@id, :include => { :jets => { :charge_card => { :pairs => :subgroups } } })
+    unless @group = Group.find_by_id(@id, :include => [ {:jets => [{:subgroups => { :pair => [ {:classroom => :building}, { :charge_card => [ :discipline, { :teaching_place => [:lecturer, :position, :department] } ] } ] } } ] } ])
       suffix = @terminal ? '?terminal=true' : ''
       redirect_to :controller => 'timetable/groups' + suffix
     else
       jets = @group.jets
-      charge_cards = @group.charge_cards
-      pairs = charge_cards.map { |c| c.pairs }
-      pairs = pairs.flatten
+      subgroups = jets.map { |j| j.subgroups }.flatten
+      pairs = subgroups.map { |s| s.pair }
       @days = Timetable.days
       @times = Timetable.times
       @weeks = Timetable.weeks
