@@ -8,6 +8,7 @@ $container_height: 68px;
 $grid_background: #E6E6FA;
 $numpad_background: #E6E6FA;
 $numpad_border_radius: 30px;
+$timetablerow_height: 150px;
 
 @font-face {
   font-family: Archangelsk;
@@ -42,12 +43,15 @@ img {
 }
 
 .timetable {
-  background: {
-    color: $grid_background;
-  }
-  border: {
-    collapse: collapse;
-  }
+  table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    background-color: $grid_background;
+    td, th {
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+  }  
   clear: both;
   margin: {
     bottom: 5px;
@@ -76,33 +80,26 @@ img {
     @include table_border;
   }
   .timetablerow {
-    height: 150px;
+    height: $timetablerow_height;
   }
 }
 
 .daycellcontainer {
-  height: 100%;
+  height: $timetablerow_height;
   width: 100%;
 }
 
 .daycell {
   width: 100%;
   height: 100%;
-  border {
-    collapse: collapse;
-    width: 1px;
-    color: black;
-    style: solid;
-  }
+  border-collapse: collapse;
   tr {
-    height: 50%;
+    height: 75px;
     max-height: 75px;
   }
   td {
-    border: {
-       style: solid;
-       width: 1px;
-    }
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     width: 50%;
     font: {
       family: sans-serif;
