@@ -6,94 +6,10 @@
   .pdf_link {
     display: none; } }
 
-.group_name {
-  position: absolute;
-  margin-left: 30%;
-  width: 40%;
-  margin-top: 40px;
-  height: 220px;
-  border-radius: 30px;
-  background: #e6e6fa;
-  padding: 10px;
-  text-align: center; }
-
-.group_name_label {
-  margin-top: 70px;
-  width: 100%;
-  font-family: Archangelsk;
-  font-size: 48px; }
-
-.group_name_input {
-  margin-top: 30px;
-  font-size: 40px; }
-
-.workspace {
-  font-family: sans-serif;
-  font-size: 12px;
-  width: 100%; }
-
-#plus {
-  height: 32px;
-  width: 32px;
-  clear: left;
-  cursor: pointer; }
-
-#form {
-  float: left;
-  padding: 5px;
-  border: 1px solid #000000;
-  background-color: #e6e6fa; }
-
-.closebutton {
-  background-image: url("/images/close_16.ico");
-  cursor: pointer;
-  float: right;
-  height: 16px;
-  width: 16px; }
-
-.grid {
-  background-color: #e6e6fa;
-  clear: both;
-  margin-bottom: 5px;
-  width: 100%; }
-  .grid table {
-    width: 100%;
-    border-collapse: collapse; }
-  .grid td {
-    border-style: solid;
-    border-width: thin;
-    height: 68px; }
-  .grid th {
-    border-style: solid;
-    border-width: thin; }
-
-.receiver {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  height: 100%;
-  width: 100%; }
-
-.hovered_receiver {
-  background: #F00; }
-
-.pair {
-  font-family: sans-serif;
-  font-size: 11px;
-  cursor: move;
-  background-color: #F5F9BD;
-  height: 100%;
-  width: 100%; }
-  .pair .pair_content {
-    float: left; }
-  .pair .management_panel {
-    float: right;
-    clear: both;
-    cursor: pointer;
-    height: 16px; }
-  .pair .management_panel div {
-    display: inline;
-    height: 16px;
-    width: 16px; }
+body {
+  background: white;
+  color: black;
+  font: normal 14px sans-serif; }
 
 abbr {
   cursor: help; }
@@ -103,41 +19,50 @@ img {
 
 .timetable {
   background-color: #e6e6fa;
+  border-collapse: collapse;
   clear: both;
   margin-bottom: 5px;
   width: 100%; }
+  .timetable col.timecells {
+    width: 10%;
+    max-width: 100px; }
+  .timetable col.daycells {
+    width: 15%; }
   .timetable .nopair {
-    background-color: #e6e6fa;
     height: 100%;
     width: 100%; }
   .timetable .error_pair {
     background-color: #FF0000;
     height: 100%;
     width: 100%; }
-  .timetable table {
-    width: 100%;
-    border-collapse: collapse; }
-  .timetable td {
-    border-style: solid;
-    border-width: thin;
-    height: 68px; }
-  .timetable th {
+  .timetable td, .timetable th {
+    padding: 0;
     border-style: solid;
     border-width: thin; }
-  .timetable th.timecell {
-    width: 100px;
-    max-width: 100px; }
+  .timetable .timetablerow {
+    height: 150px; }
 
-.timetable.groups td {
-  height: 68px; }
+.daycellcontainer {
+  height: 100%;
+  width: 100%; }
 
 .daycell {
   width: 100%;
-  height: 100%;
-  background-color: #000; }
+  height: 100%; }
+  .daycell border {
+    collapse: collapse;
+    width: 1px;
+    color: black;
+    style: solid; }
+  .daycell tr {
+    height: 50%;
+    max-height: 75px; }
   .daycell td {
-    border-collapse: collapse;
     border-style: solid;
-    border-width: 0;
-    height: 68px;
-    width: 50%; }
+    border-width: 1px;
+    width: 50%;
+    font-family: sans-serif;
+    font-size: 11px;
+    background-color: #F5F9BD; }
+  .daycell td.empty {
+    background-color: #e6e6fa; }
