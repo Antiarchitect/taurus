@@ -8,13 +8,16 @@
     .back_terminal{:id => "back_terminal_top"}
   .timetable{:class => "groups"}
     %table
-      %tr
-        %th{:colspan => 7}
-          = "Расписание учебных пар группы #{@group.name}"
-      %tr
-        %th.timecell
-        = render :partial => 'day_header', :collection => @days
-      = render :partial => 'time', :collection => @times
+      %caption= "Расписание учебных пар группы #{@group.name}"
+      %col.timecells
+      - (1...7).each do |i|
+        %col.daycells
+      %thead
+        %tr
+          %th.timecell
+          = render :partial => 'day_header', :collection => @days
+      %tbody
+        = render :partial => 'time', :collection => @times
   - unless @terminal
     %p{:class => "pdf_link"}
       = link_to "Назад", timetable_groups_path
