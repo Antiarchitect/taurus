@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-    $('#plus').before('<%= escape_javascript render :partial => 'grid', :object => @classroom %>');
+    $('#form').before('<%= escape_javascript render :partial => 'grid', :object => @classroom %>');
     $('.receiver').droppable({
         accept: '.pair',
         over: function(){ $(this).addClass('hovered_receiver');},
@@ -26,5 +26,20 @@ jQuery(document).ready(function($){
       );        
     <% end %>
     $('.pair').draggable();
-    $('#form').fadeOut('slow');
+    $('#classroom_name').autocomplete({
+        source: function(request, response) {
+            $.getJSON('/editor/classrooms.json', {
+                classroom: request.term,
+                except: '<%= escape_javascript @classrooms.join(',') %>'
+            },
+            function(data) {
+                var classrooms = new Array(0);
+                data.each(function(i) {
+                    classrooms.push({ label: i.classroom.name + ' (' + i.classroom.building.name + ')', value: i.classroom.id });
+                });
+                response(classrooms);
+            });
+        }
+    });
+    $('#classroom_name').val('');
 });

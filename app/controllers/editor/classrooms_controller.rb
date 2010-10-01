@@ -8,23 +8,11 @@ class Editor::ClassroomsController < Editor::BaseController
     else
       except = "0"
     end
-    classroom = params[:classroom].to_s.gsub ('%', '\%').gsub ('_', '\_') + '%'
+    classroom = params[:classroom].to_s.gsub('%', '\%').gsub('_', '\_') + '%'
     respond_to do |format|
       format.html
       format.json { render :json => Classroom.all(:conditions => ['classrooms.id NOT IN (?) AND classrooms.name LIKE ?', except, classroom],
         :include => [:building]).to_json(:only => [:id, :name], :include => { :building => { :only => :name } } )}
-    end
-  end
-
-  def show
-
-  end
-
-  def new
-    @classrooms = YAML.load(cookies[:classrooms])
-
-    respond_to do |format|
-      format.js
     end
   end
 
@@ -35,13 +23,13 @@ class Editor::ClassroomsController < Editor::BaseController
     @classroom = Classroom.find_by_id(params[:id], :include => :pairs)
     unless @classroom
       flash[:error] = 'Нет аудитории с таким названием'
-      redirect_to :action => :new
     else
       @pairs = @classroom.pairs
       grids = YAML.load(cookies[:classrooms])
       grids << @classroom.id
       cookies[:classrooms] = YAML.dump(grids)
-
+      @classrooms = YAML.load(cookies[:classrooms])
+      
       respond_to do |format|
         format.js
       end
