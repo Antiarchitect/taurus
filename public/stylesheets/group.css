@@ -66,3 +66,11 @@ img {
     background-color: #F5F9BD; }
   .daycell td.empty {
     background-color: #e6e6fa; }
+
+.lecturer {
+  white-space: nowrap; }
+
+.discipline, .auditory {
+  max-height: 2.5em;
+  white-space: normal;
+  overflow: hidden; }

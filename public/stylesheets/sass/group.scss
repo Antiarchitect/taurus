@@ -116,3 +116,13 @@ img {
     background-color: $grid_background;
   }
 }
+
+.lecturer {
+  white-space: nowrap;
+}
+
+.discipline, .auditory {
+  max-height: 2.5em;
+  white-space: normal;
+  overflow: hidden;
+}
