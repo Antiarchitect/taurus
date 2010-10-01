@@ -78,18 +78,18 @@ jQuery(document).ready(function($){
                 group: request.term
             },
             function(data) {
+                var label_addon = " ← нажать";
                 var groups = new Array(0);
                 data.each(function(i) {
-                    groups.push({ label: i.group.name, value: i.group.id });
+                    groups.push({ label: i.group.name + label_addon, value: i.group.id });
                 });
                 response(groups);
             });
         },
         select: function(event, ui) {
+            var suffix = "";
             if ($(this).attr('id') == "group_name_input_terminal") {
-              var suffix = "?terminal=true";
-            } else {
-              var suffix = "";
+              suffix = "?terminal=true";
             }
             window.location.replace('/timetable/groups/' + ui.item.value + suffix);
             return false;

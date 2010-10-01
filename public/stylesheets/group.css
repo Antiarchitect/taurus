@@ -75,3 +75,23 @@ img {
   max-height: 2.5em;
   white-space: normal;
   overflow: hidden; }
+
+.group_name {
+  margin-left: 30%;
+  width: 40%;
+  height: 220px;
+  border-radius: 30px;
+  background: #e6e6fa;
+  padding: 10px;
+  float: left;
+  text-align: center; }
+
+.group_name_input {
+  margin-top: 30px;
+  font-size: 40px; }
+
+.group_name_label {
+  margin-top: 35px;
+  width: 100%;
+  font-family: Archangelsk;
+  font-size: 3em; }
