@@ -49,7 +49,8 @@ class Editor::ClassroomsController < Editor::BaseController
     grids = YAML.load(cookies[:classrooms])
     grids.delete(@id.to_i)
     cookies[:classrooms] = YAML.dump(grids)
-
+    @classrooms = YAML.load(cookies[:classrooms])
+    
     respond_to do |format|
       format.js
     end

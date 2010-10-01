@@ -2,6 +2,22 @@
 jQuery(document).ready(function($){
     $('#<%= grid_id %>').fadeOut('fast', function() {
         $('#<%= grid_id %>').remove();
+        $('#classroom_name').autocomplete({
+            source: function(request, response) {
+                $.getJSON('/editor/classrooms.json', {
+                    classroom: request.term,
+                    except: '<%= escape_javascript @classrooms.join(',') %>'
+                },
+                function(data) {
+                    var classrooms = new Array(0);
+                    data.each(function(i) {
+                        classrooms.push({ label: i.classroom.name + ' (' + i.classroom.building.name + ')', value: i.classroom.id });
+                    });
+                    response(classrooms);
+                });
+            }
+        });
+    $('#classroom_name').focus();
         return false;
     });
 });
