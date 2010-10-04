@@ -3,7 +3,7 @@
   border-radius: 30px;
   width: 340px;
   text-align: center;
-  line-height: 93.667px;
+  line-height: 93px;
   padding: 0 20px 20px 20px;
   float: left;
   font-size: 3em;
@@ -24,12 +24,12 @@
 .number, .clear, .backspace {
   background-color: #e6f2ff;
   border-radius: 20px;
-  height: 93.667px;
-  width: 93.667px; }
+  height: 93px;
+  width: 93px; }
   .number .ui-button-text, .clear .ui-button-text, .backspace .ui-button-text {
     padding: 0 !important;
     margin: auto !important;
-    line-height: 93.667px !important; }
+    line-height: 93px !important; }
 
 .dummy_div {
   clear: both; }
