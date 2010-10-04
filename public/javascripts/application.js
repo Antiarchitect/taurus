@@ -82,11 +82,12 @@ jQuery(document).ready(function($){
             },
             function(data) {
                 var label_addon = " ← нажать";
-                var groups = new Array(0);
-                data.each(function(i) {
-                    groups.push({ label: i.group.name + label_addon, value: i.group.id });
-                });
-                response(groups);
+                response($.map( data, function( item ) {
+                  return {
+                    label: item.group.name + label_addon,
+                    value: item.group.id
+                  }
+                }));
             });
         },
         select: function(event, ui) {
