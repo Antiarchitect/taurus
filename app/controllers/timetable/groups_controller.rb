@@ -6,10 +6,9 @@ class Timetable::GroupsController < ApplicationController
       template = 'index_terminal'
     end
     
-    group = params[:group].to_s.gsub('%', '\%').gsub('_', '\_') + '%'
     respond_to do |format|
       format.html { render template || 'index' }
-      format.json { render :json => Group.all(:conditions => ['groups.name LIKE ?', group]).to_json(:only => [:id, :name]) }
+      format.json { render :json => Group.by_name(params[:group]).to_json(:only => [:id, :name]) }
     end    
   end
   
@@ -18,7 +17,7 @@ class Timetable::GroupsController < ApplicationController
       @terminal = true
     end
     @id = params[:id].to_i
-    unless @group = Group.find_by_id(@id, :include => [ {:jets => [{:subgroups => { :pair => [ { :subgroups => :jet }, {:classroom => :building}, { :charge_card => [ :discipline, { :teaching_place => [:lecturer, :position, :department] } ] } ] } } ] } ])
+    unless @group = Group.for_timetable.find_by_id(@id)
       suffix = @terminal ? '?terminal=true' : ''
       redirect_to :controller => 'timetable/groups' + suffix
     else
