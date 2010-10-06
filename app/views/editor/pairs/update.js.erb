@@ -1,6 +1,6 @@
-<% 
-prev_container = "_grid#{@prev_pair.classroom_id}_week#{@prev_pair.week}_day#{@prev_pair.day_of_the_week}_time#{@prev_pair.pair_number}"
-container = "_grid#{@pair.classroom_id}_week#{@pair.week}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
+<%
+  prev_container = "_grid#{@prev_pair.classroom_id}_week#{@prev_pair.week}_day#{@prev_pair.day_of_the_week}_time#{@prev_pair.pair_number}"
+  container = "_grid#{@pair.classroom_id}_week#{@pair.week}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
 %>
 jQuery(document).ready(function($){
     $('#error').remove();
