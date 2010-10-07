@@ -1,6 +1,6 @@
 class DeptHead::ChargeCardsController < DeptHead::BaseController
   active_scaffold do |config|
-    config.columns = [:jets, :discipline, :lesson_type, :hours_quantity, :hours_per_week, :weeks_quantity, :groups, :teaching_place_for_move]
+    config.columns = [:lesson_type, :teaching_place_for_move, :jets, :discipline, :hours_quantity, :hours_per_week, :weeks_quantity, :groups]
     config.create.columns.exclude :groups, :hours_quantity, :teaching_place_for_move
     config.update.columns.exclude :groups, :hours_quantity
     config.list.columns.exclude :jets, :teaching_place_for_move
