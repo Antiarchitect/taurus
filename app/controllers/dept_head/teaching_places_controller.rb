@@ -1,5 +1,4 @@
-class DeptHead::TeachingPlacesController < DeptHead::BaseController  
-  record_select :search_on => 'lecturers.name', :include => :lecturer
+class DeptHead::TeachingPlacesController < DeptHead::BaseController
   active_scaffold do |config|
     config.columns = [:lecturer, :position]
     config.columns[:lecturer].form_ui = :record_select
@@ -13,10 +12,6 @@ class DeptHead::TeachingPlacesController < DeptHead::BaseController
 
   protected
 
-  def record_select_includes
-    :lecturer
-  end
-  
   def before_create_save(record)
     @dept ||= current_dept_head.department
     record.department_id = @dept.id
