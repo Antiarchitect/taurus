@@ -43,10 +43,7 @@ class Editor::PairsController < Editor::BaseController
         @pair = @prev_pair
       else
         @pair.save
-        logger.info("sub1: #{@pair.subgroups.count}")
-        @pair.subgroups.delete_all
-        logger.info("sub2: #{@pair.subgroups.count}")
-        logger.info("jets: #{@pair.charge_card.jets}")
+        @pair.subgroups.destroy_all
         @pair.charge_card.jets.each do |jet|
           subgroup = @pair.subgroups.new(:jet_id => jet.id, :number => 0)
           unless subgroup.valid?

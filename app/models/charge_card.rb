@@ -1,4 +1,6 @@
 class ChargeCard < ActiveRecord::Base
+  before_update :remove_pairs
+
   belongs_to :discipline
   belongs_to :teaching_place
   
@@ -26,5 +28,11 @@ class ChargeCard < ActiveRecord::Base
 
   def hours_quantity
     weeks_quantity * hours_per_week
+  end
+
+  private
+
+  def remove_pairs
+    pairs.destroy_all if teaching_place_id_changed?
   end
 end

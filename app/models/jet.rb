@@ -1,11 +1,11 @@
 class Jet < ActiveRecord::Base
   after_create :create_subgroups
-
+  
   belongs_to :charge_card
   belongs_to :group
   has_many :subgroups, :dependent => :destroy
 
-  validates_presence_of :group, :charge_card
+  validates_presence_of :group, :charge_card, :subgroups_quantity
   validates_numericality_of :subgroups_quantity
   validates_exclusion_of :subgroups_quantity, :in => 1..1
 
