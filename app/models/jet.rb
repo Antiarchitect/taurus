@@ -14,8 +14,7 @@ private
   def create_subgroups
     charge_card.pairs.each do |pair|
       subgroups.create(
-        :pair_id => pair.id,
-        :number => 0
+        :pair_id => pair.id
       )
     end
   end
