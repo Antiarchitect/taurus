@@ -1,6 +1,7 @@
 class DeptHead::TeachingPlacesController < DeptHead::BaseController
   active_scaffold do |config|
-    config.columns = [:lecturer, :position]
+    config.columns = [:position, :lecturer]
+    config.list.columns = [:lecturer, :position]
     config.columns[:lecturer].form_ui = :record_select
     config.columns[:lecturer].clear_link
     config.columns[:position].form_ui = :select
