@@ -99,3 +99,28 @@ $font_size: 3em;
     size: 48px;
   }
 }
+
+#terminalhelp {
+  clear: both;
+  padding: 1em;
+  margin: 2em 0 0;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0;
+  background-color: #F0F0F0;
+  border-top-left-radius: $numpad_border_radius;
+  z-index: -1;
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .helpbox {
+    float: left;
+    width: 50%;
+  }
+
+  .helpcontent {
+    margin: 0 0.5em;
+  }
+}
