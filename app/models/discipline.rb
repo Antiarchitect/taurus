@@ -3,5 +3,5 @@ class Discipline < ActiveRecord::Base
   has_many :charge_cards
 
   validates_presence_of :department, :name
-  validates_uniqueness_of :name, :scope => [:department_id]
+  validates_uniqueness_of :name, :scope => :department_id
 end

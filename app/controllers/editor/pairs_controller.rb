@@ -1,7 +1,7 @@
 class Editor::PairsController < Editor::BaseController
   layout nil
   layout 'application', :except => :edit
-  
+
   def create
     @pair = Pair.new do |p|
       p.classroom_id = params[:classroom_id]
@@ -18,7 +18,7 @@ class Editor::PairsController < Editor::BaseController
     else
       @pair.save
     end
-    
+
     respond_to do |format|
       format.js
     end
@@ -43,18 +43,22 @@ class Editor::PairsController < Editor::BaseController
         @pair = @prev_pair
       else
         @pair.save
+        logger.info("sub1: #{@pair.subgroups.count}")
         @pair.subgroups.delete_all
+        logger.info("sub2: #{@pair.subgroups.count}")
+        logger.info("jets: #{@pair.charge_card.jets}")
         @pair.charge_card.jets.each do |jet|
-          @pair.subgroups.create(
-            :jet_id => jet.id,
-            :number => 0
-          )
+          subgroup = @pair.subgroups.new(:jet_id => jet.id, :number => 0)
+          unless subgroup.valid?
+            flash[:error] = subgroup.errors[:base].to_a.join('<br />').html_safe
+          else
+            subgroup.save
+          end
         end
-        @subgroups_only = true
         redirect_to :action => 'edit'
       end
     elsif params[:classroom]
-      @pair.classroom_id = params[:classroom].to_i    
+      @pair.classroom_id = params[:classroom].to_i
       @pair.day_of_the_week = params[:day_of_the_week].to_i if params[:day_of_the_week]
       @pair.week = params[:week].to_i if params[:week]
       @pair.pair_number = params[:pair_number].to_i if params[:pair_number]
@@ -64,7 +68,7 @@ class Editor::PairsController < Editor::BaseController
       else
         @pair.save
       end
-      
+
       respond_to do |format|
         format.js
       end
@@ -75,7 +79,7 @@ class Editor::PairsController < Editor::BaseController
         @pair = @prev_pair
       else
         @pair.save
-      end      
+      end
       respond_to do |format|
         format.js
       end

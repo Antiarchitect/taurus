@@ -12,10 +12,8 @@ class Jet < ActiveRecord::Base
 private
 
   def create_subgroups
-    card = self.charge_card
-    pairs = card.pairs
-    pairs.each do |pair|
-      self.subgroups.create(
+    charge_card.pairs.each do |pair|
+      subgroups.create(
         :pair_id => pair.id,
         :number => 0
       )

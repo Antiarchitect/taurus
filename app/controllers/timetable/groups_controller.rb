@@ -6,10 +6,9 @@ class Timetable::GroupsController < ApplicationController
       template = 'index_terminal'
     end
     
-    group = params[:group].to_s.gsub('%', '\%').gsub('_', '\_') + '%'
     respond_to do |format|
       format.html { render template || 'index' }
-      format.json { render :json => Group.all(:conditions => ['groups.name LIKE ?', group]).to_json(:only => [:id, :name]) }
+      format.json { render :json => Group.by_name(params[:group]).to_json(:only => [:id, :name]) }
     end    
   end
   
@@ -18,7 +17,7 @@ class Timetable::GroupsController < ApplicationController
       @terminal = true
     end
     @id = params[:id].to_i
-    unless @group = Group.find_by_id(@id, :include => [ {:jets => [{:subgroups => { :pair => [ {:classroom => :building}, { :charge_card => [ :discipline, { :teaching_place => [:lecturer, :position, :department] } ] } ] } } ] } ])
+    unless @group = Group.for_timetable.find_by_id(@id)
       suffix = @terminal ? '?terminal=true' : ''
       redirect_to :controller => 'timetable/groups' + suffix
     else
@@ -30,7 +29,7 @@ class Timetable::GroupsController < ApplicationController
       @weeks = Timetable.weeks
       @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size + 1).map!{Array.new}}}
       pairs.each do |pair|
-        @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << [pair, pair.subgroups.find_by_jet_id(jets.find_by_charge_card_id(pair.charge_card.id).id).try(:number)]
+        @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << [pair, pair.subgroups.detect {|s| s.jet.charge_card_id == pair.charge_card_id}.try(:number)]
       end
     end
   end
