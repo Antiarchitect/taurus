@@ -29,7 +29,9 @@ class Timetable::GroupsController < ApplicationController
       @weeks = Timetable.weeks
       @pairs = Array.new(@days.size).map!{Array.new(@times.size).map!{Array.new(@weeks.size + 1).map!{Array.new}}}
       pairs.each do |pair|
-        @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << [pair, pair.subgroups.detect {|s| s.jet.charge_card_id == pair.charge_card_id}.try(:number)]
+        subgroup = pair.subgroups.detect {|s| s.jet.charge_card_id == pair.charge_card_id}
+        subgroups_number = subgroup.number if subgroup
+        @pairs[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << [pair, subgroups_number]
       end
     end
   end

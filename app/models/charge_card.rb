@@ -1,6 +1,11 @@
 class ChargeCard < ActiveRecord::Base
+  before_update :remove_pairs
+
   belongs_to :discipline
   belongs_to :teaching_place
+  
+  # this needs to ActiveScaffold can display teaching place in charge cards for moving
+  belongs_to :teaching_place_for_move, :class_name => 'TeachingPlace', :foreign_key => 'teaching_place_id'
   belongs_to :lesson_type
   has_many :jets, :dependent => :destroy
   has_many :groups, :through => :jets
@@ -23,5 +28,11 @@ class ChargeCard < ActiveRecord::Base
 
   def hours_quantity
     weeks_quantity * hours_per_week
+  end
+
+  private
+
+  def remove_pairs
+    pairs.destroy_all if teaching_place_id_changed?
   end
 end

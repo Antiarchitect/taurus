@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :dept_head do |d|
-    d.resources :teaching_places, :active_scaffold => true
+    d.resources :teaching_places, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
     d.resources :disciplines, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
     d.resources :groups, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
     d.resources :lecturers, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
