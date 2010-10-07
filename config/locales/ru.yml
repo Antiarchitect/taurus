@@ -109,3 +109,5 @@ ru:
     description:
       jet:
         subgroups_quantity: 'Значение "1" не допускается. В случае отсутствия подгрупп выставить "0"'
+      discipline:
+        short_name: 'Не длиннее 24 символов'
