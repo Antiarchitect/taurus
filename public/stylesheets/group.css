@@ -64,6 +64,20 @@ img {
   .daycell td.empty {
     background-color: #e6e6fa; }
 
+.pairdialog {
+  width: 100%;
+  padding: 1em; }
+  .pairdialog table {
+    border: 5px solid black;
+    border-collapse: true; }
+  .pairdialog tr {
+    height: 200px;
+    max-height: 200px; }
+  .pairdialog td {
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 24px; }
+
 .lecturer {
   white-space: nowrap; }
 
