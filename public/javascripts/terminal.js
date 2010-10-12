@@ -38,6 +38,18 @@ jQuery(document).ready(function($){
     $('.backspace').button({
 
     })
+
+    $('.daycellcontainer').click(function(){
+     var content = $(this).clone();
+     content.addClass('pairdialog');
+     content.dialog({
+        modal: true,
+        width: 800,
+        buttons: {
+        	'Закрыть': function() {
+        		$(this).dialog("close");
+        	}
+        }
+    	});
+    });
 });
-
-

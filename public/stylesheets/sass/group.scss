@@ -47,10 +47,6 @@ img {
     border-collapse: collapse;
     border: 1px solid black;
     background-color: $grid_background;
-    td, th {
-      border-right: 1px solid black;
-      border-bottom: 1px solid black;
-    }
   }  
   clear: both;
   margin: {
@@ -85,8 +81,8 @@ img {
 }
 
 .daycellcontainer {
-  height: $timetablerow_height;
-  width: 100%;
+  height: $timetablerow_height+2px;
+  margin: -1px;
 }
 
 .daycell {
@@ -98,8 +94,7 @@ img {
     max-height: 75px;
   }
   td {
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    padding: 1px;
     width: 50%;
     font: {
       family: sans-serif;
@@ -111,6 +106,24 @@ img {
   }
   td.empty {
     background-color: $grid_background;
+  }
+}
+
+.pairdialog {
+  width: 100%;
+  padding: 1em;
+  table {
+    border: 5px solid black;
+    border-collapse: true;
+  }
+  tr {
+    height: 200px;
+    max-height: 200px;
+  }
+  td {
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 24px;
   }
 }
 
