@@ -168,3 +168,18 @@ img {
     size: 3em;
   }
 }
+
+#loading_spinner {
+    padding: 1em;
+}
+
+#error_notify {
+    background-color: #990000;
+    color: white;
+    margin: 1em;
+    padding: 1em;
+    font-size: 16px;
+    display: none;
+    position: absolute;
+    max-width: 400px;
+}
