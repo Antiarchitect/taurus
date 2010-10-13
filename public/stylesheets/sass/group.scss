@@ -140,10 +140,9 @@ img {
 .group_name {
   margin-left: 30%;
   width: 40%;
-  height: 220px;
   border-radius: $numpad_border_radius;
   background: $numpad_background;
-  padding: 10px;
+  padding: 16px;
   float: left;
   text-align: center;
 }
@@ -151,6 +150,7 @@ img {
 .group_name_input {
   margin: {
     top: 30px;
+    bottom: 0.5em;
   }
   width: 80%;
   font: {
@@ -158,7 +158,7 @@ img {
   }
 }
 
-.group_name button,  .group_name_terminal button{
+.group_name button,  .group_name_terminal button {
     font-size: 150%;
     padding: 0.5em 2em;
     margin: 0.5em;
@@ -167,7 +167,7 @@ img {
 
 .group_name_label {
   margin: {
-    top: 35px;
+    top: 30px;
   }
   width: 100%;
   font: {
