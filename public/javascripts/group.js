@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
         return false;
     }
 
-    $('.group_name input').change(checkButton);
+    $('.group_name input').change(function(){$('.group_name button').slideUp()});
     $('.group_name button').click(function () {
         var name = $('.group_name input').val();
         for (var i in allowedGroups)
@@ -68,6 +68,7 @@ jQuery(document).ready(function($){
                 of: '.group_name_input'
             });
             $('.notify').dequeue();
+            $('.group_name button').slideUp();
             // Querying for group list
             $.ajax({
                 url: '/timetable/groups.json',
@@ -89,7 +90,6 @@ jQuery(document).ready(function($){
                             }
                         })
                     );
-                    checkButton();
                     var label_addon = " ← нажать";
                     response($.map( data, function( item ) {
                         return {
@@ -109,6 +109,9 @@ jQuery(document).ready(function($){
         },
         select: function(event, ui) {
             return showTimetable(ui.item.value);
+        },
+        close: function (event, ui) {
+          checkButton();
         }
     });
 
