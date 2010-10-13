@@ -170,7 +170,10 @@ img {
 }
 
 #loading_spinner {
-    padding: 1em;
+  padding: 1em;
+  width: 32px;
+  height: 32px;
+  position: absolute;
 }
 
 .notify {
@@ -193,9 +196,4 @@ img {
 .info_notify {
     background-color: #0000AA;
     color: white;
-}
-
-#loading_spinner {
-  width: 16px;
-  height: 16px;
 }

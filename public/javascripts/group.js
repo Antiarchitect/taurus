@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
         source: function(request, response) {
             // Pre-query interface preparations
             $('<img />', {
-                src: '/images/loading_16.png',
+                src: '/images/ajax-loader-big.gif',
                 alt: 'Загрузка...',
                 id: 'loading_spinner'
             }).appendTo('body').position({
