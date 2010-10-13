@@ -73,7 +73,7 @@ jQuery(document).ready(function($){
             if ($(this).attr('id') == "group_name_input_terminal") {
               suffix = "?terminal=true";
             }
-            window.location.replace('/timetable/groups/' + ui.item.value + suffix);
+            window.location.href ='/timetable/groups/' + ui.item.value + suffix;
             return false;
         }
     });
