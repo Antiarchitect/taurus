@@ -20,6 +20,36 @@ jQuery(document).ready(function($){
         cont.slideDown().delay(10000).slideUp();
     };
 
+    var allowedGroups = new Array();
+    function checkButton () {
+        var button = $('.group_name button');
+        var value = $('.group_name input').val();
+        for (var i in allowedGroups) {
+            if (allowedGroups[i].label == value) {
+                button.slideDown();
+                return;
+            }
+        }
+        button.slideUp();
+    }
+
+    function showTimetable (group) {
+        var suffix = "";
+        if ($(this).attr('id') == "group_name_input_terminal") {
+            suffix = "?terminal=true";
+        }
+        window.location.href ='/timetable/groups/' + group + suffix;
+        return false;
+    }
+
+    $('.group_name input').change(checkButton);
+    $('.group_name button').click(function () {
+        var name = $('.group_name input').val();
+        for (var i in allowedGroups)
+            if (allowedGroups[i].label == name)
+                return showTimetable(allowedGroups[i].value);
+    });
+
     $('#group_name_input, #group_name_input_terminal').focus();
     $('#group_name_input, #group_name_input_terminal').autocomplete({
         minLength: 2,
@@ -51,6 +81,15 @@ jQuery(document).ready(function($){
                         $(".ui-autocomplete").hide();
                         showNotify('Не найдено групп по вашему запросу', 'info');
                     } else {
+                    allowedGroups = allowedGroups.concat(
+                        $.map( data, function( item ) {
+                            return {
+                                label: item.group.name,
+                                value: item.group.id
+                            }
+                        })
+                    );
+                    checkButton();
                     var label_addon = " ← нажать";
                     response($.map( data, function( item ) {
                         return {
@@ -69,12 +108,7 @@ jQuery(document).ready(function($){
             });
         },
         select: function(event, ui) {
-            var suffix = "";
-            if ($(this).attr('id') == "group_name_input_terminal") {
-              suffix = "?terminal=true";
-            }
-            window.location.href ='/timetable/groups/' + ui.item.value + suffix;
-            return false;
+            return showTimetable(ui.item.value);
         }
     });
 

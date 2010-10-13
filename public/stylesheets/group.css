@@ -101,6 +101,12 @@ img {
   width: 80%;
   font-size: 40px; }
 
+.group_name button, .group_name_terminal button {
+  font-size: 150%;
+  padding: 0.5em 2em;
+  margin: 0.5em;
+  display: none; }
+
 .group_name_label {
   margin-top: 35px;
   width: 100%;
