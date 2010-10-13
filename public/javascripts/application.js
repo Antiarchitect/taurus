@@ -70,15 +70,20 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    function showErrorNotify (text) {
+    function showNotify (text, type) {
+        var cont = $('<div>', {
+          'class': 'notify',
+          click: function() {$(this).dequeue();}
+        }).appendTo('body')
+        .position({
+          my: 'left top',
+          at: 'left bottom',
+          of: '.group_name_input'
+        }).width($('.group_name_input').width());
         $('<div>', {
-                        id: 'error_notify'
-                    }).text(text).appendTo('body')
-                    .position({
-                        my: 'center top',
-                        at: 'center bottom',
-                        of: '.group_name_input'
-                    }).slideDown().delay(10000).slideUp();
+          'class': String(type)+'_notify'
+        }).text(text).appendTo(cont);
+        cont.slideDown().delay(10000).slideUp();
     };
 
     $('#group_name_input, #group_name_input_terminal').focus();
@@ -91,13 +96,14 @@ jQuery(document).ready(function($){
             // Pre-query interface preparations
             $('<img />', {
                 src: '/images/loading_16.png',
-                alt: '',
+                alt: 'Загрузка...',
                 id: 'loading_spinner'
             }).appendTo('body').position({
                 my: 'right center',
                 at: 'right center',
                 of: '.group_name_input'
             });
+            $('.notify').dequeue();
             // Querying for group list
             $.ajax({
                 url: '/timetable/groups.json',
@@ -106,7 +112,11 @@ jQuery(document).ready(function($){
                 timeout: 5000,
                 success: function(data, status) {
                     if (data === null)
-                        showErrorNotify("Произошла ошибка: не удалось загрузить список групп, попробуйте чуть позже.");
+                        showNotify("Произошла ошибка: не удалось загрузить список групп, попробуйте чуть позже.", 'error');
+                     else if (!data.length) {
+                        $(".ui-autocomplete").hide();
+                        showNotify('Не найдено групп по вашему запросу', 'info');
+                    } else {
                     var label_addon = " ← нажать";
                     response($.map( data, function( item ) {
                         return {
@@ -114,9 +124,10 @@ jQuery(document).ready(function($){
                             value: item.group.id
                         }
                     }));
+                    }
                 },
                 error: function(xhr, status) {
-                    showErrorNotify("Произошла ошибка: не удалось загрузить список групп, попробуйте чуть позже.");
+                    showNotify("Произошла ошибка: не удалось загрузить список групп, попробуйте чуть позже.", 'error');
                 },
                 complete: function(xhr, status) {
                     $('#loading_spinner').remove();

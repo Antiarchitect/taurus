@@ -173,13 +173,29 @@ img {
     padding: 1em;
 }
 
-#error_notify {
-    background-color: #990000;
-    color: white;
-    margin: 1em;
-    padding: 1em;
-    font-size: 16px;
+.notify {
     display: none;
     position: absolute;
-    max-width: 400px;
+}
+
+.error_notify, .info_notify {
+  margin: 0.5em;
+  padding: 1em;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.error_notify {
+    background-color: #AA0000;
+    color: white;
+}
+
+.info_notify {
+    background-color: #0000AA;
+    color: white;
+}
+
+#loading_spinner {
+  width: 16px;
+  height: 16px;
 }
