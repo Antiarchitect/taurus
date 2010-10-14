@@ -1,11 +1,11 @@
-- both_week_pairs = @pairs[day_counter][time][0]
-- first_week_pairs = @pairs[day_counter][time][1]
-- second_week_pairs = @pairs[day_counter][time][2]
+- both_week_pairs = @pairs[day_counter][time_counter][0]
+- first_week_pairs = @pairs[day_counter][time_counter][1]
+- second_week_pairs = @pairs[day_counter][time_counter][2]
 %td
   - if both_week_pairs.empty? && first_week_pairs.empty? && second_week_pairs.empty?
     .nopair
   - else
-    .daycellcontainer
+    .daycellcontainer{:title => day + ", пара в " + time}
       %table{:class => 'daycell'}
         - if both_week_pairs.size == 1
           %tr
