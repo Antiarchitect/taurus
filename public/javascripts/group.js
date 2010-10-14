@@ -35,7 +35,7 @@ jQuery(document).ready(function($){
 
     function showTimetable (group) {
         var suffix = "";
-        if ($(this).attr('id') == "group_name_input_terminal") {
+        if (location.search.lastIndexOf("terminal") > -1) {
             suffix = "?terminal=true";
         }
         window.location.href ='/timetable/groups/' + group + suffix;
