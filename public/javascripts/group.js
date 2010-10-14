@@ -42,7 +42,11 @@ jQuery(document).ready(function($){
         return false;
     }
 
-    $('.group_name input').change(function(){$('.group_name button').slideUp()});
+    $('.group_name input').change(function(){
+      $('.group_name button').slideUp();
+      $('.notify').dequeue();
+    });
+    
     $('.group_name button').click(function () {
         var name = $('.group_name input').val();
         for (var i in allowedGroups)
