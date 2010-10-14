@@ -69,34 +69,6 @@ jQuery(document).ready(function($){
         $.post('/editor/classrooms/' + $(this).attr('grid_id'), {_method: 'delete'}, null, "script");
         return false;
     });
-    
-    $('#group_name_input, #group_name_input_terminal').focus();
-    $('#group_name_input, #group_name_input_terminal').autocomplete({
-        minLength: 2,
-        focus: function(event, ui) {
-          return false;
-        },
-        source: function(request, response) {
-            $.getJSON('/timetable/groups.json', {
-                group: request.term
-            },
-            function(data) {
-                var label_addon = " ← нажать";
-                response($.map( data, function( item ) {
-                  return {
-                    label: item.group.name + label_addon,
-                    value: item.group.id
-                  }
-                }));
-            });
-        },
-        select: function(event, ui) {
-            var suffix = "";
-            if ($(this).attr('id') == "group_name_input_terminal") {
-              suffix = "?terminal=true";
-            }
-            window.location.replace('/timetable/groups/' + ui.item.value + suffix);
-            return false;
-        }
-    });
+
 });
+
