@@ -8,7 +8,7 @@ class DeptHead::TeachingPlacesController < DeptHead::BaseController
     config.columns[:lecturer].sort_by :sql => 'lecturers.name'
     config.search.columns = :lecturer
     config.columns[:lecturer].search_sql = 'lecturers.name'
-    config.nested.add_link('Карта распределения нагрузки', [:charge_cards])
+    config.nested.add_link('Карты распределения нагрузки', [:charge_cards])
   end
 
   protected
