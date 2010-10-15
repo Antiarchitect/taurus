@@ -66,6 +66,7 @@ ru:
       building:
         name: 'Название корпуса'
       charge_card:
+        teaching_place: 'Преподаватель'
         discipline: 'Название дисциплины'
         groups: 'Группы'
         jets: 'Группы'
@@ -107,6 +108,8 @@ ru:
         lecturer: 'Преподаватель'
         position: 'Должность'
     description:
+      charge_card:
+        teaching_place: 'Внимание! При смене преподавателя все имеющиеся пары для этой карты будут удалены!'
       jet:
         subgroups_quantity: 'Значение "1" не допускается. В случае отсутствия подгрупп выставить "0"'
       discipline:
