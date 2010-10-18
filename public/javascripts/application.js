@@ -5,6 +5,10 @@ jQuery(document).ready(function($){
     });
 
     // editor/classrooms/index
+    $('#classroom_name').change(function () {
+      $(this).autocomplete('disable'); // These two lines fixes bug with simultaneously
+      $(this).autocomplete('enable'); // opening two same auditories at once (on fast clicking)
+    });
     $('#classroom_name').autocomplete({
         disabled: false,
         source: function(request, response) {

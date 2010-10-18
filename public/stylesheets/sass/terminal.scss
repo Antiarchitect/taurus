@@ -50,14 +50,14 @@ $font_size: 3em;
   clear: both;
 }
 
-.group_name_terminal {
+.group_name {
   width: 40%;
-  height: 220px;
   border-radius: $numpad_border_radius;
   background: $numpad_background;
   padding: 10px;
   float: left;
   text-align: center;
+  margin-left: 0;
 }
 
 .group_name_input_terminal {
