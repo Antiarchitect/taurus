@@ -39,12 +39,14 @@
       = "←"
   .dummy_div
 
-.group_name_terminal
+.group_name
   %span{:style => "font-size: 120%; color: #330000;"} Тестовый режим.<br/>Доступно расписание только для 055 и 655 групп.
   .group_name_label_terminal
     %span
       =  "Номер группы"
   %input{:class => "group_name_input", :id => "group_name_input_terminal", :size => 15}
+  %div
+    %button{:type => "button"} Показать расписание
 
 #terminalhelp
   .helpbox
