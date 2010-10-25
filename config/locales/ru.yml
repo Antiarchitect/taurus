@@ -97,6 +97,7 @@ ru:
         subgroups_quantity: 'Количество подргупп'
       lecturer:
         name: 'ФИО'
+        whish: 'Пожелания'
       pair:
         building: 'Корпус'
         classroom: 'Аудитория'
