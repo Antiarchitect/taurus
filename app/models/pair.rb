@@ -15,7 +15,7 @@ class Pair < ActiveRecord::Base
   end
   
   def week_string
-    week == 0 ? '' : week.to_s + '-я неделя'
+    week == 0 ? 'обе недели' : week.to_s + '-я неделя'
   end
   
   def full_lecturer
