@@ -40,7 +40,7 @@ class Editor::PairsController < Editor::BaseController
       @pair.attributes = params[:pair]
       unless @pair.valid?
         flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
-        @pair = @prev_pair
+        @pair.reload
       else
         @pair.save
         @pair.subgroups.destroy_all
@@ -61,7 +61,7 @@ class Editor::PairsController < Editor::BaseController
       @pair.pair_number = params[:pair_number].to_i if params[:pair_number]
       unless @pair.valid?
         flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
-        @pair = @prev_pair
+        @pair.reload
       else
         @pair.save
       end
@@ -73,7 +73,7 @@ class Editor::PairsController < Editor::BaseController
       @pair.attributes = params[:pair]
       unless @pair.valid?
         flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
-        @pair = @prev_pair
+        @pair.reload
       else
         @pair.save
       end
