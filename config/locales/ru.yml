@@ -1,4 +1,7 @@
 ru:
+  number:
+    format:
+      delimiter: ''
   activerecord:
     models:
       building:
@@ -76,6 +79,7 @@ ru:
         weeks_quantity: 'Количество недель'
       classroom:
         building: 'Корпус'
+        capacity: 'Вместимость'
         department: 'Кафедра'
         name: 'Номер аудитории'
       department:
@@ -111,6 +115,8 @@ ru:
     description:
       charge_card:
         teaching_place: 'Внимание! При смене преподавателя все имеющиеся пары для этой карты будут удалены!'
+      classroom:
+        capacity: 'количество человек'
       jet:
         subgroups_quantity: 'Значение "1" не допускается. В случае отсутствия подгрупп выставить "0"'
       discipline:

@@ -3,6 +3,7 @@ class Editor::PairsController < Editor::BaseController
   layout 'application', :except => :edit
 
   def create
+    flash[:error] = nil
     @pair = Pair.new do |p|
       p.classroom_id = params[:classroom_id]
       p.day_of_the_week = params[:day_of_the_week]
@@ -33,6 +34,7 @@ class Editor::PairsController < Editor::BaseController
   end
 
   def update
+    flash[:error] = nil
     @pair = Pair.find_by_id(params[:id].to_i, :include => [:subgroups])
     @prev_pair = @pair.clone
     @prev_pair.readonly!
@@ -40,7 +42,7 @@ class Editor::PairsController < Editor::BaseController
       @pair.attributes = params[:pair]
       unless @pair.valid?
         flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
-        @pair = @prev_pair
+        @pair.reload
       else
         @pair.save
         @pair.subgroups.destroy_all
@@ -61,7 +63,7 @@ class Editor::PairsController < Editor::BaseController
       @pair.pair_number = params[:pair_number].to_i if params[:pair_number]
       unless @pair.valid?
         flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
-        @pair = @prev_pair
+        @pair.reload
       else
         @pair.save
       end
@@ -73,17 +75,23 @@ class Editor::PairsController < Editor::BaseController
       @pair.attributes = params[:pair]
       unless @pair.valid?
         flash[:error] = @pair.errors[:base].to_a.join('<br />').html_safe
-        @pair = @prev_pair
+        @pair.reload
+        @pair.charge_card_id = nil
+        @pair.subgroups.destroy_all
+        @pair.save
+        redirect_to :action => 'edit'
       else
         @pair.save
-      end
-      respond_to do |format|
-        format.js
+        
+        respond_to do |format|
+          format.js
+        end
       end
     end
   end
 
   def destroy
+    flash[:error] = nil
     @id = params[:id].to_i
     pair = Pair.find_by_id(@id)
     @pair = pair.clone

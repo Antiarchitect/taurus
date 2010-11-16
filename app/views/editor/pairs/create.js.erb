@@ -1,5 +1,4 @@
 jQuery(document).ready(function($){
-  $('#error').remove();
   <% if @pair %>
     $('#<%= escape_javascript @container %>').prepend('<%= escape_javascript render :partial => @pair %>');
     $('#<%= @pair.id %>').draggable();
@@ -7,5 +6,9 @@ jQuery(document).ready(function($){
   <% elsif flash[:error] %>
     $('.workspace').prepend('<div id="error"></div>');
     $('#error').append('<%= escape_javascript flash[:error] %>');
+    $('#error').dialog({
+      draggable: false,
+      modal: true
+    });
   <% end %>
 });

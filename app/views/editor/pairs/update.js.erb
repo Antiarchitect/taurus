@@ -3,10 +3,13 @@
   container = "_grid#{@pair.classroom_id}_week#{@pair.week}_day#{@pair.day_of_the_week}_time#{@pair.pair_number}"
 %>
 jQuery(document).ready(function($){
-    $('#error').remove();
     <% if flash[:error] %>
       $('.workspace').prepend('<div id="error"></div>');
       $('#error').append('<%= escape_javascript flash[:error] %>');
+      $('#error').dialog({
+        draggable: false,
+        modal: true
+      });
     <% end %>
     $('#<%= @pair.id %>').remove();
     if ($('#td<%= escape_javascript container %>').length == 0) {

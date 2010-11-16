@@ -1,7 +1,4 @@
 .update_form{:id => "pair_edit_#{@pair.id.to_s}"}
-  - if flash[:error]
-    #flash
-      = flash[:error]
   - remote_form_for([:editor, @pair]) do |f|
     %p{:id => "week_block"}
       %br
