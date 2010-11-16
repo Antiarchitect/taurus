@@ -120,9 +120,7 @@ class Pair < ActiveRecord::Base
           intersect[1].each do |group|
             pair = subgroups.select { |s| group.jets.map { |j| j.id }.include?(s.jet_id) }.first
             candidate = group.subgroups.find_by_pair_id(intersect[0].id)
-            logger.info("pair.number: #{pair.number if pair}, candidate.number: #{candidate.number if candidate}")
             if pair && candidate && (pair.number == 0 || candidate.number == 0 || pair.number == candidate.number)
-              logger.info("pair.number: #{pair.number}, candidate.number: #{candidate.number}")
               conflicts << intersect[0]
             end
           end
