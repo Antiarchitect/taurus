@@ -1,0 +1,13 @@
+- pairs = pairs.select { |p| (p.week == 0 || p.week = week_counter + 1) }
+%td
+  .classrooms_sheet_cell
+    - @times.each_with_index do |time, index|
+      - cell_pairs = pairs.select { |p| p.pair_number == (index + 1) }
+      - if cell_pairs.any?
+        - css_class = 'busy'
+      - else
+        - css_class = 'empty'
+      .classrooms_sheet_cell_time{:class => css_class}
+        = index + 1
+
+

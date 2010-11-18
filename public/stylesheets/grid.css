@@ -106,3 +106,16 @@ img {
     border-width: 0;
     height: 68px;
     width: 50%; }
+
+.classrooms_sheet_cell {
+  height: 68px; }
+
+.classrooms_sheet_cell_time {
+  height: 10.714px;
+  font-size: 9px; }
+
+.busy {
+  background-color: #ffaaaa; }
+
+.empty {
+  background-color: #aaffaa; }
