@@ -1,0 +1,6 @@
+- pairs = classroom.pairs
+%tr
+  %th
+    = classroom.name
+    = render :partial => 'day', :collection => @days, :locals => {:classroom => classroom, :pairs => pairs}
+
