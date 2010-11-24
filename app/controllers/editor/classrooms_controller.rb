@@ -3,11 +3,7 @@ class Editor::ClassroomsController < Editor::BaseController
   def index
     flash[:error] = nil
     cookies[:classrooms] = YAML.dump([0])
-    if params[:except]
-      except = params[:except].split(',').collect { |e| e.to_i }
-    else
-      except = "0"
-    end
+    except = params[:except] ? params[:except].split(',').collect { |e| e.to_i } : "0"
     classroom = params[:classroom].to_s.gsub('%', '\%').gsub('_', '\_') + '%'
     respond_to do |format|
       format.html
