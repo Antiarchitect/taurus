@@ -75,7 +75,8 @@ jQuery(document).ready(function($){
     });
 
     $('.classroom_row').click(function() {
-      window.location = '/editor/classrooms?classroom_id=' + $(this).attr('id')
+      window.open('/editor/classrooms?classroom_id=' + $(this).attr('id'));
+      return false;
     });
 });
 
