@@ -74,5 +74,8 @@ jQuery(document).ready(function($){
         return false;
     });
 
+    $('.classroom_row').click(function() {
+      window.location = '/editor/classrooms?classroom_id=' + $(this).attr('id')
+    });
 });
 
