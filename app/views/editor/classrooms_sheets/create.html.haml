@@ -1,7 +1,7 @@
 - classrooms = @classrooms_sheet.classrooms
 .workspace
   .grid
-    %table
+    %table{:class => 'classrooms_sheet_head'}
       %tr
         %th{:colspan => @days.count * 2 + 2}
           Занятость аудиторий. Корпус: #{@classrooms_sheet.building.name}
@@ -10,6 +10,8 @@
         = render :partial => 'day_header', :collection => @days
       %tr
         %th
-        - @days.count.times do
-          = render :partial => 'week_header', :collection => @weeks
-      = render :partial => 'classroom', :collection => classrooms
+          - @days.count.times do
+            = render :partial => 'week_header', :collection => @weeks
+    .classrooms_sheet_scrollable
+      %table{:class => 'classrooms_sheet_table'}
+        = render :partial => 'classroom', :collection => classrooms
