@@ -59,6 +59,7 @@ $grid_background: #E6E6FA;
   }
   th {
     @include table_border;
+    width: 7.7%;
   }
 }
 
@@ -169,9 +170,16 @@ img {
   }
 }
 
+.classrooms_sheet_scrollable {
+  height: 500px;
+  overflow: auto;
+  margin-right: -15px;
+}
+
 .classrooms_sheet_cell {
   height: $container_height;
 }
+
 .classrooms_sheet_cell_time {
   height: $container_height / 7 + 1;
   font-size: 9px;

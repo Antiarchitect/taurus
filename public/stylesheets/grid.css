@@ -31,7 +31,8 @@
     width: 7.7%; }
   .grid th {
     border-style: solid;
-    border-width: thin; }
+    border-width: thin;
+    width: 7.7%; }
 
 .receiver {
   -webkit-user-select: none;
@@ -106,6 +107,11 @@ img {
     border-width: 0;
     height: 68px;
     width: 50%; }
+
+.classrooms_sheet_scrollable {
+  height: 500px;
+  overflow: auto;
+  margin-right: -15px; }
 
 .classrooms_sheet_cell {
   height: 68px; }
