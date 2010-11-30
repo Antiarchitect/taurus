@@ -12,9 +12,7 @@ class Timetable::LecturersController < ApplicationController
   end
 
   def show
-    if params[:terminal]
-      @terminal = true
-    end
+    @terminal = params[:terminal] ? true : false
     @id = params[:id].to_i
     unless @lecturer = Lecturer.find_by_id(@id)
       suffix = @terminal ? '?terminal=true' : ''

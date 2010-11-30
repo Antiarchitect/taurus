@@ -2,20 +2,16 @@ class Timetable::GroupsController < ApplicationController
   layout 'group'
   
   def index
-    if params[:terminal]
-      template = 'index_terminal'
-    end
+    template = params[:terminal] ? 'index_terminal' : 'index'
     
     respond_to do |format|
-      format.html { render template || 'index' }
+      format.html { render template }
       format.json { render :json => Group.by_name(params[:group]).to_json(:only => [:id, :name]) }
     end    
   end
   
   def show
-    if params[:terminal]
-      @terminal = true
-    end
+    @terminal = params[:terminal] ? true : false
     @id = params[:id].to_i
     unless @group = Group.for_timetable.find_by_id(@id)
       suffix = @terminal ? '?terminal=true' : ''
