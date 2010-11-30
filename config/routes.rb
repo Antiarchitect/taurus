@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
     e.resources :pairs
     e.resources :charge_cards
     e.resources :classrooms_sheets
-    e.root :controller => 'classrooms_sheets', :action => 'new'
+    e.root :controller => 'classrooms_sheets'
   end
 
   map.namespace :dept_head do |d|

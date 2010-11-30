@@ -1,10 +1,10 @@
-- classrooms = @classrooms_sheet.classrooms
+- classrooms = @building.classrooms.sort_by { |c| c.name.to_i}
 .workspace
   .grid
     %table{:class => 'classrooms_sheet_head'}
       %tr
         %th{:colspan => @days.count * 2 + 2}
-          Занятость аудиторий. Корпус: #{@classrooms_sheet.building.name}
+          Занятость аудиторий. Корпус: #{@building.name}
       %tr
         %th
         = render :partial => 'day_header', :collection => @days

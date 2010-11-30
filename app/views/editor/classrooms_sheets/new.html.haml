@@ -1,7 +1,0 @@
-.workspace
-  #form
-    - form_for [:editor, @classrooms_sheet] do |f|
-      = f.label :building, 'Корпус: '
-      = f.select :building, buildings_for_select
-      %br
-      = f.submit 'Показать'
