@@ -170,10 +170,13 @@ img {
   }
 }
 
+.classrooms_sheet_head {
+  margin-right: 15px;
+}
+
 .classrooms_sheet_scrollable {
   height: 500px;
   overflow: auto;
-  margin-right: -15px;
 }
 
 .classrooms_sheet_cell {

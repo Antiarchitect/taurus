@@ -1,17 +1,18 @@
 - classrooms = @building.classrooms.sort_by { |c| c.name.to_i}
 .workspace
   .grid
-    %table{:class => 'classrooms_sheet_head'}
-      %tr
-        %th{:colspan => @days.count * 2 + 2}
-          Занятость аудиторий. Корпус: #{@building.name}
-      %tr
-        %th
-        = render :partial => 'day_header', :collection => @days
-      %tr
-        %th
-          - @days.count.times do
-            = render :partial => 'week_header', :collection => @weeks
+    .classrooms_sheet_head
+      %table{:class => 'classrooms_sheet_head'}
+        %tr
+          %th{:colspan => @days.count * 2 + 2}
+            Занятость аудиторий. Корпус: #{@building.name}
+        %tr
+          %th
+          = render :partial => 'day_header', :collection => @days
+        %tr
+          %th
+            - @days.count.times do
+              = render :partial => 'week_header', :collection => @weeks
     .classrooms_sheet_scrollable
-      %table{:class => 'classrooms_sheet_table'}
+      %table
         = render :partial => 'classroom', :collection => classrooms

@@ -108,10 +108,12 @@ img {
     height: 68px;
     width: 50%; }
 
+.classrooms_sheet_head {
+  margin-right: 15px; }
+
 .classrooms_sheet_scrollable {
   height: 500px;
-  overflow: auto;
-  margin-right: -15px; }
+  overflow: auto; }
 
 .classrooms_sheet_cell {
   height: 68px; }
