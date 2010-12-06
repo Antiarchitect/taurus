@@ -1,8 +1,6 @@
 .workspace
   .groups
-    - @groups_list.groups.each do |group|
-      = group.name
-      %br
+    = render :partial => '/editor/groups/group', :collection => @groups_list.groups
   #form
     %p
       = 'Группа:'

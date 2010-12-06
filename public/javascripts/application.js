@@ -83,29 +83,33 @@ jQuery(document).ready(function($) {
     $('#group_name').autocomplete({
         disabled: false,
         source: function(request, response) {
-            $.getJSON('/editor/groups_list.json', {},
+            $.getJSON('/editor/groups_list.json', {}, function(data) {
+                var groups = new Array(0);
+                data.each(function(i) {
+                    groups.push(i.group.id);
+                });
+                $.getJSON('/editor/groups.json', {
+                    group: request.term,
+                    except: groups
+                },
                 function(data) {
                     var groups = new Array(0);
                     data.each(function(i) {
-                        groups.push(i.group.id);
+                        groups.push({ label: i.group.name, value: i.group.id });
                     });
-                    $.getJSON('/editor/groups.json', {
-                        group: request.term,
-                        except: groups
-                    },
-                    function(data) {
-                        var groups = new Array(0);
-                        data.each(function(i) {
-                            groups.push({ label: i.group.name, value: i.group.id });
-                        });
-                        response(groups);
-                    });
+                    response(groups);
                 });
-            },
+            });
+        },
         select: function(event, ui) {
             $.post('/editor/groups_list/groups', {id : ui.item.value});
             return false;
         }
+    });
+
+    $('.remove').live('click', function() {
+      var group_id = $(this).attr('group_id');
+      $.post('/editor/groups_list/groups/' + group_id, {_method: 'delete'});
     });
 });
 
