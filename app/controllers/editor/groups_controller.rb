@@ -1,2 +1,2 @@
-class Editor::GroupsController < ApplicationController
+class Editor::GroupsController < Editor::BaseController
 end
