@@ -108,8 +108,12 @@ jQuery(document).ready(function($) {
     });
 
     $('.remove').live('click', function() {
-      var group_id = $(this).attr('group_id');
-      $.post('/editor/groups_list/groups/' + group_id, {_method: 'delete'});
+        var group_id = $(this).attr('group_id');
+        $.post('/editor/groups_list/groups/' + group_id, {_method: 'delete'});
     });
+
+    $('#create_groups_list').button();
+    $('#create_groups_list').click(
+    );
 });
 
