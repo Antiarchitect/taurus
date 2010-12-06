@@ -1,11 +1,11 @@
-jQuery(document).ready(function($){
+jQuery(document).ready(function($) {
     // makes Rails to know that jQuery Ajax requests should be processed as .js format
     $.ajaxSetup({
         'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
     });
 
     // editor/classrooms/index
-    $('#classroom_name').change(function () {
+    $('#classroom_name').change(function() {
       $(this).autocomplete('disable'); // These two lines fixes bug with simultaneously
       $(this).autocomplete('enable'); // opening two same auditories at once (on fast clicking)
     });
@@ -78,6 +78,34 @@ jQuery(document).ready(function($){
     $('.classroom_row').click(function() {
       window.open('/editor/classrooms?classroom_id=' + $(this).attr('id'));
       return false;
+    });
+
+    $('#group_name').autocomplete({
+        disabled: false,
+        source: function(request, response) {
+            $.getJSON('/editor/groups_list.json', {},
+                function(data) {
+                    var groups = new Array(0);
+                    data.each(function(i) {
+                        groups.push(i.group.id);
+                    });
+                    $.getJSON('/editor/groups.json', {
+                        group: request.term,
+                        except: groups
+                    },
+                    function(data) {
+                        var groups = new Array(0);
+                        data.each(function(i) {
+                            groups.push({ label: i.group.name, value: i.group.id });
+                        });
+                        response(groups);
+                    });
+                });
+            },
+        select: function(event, ui) {
+            $.post('/editor/groups_list/groups', {id : ui.item.value});
+            return false;
+        }
     });
 });
 

@@ -1,0 +1,10 @@
+.workspace
+  .groups
+    - @groups_list.groups.each do |group|
+      = group.name
+      %br
+  #form
+    %p
+      = 'Группа:'
+      %br
+      %input{:id => "group_name", :size => 10}

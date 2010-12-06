@@ -1,3 +1,7 @@
 .workspace
-  = render 'form'
+  #form
+    %p
+      = 'Аудитория:'
+      %br
+      %input{:id => "classroom_name", :size => 10}
 = javascript_tag("jQuery.get('/editor/classrooms/' + #{@classroom_id});")

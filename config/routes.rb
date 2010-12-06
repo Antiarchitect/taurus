@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
     e.resources :pairs
     e.resources :charge_cards
     e.resources :classrooms_sheets
+    e.resources :groups
     e.resource  :groups_list do |list|
       list.resources :groups
     end
