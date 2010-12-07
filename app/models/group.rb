@@ -20,6 +20,21 @@ class Group < ActiveRecord::Base
     course
   end
 
+  def get_pairs
+    subgroups = jets.map { |j| j.subgroups }.flatten
+    pairs = subgroups.map { |s| s.pair }
+    days = Timetable.days
+    times = Timetable.times
+    weeks = Timetable.weeks
+    pairs_array = Array.new(days.size).map!{Array.new(times.size).map!{Array.new(weeks.size + 1).map!{Array.new}}}
+    pairs.each do |pair|
+      subgroup = subgroups.detect {|s| s.jet.charge_card_id == pair.charge_card_id}
+      subgroups_number = subgroup ? subgroup.number : 0
+      pairs_array[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << [pair, subgroups_number]
+    end
+    pairs_array
+  end
+
   private
 
   def self.escape_name(name)

@@ -12,5 +12,4 @@
             %th{:rowspan => "#{@times.count}"} "#{day}"
           %th "#{time}"
           - groups.each do |group|
-            %td
-              %table
+            - pairs = group.get_pairs
