@@ -15,6 +15,8 @@
   background-color: #ffaaaa;
 }
 
+/* GroupsList START */
+
 .groups {
   height: 30px;
 }
@@ -44,3 +46,12 @@
   color: #333;
   cursor: pointer;
 }
+
+.groups_list {
+  border-collapse: collapse;
+  border: 1px black solid;
+  td, th {
+    border: 1px black solid;
+  }
+}
+/* GroupsList END */

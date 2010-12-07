@@ -1,0 +1,16 @@
+- groups = @groups_list.groups
+.workspace
+  %table{:class => 'groups_list'}
+    %tr
+      %th{:colspan => "2"}
+      - groups.each do |group|
+        %th #{group.name}
+    - @days.each do |day|
+      - @times.each_with_index do |time, index|
+        %tr
+          - if index == 0
+            %th{:rowspan => "#{@times.count}"} "#{day}"
+          %th "#{time}"
+          - groups.each do |group|
+            %td
+              %table

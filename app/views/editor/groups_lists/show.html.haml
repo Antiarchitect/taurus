@@ -1,8 +1,8 @@
 .workspace
   .groups
     = render :partial => '/editor/groups/group', :collection => @groups_list.groups
-    #create_groups_list
-      = 'Показать'
+    - form_for :groups_list, :url => { :action => :create }, :_method => "post" do |f|
+      = f.submit "Показать", { :id => "create_groups_list" }
   #form
     %p
       = 'Группа:'
