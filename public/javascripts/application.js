@@ -103,6 +103,7 @@ jQuery(document).ready(function($) {
         },
         select: function(event, ui) {
             $.post('/editor/groups_list/groups', {id : ui.item.value});
+            $('#group_name').val('');
             return false;
         }
     });
@@ -110,6 +111,7 @@ jQuery(document).ready(function($) {
     $('.remove').live('click', function() {
         var group_id = $(this).attr('group_id');
         $.post('/editor/groups_list/groups/' + group_id, {_method: 'delete'});
+        $('#group_name').focus();
     });
 
     $('#create_groups_list').button();

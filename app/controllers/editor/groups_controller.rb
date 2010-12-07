@@ -1,7 +1,7 @@
 class Editor::GroupsController < Editor::BaseController
   before_filter :find_group, :only => [:create, :destroy]
   def index
-    except = params[:except].any? ? params[:except].to_a : 0
+    except = params[:except] ? params[:except].to_a : 0
     group = params[:group].to_s.gsub('%', '\%').gsub('_', '\_') + '%'
     @groups = Group.all(:conditions => ['id NOT IN (?) AND name LIKE ?', except, group])
 
