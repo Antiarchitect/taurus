@@ -17,6 +17,10 @@ class Editor::GroupsListsController < Editor::BaseController
     @weeks = Timetable.weeks
     groups = Group.for_timetable.all(:conditions => { :id => @groups_ids })
     @groups_list = Lists::GroupsList.new(groups)
+    @pairs = []
+    @groups_list.groups.each_with_index do |group, index|
+      @pairs << group.get_pairs
+    end
   end
 
   private
@@ -26,3 +30,4 @@ class Editor::GroupsListsController < Editor::BaseController
     @groups_ids = YAML.load(cookies[:groups])
   end
 end
+

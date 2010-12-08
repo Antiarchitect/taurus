@@ -21,7 +21,6 @@ class Group < ActiveRecord::Base
   end
 
   def get_pairs
-    subgroups = jets.map { |j| j.subgroups }.flatten
     pairs = subgroups.map { |s| s.pair }
     days = Timetable.days
     times = Timetable.times
@@ -41,3 +40,4 @@ class Group < ActiveRecord::Base
     name.to_s.gsub('%', '\%').gsub('_', '\_') + '%'
   end
 end
+

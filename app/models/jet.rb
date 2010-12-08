@@ -1,6 +1,6 @@
 class Jet < ActiveRecord::Base
   after_create :create_subgroups
-  
+
   belongs_to :charge_card
   belongs_to :group
   has_many :subgroups, :dependent => :destroy
@@ -14,8 +14,10 @@ private
   def create_subgroups
     charge_card.pairs.each do |pair|
       subgroups.create(
-        :pair_id => pair.id
+        :pair_id => pair.id,
+        :number => 0
       )
     end
   end
 end
+
