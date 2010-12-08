@@ -1,10 +1,88 @@
+- groups = @groups_list.groups
+- Rails.logger.info("Alert! " + @pairs.first.first[1].to_s)
 .workspace
-  .groups
-    = render :partial => '/editor/groups/group', :collection => @groups_list.groups
-  #form
-    %p
-      = 'Группа:'
-      %br
-      %input{:id => "group_name", :size => 10}
-  - form_for :groups_list, :url => { :action => :create } do |f|
-    = f.submit "Показать", { :id => "create_groups_list" }
+  .grid
+    %table{:class => 'groups_list'}
+      %tr
+        %th{:colspan => "2"}
+        - groups.each do |group|
+          %th #{group.name}
+      - @days.each_with_index do |day, day_index|
+        - @times.each_with_index do |time, time_index|
+          %tr
+            - if time_index == 0
+              %th{:rowspan => "#{@times.count}"} #{day}
+            %th #{time}
+            - groups.each_with_index do |group, group_index|
+              - pairs = @pairs[group_index][day_index][time_index]
+              - both_week_pairs = pairs[0]
+              - first_week_pairs = pairs[1]
+              - second_week_pairs = pairs[2]
+              %td
+                - if both_week_pairs.empty? && first_week_pairs.empty? && second_week_pairs.empty?
+                  .nopair
+                - else
+                  .daycellcontainer{:title => day + ", пара в " + time}
+                    %table{:class => 'daycell'}
+                      - if both_week_pairs.size == 1
+                        %tr
+                          - both_week_pairs.each do |b|
+                            - if b[1] == 0
+                              %td{:colspan => 2, :rowspan => 2}
+                                = render '/timetable/groups/pair', :p => b[0]
+                            - elsif b[1] == 1
+                              %td{:rowspan => 2}
+                                = render '/timetable/groups/pair', :p => b[0]
+                              %td.empty{:rowspan => 2}
+                            - elsif b[1] == 2
+                              %td.empty{:rowspan => 2}
+                              %td{:rowspan => 2}
+                                = render '/timetable/groups/pair', :p => b[0]
+                        %tr
+                      - else
+                        %tr
+                          - if first_week_pairs.empty?
+                            %td.empty{:colspan => 2}
+                          - elsif first_week_pairs.size > 2
+                            %td{:colspan => 2}
+                              .error_pair
+                          - elsif first_week_pairs.size == 2
+                            - first_week_pairs.each do |f|
+                              %td
+                                = render '/timetable/groups/pair', :p => f[0]
+                          - elsif first_week_pairs.size == 1
+                            - first_week_pairs.each do |f|
+                              - if f[1] == 0
+                                %td{:colspan => 2}
+                                  = render '/timetable/groups/pair', :p => f[0]
+                              - elsif f[1] == 1
+                                %td
+                                  = render '/timetable/groups/pair', :p => f[0]
+                                %td.empty
+                              - elsif f[1] == 2
+                                %td.empty
+                                %td
+                                  = render '/timetable/groups/pair', :p => f[0]
+                        %tr
+                          - if second_week_pairs.empty?
+                            %td.empty{:colspan => 2}
+                          - elsif second_week_pairs.size > 2
+                            %td{:colspan => 2}
+                              .error_pair
+                          - elsif second_week_pairs.size == 2
+                            - second_week_pairs.each do |f|
+                              %td
+                                = render '/timetable/groups/pair', :p => f[0]
+                          - elsif second_week_pairs.size == 1
+                            - second_week_pairs.each do |f|
+                              - if f[1] == 0
+                                %td{:colspan => 2}
+                                  = render '/timetable/groups/pair', :p => f[0]
+                              - elsif f[1] == 1
+                                %td
+                                  = render '/timetable/groups/pair', :p => f[0]
+                                %td.empty
+                              - elsif f[1] == 2
+                                %td.empty
+                                %td
+                                  = render '/timetable/groups/pair', :p => f[0]

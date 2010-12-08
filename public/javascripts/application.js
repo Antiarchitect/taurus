@@ -113,5 +113,7 @@ jQuery(document).ready(function($) {
         $.post('/editor/groups_list/groups/' + group_id, {_method: 'delete'});
         $('#group_name').focus();
     });
+
+    $('.button').button();
 });
 
