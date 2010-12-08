@@ -1,10 +1,6 @@
 .menu
   %ul
-    %li
-      = link_to 'Факультеты', supervisor_faculties_path
-    %li
-      = link_to 'Преподаватели', supervisor_lecturers_path
-    %li
-      = link_to 'Аудитории', supervisor_classrooms_path
-    %li
-      = link_to 'Выход', destroy_supervisor_session_path, :class => "red"
+    %li #{ link_to 'Факультеты', supervisor_faculties_path }
+    %li #{ link_to 'Преподаватели', supervisor_lecturers_path }
+    %li #{ link_to 'Аудитории', supervisor_classrooms_path }
+    %li #{ link_to 'Выход', destroy_supervisor_session_path, :class => "red" }

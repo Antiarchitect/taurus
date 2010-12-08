@@ -1,0 +1,2 @@
+module Editor::GroupsListHelper
+end
