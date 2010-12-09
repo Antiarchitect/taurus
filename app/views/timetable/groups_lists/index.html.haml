@@ -1,0 +1,8 @@
+.workspace
+  - if flash[:notice]
+    .flash #{ flash[:notice] }
+  .add_groups_list
+    = link_to "Добавить новый лист", new_timetable_groups_list_path
+  .groups_lists
+    = render @groups_lists
+

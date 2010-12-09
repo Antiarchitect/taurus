@@ -1,0 +1,6 @@
+.new_groups_list
+  - form_for [:timetable, @groups_list] do |f|
+    = f.label :name, "Название"
+    = f.text_field :name
+    = f.submit "Добавить"
+
