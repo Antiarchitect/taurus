@@ -38,6 +38,9 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :timetable do |t|
     t.resources :groups
     t.resources :lecturers
+    t.resources :groups_lists do |l|
+      l.resources :groups
+    end
     t.root :controller => 'groups'
   end
 
