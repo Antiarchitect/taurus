@@ -3,6 +3,8 @@ class Group < ActiveRecord::Base
   has_many :jets, :dependent => :destroy
   has_many :subgroups, :through => :jets
   has_many :charge_cards, :through => :jets
+  has_many :listed_groups
+  has_many :groups, :through => :listed_groups
 
   validates_presence_of :name, :forming_year
   validates_uniqueness_of :name, :scope => :forming_year
