@@ -2,6 +2,10 @@
 - first_week_pairs = @pairs[day_counter][time_counter][1]
 - second_week_pairs = @pairs[day_counter][time_counter][2]
 %td
+  -# Uncomment for debug purpose only!
+  =# both_week_pairs.size
+  =# first_week_pairs.size
+  =# second_week_pairs.size
   - if both_week_pairs.empty? && first_week_pairs.empty? && second_week_pairs.empty?
     .nopair
   - else
@@ -13,8 +17,7 @@
               %td
                 .error_pair
           - elsif both_week_pairs.size == 2
-            %tr
-            - both_week_pairs.each do |b|
+            - both_week_pairs.sort_by { |p| p[1] }.each do |b|
               %td
                 = render 'pair', :p => b[0]
           - elsif both_week_pairs.size == 1
@@ -59,6 +62,14 @@
                       = render 'pair', :p => b[0]
                   %tr
                     %td.empty
+                - elsif second_week_pairs.size == 1 && second_week_pairs.first[1] == 1
+                  %tr
+                    %td.empty
+                    %td{:rowspan => 2}
+                      = render 'pair', :p => b[0]
+                  %tr
+                    %td
+                      = render 'pair', :p => second_week_pairs.first[0]                    
         - else
           %tr
             - if first_week_pairs.empty?
