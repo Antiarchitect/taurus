@@ -1,0 +1,3 @@
+- current_day = day_counter + 1
+- pairs = pairs.select { |p| p.day_of_the_week == current_day }
+= render :partial => 'week', :collection => @weeks, :locals => { :classroom => classroom, :pairs => pairs, :day => current_day }

@@ -19,7 +19,7 @@ $grid_background: #E6E6FA;
     family: sans-serif;
     size: 12px;
   }
-  width: $workspace_width; 
+  width: $workspace_width;
 }
 
 #form {
@@ -32,7 +32,7 @@ $grid_background: #E6E6FA;
 .closebutton {
   background-image: url('/images/close_16.ico');
   cursor: pointer;
-  float: right;  
+  float: right;
   height: 16px;
   width: 16px;
 }
@@ -59,6 +59,7 @@ $grid_background: #E6E6FA;
   }
   th {
     @include table_border;
+    width: 7.7%;
   }
 }
 
@@ -167,4 +168,30 @@ img {
     height: $container_height;
     width: 50%;
   }
+}
+
+.classrooms_sheet_head {
+  margin-right: 15px;
+}
+
+.classrooms_sheet_scrollable {
+  height: 500px;
+  overflow: auto;
+}
+
+.classrooms_sheet_cell {
+  height: $container_height;
+}
+
+.classrooms_sheet_cell_time {
+  height: $container_height / 7 + 1;
+  font-size: 9px;
+}
+
+.busy {
+  background-color: #ffaaaa;
+}
+
+.empty {
+  background-color: #aaffaa;
 }

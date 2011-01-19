@@ -3,11 +3,11 @@ class ChargeCard < ActiveRecord::Base
 
   belongs_to :discipline
   belongs_to :teaching_place
-  
+
   belongs_to :lesson_type
   has_many :jets, :dependent => :destroy
   has_many :groups, :through => :jets
-  has_many :pairs
+  has_many :pairs, :dependent => :destroy
 
   validates_presence_of :discipline, :lesson_type, :teaching_place, :weeks_quantity, :hours_per_week
   validates_numericality_of :weeks_quantity, :hours_per_week
@@ -34,3 +34,4 @@ class ChargeCard < ActiveRecord::Base
     pairs.destroy_all if teaching_place_id_changed?
   end
 end
+

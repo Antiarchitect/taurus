@@ -1,6 +1,6 @@
 .menu
   %ul
-    %li
-      = link_to 'Редактор расписания', editor_classrooms_path
-    %li
-      = link_to 'Выход', destroy_editor_session_path, :class => "red"
+    %li #{ link_to 'Редактор расписания', editor_classrooms_path }
+    %li #{ link_to 'Занятость аудиторий', editor_classrooms_sheets_path }
+    %li #{ link_to 'Листы расписания', new_editor_groups_list_path }
+    %li #{ link_to 'Выход', destroy_editor_session_path, :class => "red" }

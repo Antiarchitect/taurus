@@ -1,0 +1,9 @@
+.workspace
+  .groups
+    = render :partial => '/editor/groups/group', :collection => @groups_list.groups
+  #form
+    %p
+      = 'Группа:'
+      %br
+      %input{:id => "group_name", :size => 10}
+  = link_to "Показать", editor_groups_list_path, {:target => '_blank', :class => 'button'}

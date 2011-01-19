@@ -1,0 +1,4 @@
+.workspace
+  - @buildings.each do |building|
+    %p
+      = link_to "#{building.name} корпус", editor_classrooms_sheet_path(building)

@@ -1,12 +1,7 @@
 .menu
   %ul
-    %li
-      = link_to 'Администраторы системы', admin_admins_path
-    %li
-      = link_to 'Супервайзеры', admin_supervisors_path
-    %li
-      = link_to 'Диспетчеры', admin_editors_path
-    %li
-      = link_to 'Заведующие кафедр', admin_dept_heads_path
-    %li
-      = link_to 'Выход', destroy_admin_session_path, :class => "red"
+    %li #{ link_to 'Администраторы системы', admin_admins_path }
+    %li #{ link_to 'Супервайзеры', admin_supervisors_path }
+    %li #{ link_to 'Диспетчеры', admin_editors_path }
+    %li #{ link_to 'Заведующие кафедр', admin_dept_heads_path }
+    %li #{ link_to 'Выход', destroy_admin_session_path, :class => "red" }

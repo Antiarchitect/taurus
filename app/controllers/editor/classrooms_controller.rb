@@ -2,16 +2,13 @@ class Editor::ClassroomsController < Editor::BaseController
 
   def index
     flash[:error] = nil
-    cookies[:classrooms] = YAML.dump([0])
-    if params[:except]
-      except = params[:except].split(',').collect { |e| e.to_i }
-    else
-      except = "0"
-    end
+    request.xhr? ? nil : cookies[:classrooms] = YAML.dump([0])
+    @classroom_id = params[:classroom_id]
+    except = params[:except] ? params[:except].split(',').map { |e| e.to_i } : "0"
     classroom = params[:classroom].to_s.gsub('%', '\%').gsub('_', '\_') + '%'
     respond_to do |format|
       format.html
-      format.json { render :json => Classroom.all(:conditions => ['classrooms.id NOT IN (?) AND classrooms.name LIKE ?', except, classroom],
+      format.json { render :json => Classroom.all(:conditions => ['id NOT IN (?) AND name LIKE ?', except, classroom],
         :include => [:building]).to_json(:only => [:id, :name], :include => { :building => { :only => :name } } )}
     end
   end
@@ -29,7 +26,7 @@ class Editor::ClassroomsController < Editor::BaseController
       grids << @classroom.id
       cookies[:classrooms] = YAML.dump(grids)
       @classrooms = YAML.load(cookies[:classrooms])
-      
+
       respond_to do |format|
         format.js
       end
@@ -50,7 +47,7 @@ class Editor::ClassroomsController < Editor::BaseController
     grids.delete(@id.to_i)
     cookies[:classrooms] = YAML.dump(grids)
     @classrooms = YAML.load(cookies[:classrooms])
-    
+
     respond_to do |format|
       format.js
     end

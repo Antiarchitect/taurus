@@ -1,4 +1,7 @@
 ru:
+  number:
+    format:
+      delimiter: ''
   activerecord:
     models:
       building:
@@ -66,6 +69,7 @@ ru:
       building:
         name: 'Название корпуса'
       charge_card:
+        teaching_place: 'Преподаватель'
         discipline: 'Название дисциплины'
         groups: 'Группы'
         jets: 'Группы'
@@ -75,6 +79,7 @@ ru:
         weeks_quantity: 'Количество недель'
       classroom:
         building: 'Корпус'
+        capacity: 'Вместимость'
         department: 'Кафедра'
         name: 'Номер аудитории'
       department:
@@ -96,6 +101,7 @@ ru:
         subgroups_quantity: 'Количество подргупп'
       lecturer:
         name: 'ФИО'
+        whish: 'Пожелания'
       pair:
         building: 'Корпус'
         classroom: 'Аудитория'
@@ -107,6 +113,10 @@ ru:
         lecturer: 'Преподаватель'
         position: 'Должность'
     description:
+      charge_card:
+        teaching_place: 'Внимание! При смене преподавателя все имеющиеся пары для этой карты будут удалены!'
+      classroom:
+        capacity: 'количество человек'
       jet:
         subgroups_quantity: 'Значение "1" не допускается. В случае отсутствия подгрупп выставить "0"'
       discipline:

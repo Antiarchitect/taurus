@@ -11,7 +11,12 @@ ActionController::Routing::Routes.draw do |map|
     e.resources :classrooms
     e.resources :pairs
     e.resources :charge_cards
-    e.root :controller => 'classrooms'
+    e.resources :classrooms_sheets
+    e.resources :groups
+    e.resource  :groups_list do |list|
+      list.resources :groups
+    end
+    e.root :controller => 'classrooms_sheets'
   end
 
   map.namespace :dept_head do |d|
@@ -37,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :classrooms
-  
+
 #  map.admin_root '/admin/departments', :controller => 'admin/dept_heads'
 #  map.editor_root '/editor/classrooms', :controller => 'editor/classrooms'
 #  map.supervisor_root '/supervisor/lecturers', :controller => 'supervisor/lecturers'

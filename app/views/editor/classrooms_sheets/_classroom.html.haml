@@ -1,0 +1,7 @@
+- pairs = classroom.pairs
+%tr{:id => classroom.id, :class => 'classroom_row'}
+  %th
+    - capacity = classroom.capacity? ? " (#{classroom.capacity} чел.)" : ''
+    = "#{classroom.name}#{capacity}"
+    = render :partial => 'day', :collection => @days, :locals => {:classroom => classroom, :pairs => pairs}
+
