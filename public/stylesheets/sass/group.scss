@@ -138,20 +138,25 @@ img {
   border-radius: $numpad_border_radius;
   background: $numpad_background;
   padding: 16px;
-  float: left;
   text-align: center;
 }
 
-.group_name_input {
+.group_name_input_container {
   margin: {
     top: 30px;
     bottom: 0.5em;
+    left: 50px;
+    right: 50px;
   }
-  width: 80%;
+}
+
+.group_name_input {
   font: {
     size: 40px;
   }
+  width: 100%;
 }
+
 
 .group_name button,  .group_name_terminal button {
     font-size: 150%;

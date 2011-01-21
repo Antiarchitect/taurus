@@ -88,14 +88,17 @@ img {
   border-radius: 30px;
   background: #e6e6fa;
   padding: 16px;
-  float: left;
   text-align: center; }
 
-.group_name_input {
+.group_name_input_container {
   margin-top: 30px;
   margin-bottom: 0.5em;
-  width: 80%;
-  font-size: 40px; }
+  margin-left: 50px;
+  margin-right: 50px; }
+
+.group_name_input {
+  font-size: 40px;
+  width: 100%; }
 
 .group_name button, .group_name_terminal button {
   font-size: 150%;
