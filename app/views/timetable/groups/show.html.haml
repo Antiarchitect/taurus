@@ -10,7 +10,7 @@
     %table
       %caption= "Расписание учебных пар группы #{@group.name}"
       %col.timecells
-      - (1...7).each do |i|
+      - @days.each do |i|
         %col.daycells
       %thead
         %tr
