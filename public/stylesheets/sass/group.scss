@@ -9,16 +9,11 @@ $grid_background: #E6E6FA;
 $numpad_background: #E6E6FA;
 $numpad_border_radius: 30px;
 $timetablerow_height: 150px;
+$print_timetablerow_height: 80px;
 
 @font-face {
   font-family: Archangelsk;
   src: url(/fonts/Archangelsk.ttf);
-}
-
-@media print {
-  .pdf_link {
-    display: none;
-  }
 }
 
 @mixin table_border {
@@ -203,4 +198,31 @@ img {
 .info_notify {
     background-color: #0000AA;
     color: white;
+}
+
+@media print {
+  .pdf_link {
+    display: none;
+  }
+  .timetable {
+    .timetablerow {
+      height: $print_timetablerow_height;
+    }
+  }
+  .daycellcontainer {
+    height: $print_timetablerow_height+2px;
+    margin: -1px;
+  }
+  .daycell {
+    tr {
+      height: 40px;
+      max-height: 40px;
+    }
+    td {
+      font: {
+        family: sans-serif;
+        size: 8px;
+      }
+    }
+  }
 }
