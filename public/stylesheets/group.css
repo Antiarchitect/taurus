@@ -139,6 +139,8 @@ img {
 
   .timetable .timetablerow {
     height: 80px; }
+  .timetable th {
+    font-size: 10px; }
 
   .daycellcontainer {
     height: 82px;

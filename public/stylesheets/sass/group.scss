@@ -208,6 +208,11 @@ img {
     .timetablerow {
       height: $print_timetablerow_height;
     }
+    th {
+      font: {
+        size: 10px
+      }
+    }
   }
   .daycellcontainer {
     height: $print_timetablerow_height+2px;
