@@ -206,22 +206,29 @@ img {
 }
 
 @media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
   .pdf_link {
     display: none;
   }
   .timetable {
     .timetablerow {
+    page-break-inside: avoid;
       height: $print_timetablerow_height;
     }
     th {
       font: {
-        size: 10px
+        size: 8px
       }
+      page-break-inside: avoid;
     }
   }
   .daycellcontainer {
     height: $print_timetablerow_height+2px;
     margin: -1px;
+    page-break-inside: avoid;
   }
   .daycell {
     tr {

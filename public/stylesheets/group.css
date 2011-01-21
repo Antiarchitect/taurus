@@ -137,17 +137,24 @@ img {
   color: white; }
 
 @media print {
+  body {
+    margin: 0;
+    padding: 0; }
+
   .pdf_link {
     display: none; }
 
   .timetable .timetablerow {
+    page-break-inside: avoid;
     height: 70px; }
   .timetable th {
-    font-size: 10px; }
+    font-size: 8px;
+    page-break-inside: avoid; }
 
   .daycellcontainer {
     height: 72px;
-    margin: -1px; }
+    margin: -1px;
+    page-break-inside: avoid; }
 
   .daycell tr {
     height: 35px;

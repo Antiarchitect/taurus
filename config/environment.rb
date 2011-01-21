@@ -40,5 +40,5 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
   require 'pdfkit'
-  config.middleware.use PDFKit::Middleware, :print_media_type => true, :page_size => "A4", :orientation => :landscape
+  config.middleware.use PDFKit::Middleware, :print_media_type => true, :page_size => "A4", :orientation => :landscape, :margin_top => "10mm", :margin_bottom => "10mm", :margin_left => "10mm", :margin_right => "10mm"
 end
