@@ -9,7 +9,7 @@ class Group < ActiveRecord::Base
   validates_format_of :forming_year, :with => /^(20)\d{2}$/,
     :message => '- необходимо вводить год целиком. Допустимы годы от 2000 до 2099'
 
-  named_scope :for_timetable, :include => [ {:jets => [{:subgroups => { :pair => [ { :subgroups => :jet }, {:classroom => :building}, { :charge_card => [ :discipline, { :teaching_place => [:lecturer, :position, :department] } ] } ] } } ] } ]
+  named_scope :for_timetable, :include => [{:subgroups => [{:pair => [{:classroom => :building}, { :charge_card => [:discipline, {:teaching_place => [:lecturer, :department]}]}]}]}]
   named_scope :by_name, lambda { |name| { :conditions => ['groups.name LIKE ?', escape_name(name)] } }
 
   def course
@@ -21,15 +21,13 @@ class Group < ActiveRecord::Base
   end
 
   def get_pairs
-    pairs = subgroups.map { |s| s.pair }
     days = Timetable.days
     times = Timetable.times
     weeks = Timetable.weeks
     pairs_array = Array.new(days.size).map!{Array.new(times.size).map!{Array.new(weeks.size + 1).map!{Array.new}}}
-    pairs.each do |pair|
-      subgroup = subgroups.detect {|s| pair.subgroups.include?(s) }
-      subgroups_number = subgroup ? subgroup.number : 0
-      pairs_array[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << [pair, subgroups_number]
+    subgroups.each do |subgroup|
+      pair = subgroup.pair
+      pairs_array[pair.day_of_the_week - 1][pair.pair_number - 1][pair.week] << [pair, subgroup.number]
     end
     pairs_array
   end

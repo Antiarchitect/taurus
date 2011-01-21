@@ -2,10 +2,6 @@
   font-family: Archangelsk;
   src: url(/fonts/Archangelsk.ttf); }
 
-@media print {
-  .pdf_link {
-    display: none; } }
-
 body {
   background: white;
   color: black;
@@ -136,3 +132,23 @@ img {
 .info_notify {
   background-color: #0000AA;
   color: white; }
+
+@media print {
+  .pdf_link {
+    display: none; }
+
+  .timetable .timetablerow {
+    height: 70px; }
+  .timetable th {
+    font-size: 10px; }
+
+  .daycellcontainer {
+    height: 72px;
+    margin: -1px; }
+
+  .daycell tr {
+    height: 35px;
+    max-height: 35px; }
+  .daycell td {
+    font-family: sans-serif;
+    font-size: 7px; } }
