@@ -9,7 +9,7 @@ $grid_background: #E6E6FA;
 $numpad_background: #E6E6FA;
 $numpad_border_radius: 30px;
 $timetablerow_height: 150px;
-$print_timetablerow_height: 80px;
+$print_timetablerow_height: 70px;
 
 @font-face {
   font-family: Archangelsk;
@@ -220,13 +220,13 @@ img {
   }
   .daycell {
     tr {
-      height: 40px;
-      max-height: 40px;
+      height: 35px;
+      max-height: 35px;
     }
     td {
       font: {
         family: sans-serif;
-        size: 8px;
+        size: 7px;
       }
     }
   }
