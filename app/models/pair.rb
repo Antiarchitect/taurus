@@ -18,18 +18,8 @@ class Pair < ActiveRecord::Base
     week == 0 ? 'обе недели' : week.to_s + '-я неделя'
   end
   
-  def full_lecturer
-    self.try(:charge_card).try(:teaching_place).try(:name)
-  end
-
   def lecturer
-    unless full_lecturer.blank?
-      apart = full_lecturer.split(' ')
-      apart = apart.map { |a, index| index == 0 ? a : (a.slice(/^./) + '.')}
-      apart.join(' ')
-    else
-      ''
-    end
+    self.try(:charge_card).try(:teaching_place).try(:name)
   end
 
   def lecturer_id

@@ -13,7 +13,7 @@
       = "#{short_lesson_type}"
     %br
     - if pair.lecturer && pair.lecturer_id
-      %abbr{:title => "#{pair.full_lecturer}"}
+      %abbr{:title => "#{pair.lecturer}"}
         = link_to "#{pair.lecturer}", timetable_lecturer_path(pair.lecturer_id), :target => '_blank'
     %br
     - if pair.groups
