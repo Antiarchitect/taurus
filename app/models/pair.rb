@@ -19,6 +19,10 @@ class Pair < ActiveRecord::Base
   end
   
   def lecturer
+    self.try(:charge_card).try(:lecturer).try(:name)
+  end
+
+  def lecturer_full
     self.try(:charge_card).try(:teaching_place).try(:name)
   end
 
