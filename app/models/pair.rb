@@ -25,11 +25,11 @@ class Pair < ActiveRecord::Base
   def lecturer
     unless full_lecturer.blank?
       apart = full_lecturer.split(' ')
-      name = apart[0]
-      name += (' ' + apart[1].slice(/^./) + '.') if apart[1]
-      name += (apart[2].slice(/^./) + '.') if apart[2]
+      apart = apart.map { |a, index| index == 0 ? a : (a.slice(/^./) + '.')}
+      apart.join(' ')
+    else
+      ''
     end
-    name || ''
   end
 
   def lecturer_id
