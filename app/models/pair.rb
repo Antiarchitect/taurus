@@ -19,7 +19,12 @@ class Pair < ActiveRecord::Base
   end
   
   def lecturer
-    self.try(:charge_card).try(:teaching_place).try(:lecturer).try(:name)
+    name = self.try(:charge_card).try(:teaching_place).try(:lecturer).try(:name)
+    apart = name.split(' ')
+    name = apart[0]
+    name += (' ' + apart[1].slice(/^./) + '.') if apart[1]
+    name += (apart[2].slice(/^./) + '.') if apart[2]
+    name
   end
 
   def lecturer_full
